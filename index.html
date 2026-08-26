@@ -3,719 +3,964 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="description" content="VERIFIA — Trouvez des professionnels fiables au Bénin.">
-<title>VERIFIA | Trouver. Vérifier. Faire confiance.</title>
+
+<title>VERIFIA — Trouvez des professionnels de confiance</title>
+
+<meta name="description" content="VERIFIA est la plateforme qui permet de trouver, comparer et contacter des professionnels au Bénin.">
 
 <style>
 :root{
---navy:#071827;
---navy2:#0d2b3d;
+--navy:#061826;
+--navy2:#0b2638;
 --teal:#12b8a6;
---teal2:#0b8f82;
---gold:#e6b85c;
+--teal2:#079081;
+--gold:#e8bb5d;
 --white:#fff;
 --bg:#f5f8fa;
---text:#142333;
---muted:#687888;
---border:#e2e9ed;
---shadow:0 20px 50px rgba(7,24,39,.10);
+--text:#152733;
+--muted:#6c7d87;
+--line:#e2e9ed;
+--success:#19a974;
+--danger:#e25353;
+--shadow:0 18px 55px rgba(6,24,38,.11);
 --radius:22px;
 }
 
-*{box-sizing:border-box;margin:0;padding:0}
-
-html{scroll-behavior:smooth}
-
-body{
-font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;
-background:var(--bg);
-color:var(--text);
-line-height:1.6
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
 }
 
-button,input,select,textarea{font:inherit}
-button{cursor:pointer}
-a{text-decoration:none;color:inherit}
+html{
+scroll-behavior:smooth;
+}
 
-/* HEADER */
+body{
+font-family:Inter,Segoe UI,Arial,sans-serif;
+background:var(--bg);
+color:var(--text);
+line-height:1.6;
+}
+
+button,input,select,textarea{
+font:inherit;
+}
+
+button{
+cursor:pointer;
+}
+
+a{
+text-decoration:none;
+color:inherit;
+}
+
+/* =========================
+HEADER
+========================= */
+
 header{
 position:sticky;
 top:0;
 z-index:1000;
-background:rgba(7,24,39,.96);
-backdrop-filter:blur(14px);
-color:white
+background:rgba(6,24,38,.96);
+backdrop-filter:blur(16px);
+border-bottom:1px solid rgba(255,255,255,.06);
 }
 
 .nav{
-max-width:1200px;
+max-width:1280px;
 margin:auto;
-padding:15px 20px;
+padding:14px 20px;
 display:flex;
 align-items:center;
 justify-content:space-between;
-gap:20px
+gap:20px;
 }
 
 .logo{
 display:flex;
 align-items:center;
 gap:10px;
-font-size:24px;
-font-weight:900;
-letter-spacing:.5px
+font-size:25px;
+font-weight:1000;
+color:white;
 }
 
-.logo-mark{
-width:40px;
-height:40px;
+.logoMark{
+width:43px;
+height:43px;
 display:grid;
 place-items:center;
-border-radius:13px;
-background:linear-gradient(135deg,var(--teal),#5ce0d0);
+border-radius:14px;
+background:linear-gradient(135deg,var(--teal),#6ce0d4);
 color:var(--navy);
-font-weight:1000
+font-weight:1000;
 }
 
-.logo span{color:var(--teal)}
+.logo span{
+color:var(--teal);
+}
 
-.navlinks{
+.navLinks{
 display:flex;
-gap:25px;
-align-items:center
+align-items:center;
+gap:27px;
 }
 
-.navlinks a{
+.navLinks a{
 font-size:14px;
-font-weight:700;
-color:#d5e1e7
+font-weight:800;
+color:#d3e0e6;
 }
 
-.navlinks a:hover{color:var(--teal)}
+.navLinks a:hover{
+color:var(--teal);
+}
 
-.actions{
+.navButtons{
 display:flex;
-gap:9px
+gap:8px;
 }
 
 .btn{
 border:0;
+border-radius:13px;
 padding:12px 18px;
-border-radius:12px;
-font-weight:800;
+font-weight:900;
+transition:.25s;
 display:inline-flex;
-justify-content:center;
 align-items:center;
+justify-content:center;
 gap:8px;
-transition:.25s
 }
 
-.btn:hover{transform:translateY(-2px)}
+.btn:hover{
+transform:translateY(-2px);
+}
 
-.primary{
+.btnPrimary{
 background:var(--teal);
-color:white
+color:white;
 }
 
-.primary:hover{background:var(--teal2)}
-
-.outline{
-background:transparent;
-border:1px solid rgba(255,255,255,.25);
-color:white
+.btnPrimary:hover{
+background:var(--teal2);
 }
 
-.outline:hover{
-background:white;
-color:var(--navy)
-}
-
-.light{
+.btnWhite{
 background:white;
 color:var(--navy);
-border:1px solid var(--border)
 }
 
-.menu{
+.btnGhost{
+background:transparent;
+border:1px solid rgba(255,255,255,.25);
+color:white;
+}
+
+.btnGhost:hover{
+background:white;
+color:var(--navy);
+}
+
+.mobileMenu{
 display:none;
 border:0;
 background:none;
 color:white;
-font-size:28px
+font-size:28px;
 }
 
-/* HERO */
+/* =========================
+HERO
+========================= */
+
 .hero{
-background:
-radial-gradient(circle at 85% 20%,rgba(18,184,166,.2),transparent 30%),
-linear-gradient(135deg,var(--navy),#0b3045);
 color:white;
-padding:90px 20px 110px
+background:
+radial-gradient(circle at 82% 15%,rgba(18,184,166,.20),transparent 28%),
+radial-gradient(circle at 5% 80%,rgba(232,187,93,.08),transparent 25%),
+linear-gradient(135deg,var(--navy),var(--navy2));
+padding:88px 20px 115px;
+overflow:hidden;
 }
 
-.hero-inner{
-max-width:1200px;
+.heroGrid{
+max-width:1280px;
 margin:auto;
 display:grid;
 grid-template-columns:1.05fr .95fr;
-gap:55px;
-align-items:center
+gap:60px;
+align-items:center;
 }
 
-.badge{
+.pill{
 display:inline-flex;
-padding:7px 12px;
-border-radius:30px;
-background:rgba(18,184,166,.13);
-border:1px solid rgba(18,184,166,.25);
-color:#6ce0d3;
-font-size:12px;
-font-weight:900;
-margin-bottom:18px
+align-items:center;
+gap:8px;
+padding:7px 13px;
+border:1px solid rgba(18,184,166,.3);
+background:rgba(18,184,166,.09);
+border-radius:50px;
+color:#71e1d5;
+font-size:11px;
+font-weight:950;
+margin-bottom:18px;
 }
 
 .hero h1{
-font-size:clamp(43px,6vw,72px);
-line-height:1.03;
-letter-spacing:-2.5px;
-margin-bottom:22px
+font-size:clamp(43px,6vw,76px);
+line-height:1.02;
+letter-spacing:-3px;
+margin-bottom:22px;
 }
 
-.hero h1 span{color:var(--teal)}
+.hero h1 span{
+color:var(--teal);
+}
 
-.hero p{
+.heroText{
 font-size:18px;
-color:#c9d8df;
-max-width:650px;
-margin-bottom:30px
+color:#c7d6de;
+max-width:690px;
+margin-bottom:28px;
 }
 
-.hero-buttons{
+.heroActions{
 display:flex;
-gap:12px;
-flex-wrap:wrap
+flex-wrap:wrap;
+gap:11px;
 }
 
-/* SEARCH */
-.search{
+.heroMini{
+display:flex;
+align-items:center;
+gap:20px;
+margin-top:28px;
+color:#9eb1bc;
+font-size:13px;
+}
+
+.heroMini strong{
+color:white;
+}
+
+.searchBox{
 background:white;
 color:var(--text);
-padding:25px;
-border-radius:26px;
-box-shadow:0 30px 70px rgba(0,0,0,.23)
+border-radius:27px;
+padding:28px;
+box-shadow:0 35px 80px rgba(0,0,0,.25);
 }
 
-.search h2{
-font-size:21px;
-margin-bottom:17px
+.searchBox h2{
+font-size:23px;
+color:var(--navy);
+margin-bottom:18px;
 }
 
-.grid{
+.searchGrid{
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:13px
+gap:13px;
 }
 
 .field{
 display:flex;
 flex-direction:column;
-gap:7px
+gap:6px;
 }
 
 .field label{
-font-size:11px;
-font-weight:900;
-color:var(--muted)
+font-size:10px;
+font-weight:950;
+color:var(--muted);
+letter-spacing:.5px;
 }
 
 .field input,
 .field select,
 .field textarea{
-width:100%;
-border:1px solid var(--border);
+border:1px solid var(--line);
 background:#f9fbfc;
-padding:13px;
 border-radius:12px;
-outline:0
+padding:13px;
+outline:none;
+width:100%;
 }
 
 .field input:focus,
 .field select:focus,
 .field textarea:focus{
 border-color:var(--teal);
-box-shadow:0 0 0 3px rgba(18,184,166,.1)
+box-shadow:0 0 0 3px rgba(18,184,166,.1);
 }
 
-.full{grid-column:1/-1}
+.full{
+grid-column:1/-1;
+}
 
-.search-btn{
+.searchBtn{
 width:100%;
-margin-top:12px;
-padding:15px
+margin-top:13px;
+padding:15px;
 }
 
-/* STATS */
-.stats{
+/* =========================
+TRUST BAR
+========================= */
+
+.trustBar{
 max-width:1100px;
-margin:-45px auto 0;
+margin:-48px auto 0;
 position:relative;
-z-index:3;
+z-index:5;
 background:white;
 border-radius:22px;
 box-shadow:var(--shadow);
 display:grid;
 grid-template-columns:repeat(4,1fr);
-padding:25px
+padding:23px;
 }
 
-.stat{
+.trustItem{
 text-align:center;
-border-right:1px solid var(--border)
+border-right:1px solid var(--line);
 }
 
-.stat:last-child{border:0}
+.trustItem:last-child{
+border-right:0;
+}
 
-.stat strong{
+.trustItem strong{
 display:block;
-font-size:29px;
-color:var(--navy)
+font-size:23px;
+color:var(--navy);
 }
 
-.stat small{color:var(--muted)}
+.trustItem span{
+font-size:12px;
+color:var(--muted);
+}
 
-/* SECTIONS */
+/* =========================
+SECTIONS
+========================= */
+
 .section{
-max-width:1200px;
+max-width:1280px;
 margin:auto;
-padding:85px 20px
+padding:85px 20px;
 }
 
-.head{
+.sectionHead{
 display:flex;
 justify-content:space-between;
-align-items:end;
-gap:20px;
-margin-bottom:30px
+align-items:flex-end;
+gap:25px;
+margin-bottom:30px;
 }
 
-.head h2{
-font-size:34px;
-line-height:1.15;
-color:var(--navy)
+.sectionHead h2{
+font-size:36px;
+line-height:1.1;
+color:var(--navy);
 }
 
-.head p{
+.sectionHead p{
 color:var(--muted);
-max-width:650px
+max-width:650px;
+margin-top:8px;
 }
 
 .link{
 color:var(--teal2);
 font-weight:900;
-white-space:nowrap
+white-space:nowrap;
 }
 
-/* CATEGORIES */
+/* =========================
+CATEGORIES
+========================= */
+
 .categories{
 display:grid;
 grid-template-columns:repeat(6,1fr);
-gap:14px
+gap:14px;
 }
 
 .category{
 background:white;
-border:1px solid var(--border);
-border-radius:18px;
+border:1px solid var(--line);
+border-radius:20px;
 padding:21px 10px;
 text-align:center;
-transition:.25s
+transition:.25s;
+cursor:pointer;
 }
 
 .category:hover{
 transform:translateY(-5px);
 box-shadow:var(--shadow);
-border-color:rgba(18,184,166,.4)
+border-color:rgba(18,184,166,.35);
 }
 
-.icon{
-width:54px;
-height:54px;
-margin:auto auto 11px;
+.categoryIcon{
+height:55px;
+width:55px;
+margin:auto auto 10px;
 display:grid;
 place-items:center;
-border-radius:16px;
-background:#eafaf7;
-font-size:26px
+background:#eaf9f7;
+border-radius:17px;
+font-size:25px;
 }
 
-.category strong{font-size:13px}
+.category strong{
+font-size:13px;
+}
 
-/* PROFESSIONALS */
-.pros{
+/* =========================
+PROFILES
+========================= */
+
+.profiles{
 display:grid;
 grid-template-columns:repeat(3,1fr);
-gap:20px
-}
-
-.card{
-background:white;
-border:1px solid var(--border);
-border-radius:22px;
-overflow:hidden;
-transition:.25s
-}
-
-.card:hover{
-transform:translateY(-5px);
-box-shadow:var(--shadow)
-}
-
-.cover{
-height:105px;
-background:linear-gradient(135deg,#092235,#116b69)
+gap:20px;
 }
 
 .profile{
-padding:0 22px 22px;
-position:relative
+background:white;
+border:1px solid var(--line);
+border-radius:23px;
+overflow:hidden;
+transition:.25s;
+}
+
+.profile:hover{
+transform:translateY(-5px);
+box-shadow:var(--shadow);
+}
+
+.profileCover{
+height:110px;
+background:linear-gradient(135deg,#092b3e,#078f81);
+}
+
+.profileCover.blue{
+background:linear-gradient(135deg,#132f54,#356cb2);
+}
+
+.profileCover.gold{
+background:linear-gradient(135deg,#332510,#a0782d);
+}
+
+.profileBody{
+padding:0 21px 22px;
 }
 
 .avatar{
-width:76px;
-height:76px;
-margin-top:-38px;
+width:78px;
+height:78px;
+margin-top:-39px;
 border-radius:50%;
 border:5px solid white;
-background:linear-gradient(135deg,#e3eef1,#8aaab5);
+background:#dce8ec;
 display:grid;
 place-items:center;
-font-size:28px
+font-size:30px;
 }
 
-.pro-name{
+.profileName{
 font-size:19px;
-font-weight:900;
-margin-top:8px
+font-weight:950;
+margin-top:8px;
 }
 
-.verify{
-display:inline-block;
-background:#e9faf7;
-color:#087f73;
-padding:4px 8px;
-border-radius:20px;
+.verified{
+display:inline-flex;
+margin-top:6px;
+padding:4px 9px;
+background:#e8faf6;
+color:#087f72;
+border-radius:50px;
 font-size:10px;
-font-weight:900;
-margin-top:7px
+font-weight:950;
 }
 
 .rating{
 font-weight:900;
-margin:8px 0
+margin-top:8px;
 }
 
-.rating span{
+.rating small{
 color:var(--muted);
-font-size:13px;
-font-weight:500
+font-weight:500;
 }
 
-.meta{
+.profileInfo{
+font-size:13px;
 color:var(--muted);
-font-size:13px;
-margin-bottom:17px
+margin:10px 0 17px;
 }
 
-.card-actions{
+.profileActions{
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:8px
+gap:8px;
 }
 
-/* TRUST */
-.dark{
-background:var(--navy);
-color:white
+.favorite{
+position:relative;
+float:right;
+margin-top:-32px;
+width:38px;
+height:38px;
+border:0;
+border-radius:50%;
+background:white;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
 }
 
-.dark .head h2{color:white}
-.dark .head p{color:#afc0c9}
+/* =========================
+POPULAR NEEDS
+========================= */
 
-.trust{
+.needs{
 display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:18px
+grid-template-columns:repeat(3,1fr);
+gap:17px;
 }
 
-.trust-card{
-background:#0d293c;
-border:1px solid rgba(255,255,255,.07);
-padding:25px;
-border-radius:20px
-}
-
-.trust-card .big{font-size:29px;margin-bottom:8px}
-
-.trust-card h3{margin-bottom:7px}
-
-.trust-card p{
-color:#aebfc8;
-font-size:14px
-}
-
-/* NEED */
 .need{
-background:linear-gradient(135deg,#087f75,#0eaa99);
-color:white;
-border-radius:28px;
-padding:52px;
-display:grid;
-grid-template-columns:1fr auto;
-gap:30px;
-align-items:center;
-box-shadow:var(--shadow)
+background:white;
+border:1px solid var(--line);
+border-radius:20px;
+padding:22px;
 }
 
-.need h2{
-font-size:37px;
-line-height:1.12;
-margin-bottom:10px
+.needTop{
+display:flex;
+justify-content:space-between;
+gap:15px;
+}
+
+.needTag{
+font-size:10px;
+font-weight:950;
+padding:5px 9px;
+border-radius:50px;
+background:#edf9f7;
+color:var(--teal2);
+}
+
+.need h3{
+margin:12px 0 5px;
 }
 
 .need p{
-color:#d7f3ef;
-max-width:680px
+font-size:13px;
+color:var(--muted);
 }
 
-/* HOW */
+.needBottom{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-top:15px;
+font-size:12px;
+color:var(--muted);
+}
+
+/* =========================
+DARK TRUST
+========================= */
+
+.dark{
+background:var(--navy);
+color:white;
+}
+
+.dark .sectionHead h2{
+color:white;
+}
+
+.dark .sectionHead p{
+color:#a9bbc5;
+}
+
+.trustGrid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:17px;
+}
+
+.trustCard{
+background:#0c293c;
+border:1px solid rgba(255,255,255,.07);
+border-radius:21px;
+padding:24px;
+}
+
+.trustCard .icon{
+font-size:28px;
+margin-bottom:8px;
+}
+
+.trustCard h3{
+margin-bottom:6px;
+}
+
+.trustCard p{
+color:#a8bac4;
+font-size:13px;
+}
+
+/* =========================
+REQUEST
+========================= */
+
+.request{
+background:linear-gradient(135deg,#078e81,#14bbaa);
+border-radius:29px;
+padding:52px;
+color:white;
+display:grid;
+grid-template-columns:1fr auto;
+align-items:center;
+gap:30px;
+box-shadow:var(--shadow);
+}
+
+.request h2{
+font-size:38px;
+line-height:1.1;
+margin-bottom:9px;
+}
+
+.request p{
+color:#d9f6f2;
+max-width:690px;
+}
+
+/* =========================
+HOW
+========================= */
+
 .steps{
 display:grid;
 grid-template-columns:repeat(4,1fr);
-gap:18px
+gap:17px;
 }
 
 .step{
 background:white;
-border:1px solid var(--border);
-border-radius:20px;
-padding:25px
+border:1px solid var(--line);
+border-radius:21px;
+padding:25px;
 }
 
-.number{
+.stepNumber{
 width:44px;
 height:44px;
+display:grid;
+place-items:center;
 border-radius:14px;
 background:var(--navy);
 color:white;
-display:grid;
-place-items:center;
-font-weight:900;
-margin-bottom:17px
+font-weight:950;
+margin-bottom:16px;
 }
 
-.step h3{margin-bottom:7px}
-.step p{font-size:14px;color:var(--muted)}
+.step h3{
+margin-bottom:6px;
+}
 
-/* PRO SECTION */
-.pro-section{background:#eef8f7}
+.step p{
+font-size:13px;
+color:var(--muted);
+}
 
-.pro-area{
+/* =========================
+FOR PROS
+========================= */
+
+.proSection{
+background:#ecf9f7;
+}
+
+.proLayout{
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:50px;
-align-items:center
+gap:60px;
+align-items:center;
 }
 
-.pro-area h2{
-font-size:40px;
-line-height:1.1;
+.proLabel{
+font-size:12px;
+font-weight:950;
+color:var(--teal2);
+margin-bottom:10px;
+}
+
+.proLayout h2{
+font-size:42px;
+line-height:1.08;
 color:var(--navy);
-margin-bottom:15px
+margin-bottom:14px;
 }
 
-.pro-area>div>p{
+.proLayout>div>p{
 color:var(--muted);
-margin-bottom:22px
+margin-bottom:22px;
 }
 
-.list{
+.benefits{
 display:grid;
-gap:12px
+gap:11px;
 }
 
-.list div{
+.benefit{
 display:flex;
 gap:10px;
 align-items:center;
-font-weight:750
+font-weight:800;
 }
 
 .check{
 width:28px;
 height:28px;
+display:grid;
+place-items:center;
 border-radius:50%;
 background:var(--teal);
 color:white;
-display:grid;
-place-items:center;
-font-size:12px
+font-size:12px;
 }
 
-.prices{
+.plans{
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:15px
+gap:15px;
+}
+
+.plan{
+background:white;
+border:1px solid var(--line);
+border-radius:22px;
+padding:26px;
+}
+
+.plan.featured{
+border:2px solid var(--teal);
+transform:translateY(-7px);
+}
+
+.plan h3{
+color:var(--navy);
 }
 
 .price{
-background:white;
-border:1px solid var(--border);
-border-radius:22px;
-padding:25px
+font-size:27px;
+font-weight:950;
+margin:10px 0 17px;
 }
 
-.price.featured{
-border:2px solid var(--teal);
-transform:translateY(-7px)
+.price small{
+font-size:11px;
+color:var(--muted);
 }
 
-.price h3{color:var(--navy)}
-
-.amount{
-font-size:30px;
-font-weight:900;
-margin:8px 0 15px
-}
-
-.amount small{
-font-size:12px;
-color:var(--muted)
-}
-
-.price ul{
+.plan ul{
 list-style:none;
 display:grid;
 gap:8px;
-font-size:14px;
-color:var(--muted)
+font-size:13px;
+color:var(--muted);
 }
 
-/* CTA */
-.cta{
+/* =========================
+FAQ
+========================= */
+
+.faq{
+display:grid;
+gap:10px;
+max-width:900px;
+margin:auto;
+}
+
+.faqItem{
+background:white;
+border:1px solid var(--line);
+border-radius:16px;
+overflow:hidden;
+}
+
+.faqQuestion{
+width:100%;
+border:0;
+background:white;
+padding:18px 20px;
+display:flex;
+justify-content:space-between;
+font-weight:900;
+text-align:left;
+color:var(--navy);
+}
+
+.faqAnswer{
+display:none;
+padding:0 20px 18px;
+color:var(--muted);
+font-size:14px;
+}
+
+.faqItem.open .faqAnswer{
+display:block;
+}
+
+/* =========================
+CTA
+========================= */
+
+.final{
 background:white;
 text-align:center;
-padding:70px 20px
+padding:75px 20px;
 }
 
-.cta h2{
-font-size:39px;
+.final h2{
+font-size:40px;
+line-height:1.1;
 color:var(--navy);
-margin-bottom:9px
+margin-bottom:9px;
 }
 
-.cta p{
+.final p{
 color:var(--muted);
-margin-bottom:24px
+margin-bottom:23px;
 }
 
-/* FOOTER */
+/* =========================
+FOOTER
+========================= */
+
 footer{
-background:#04131f;
-color:white
+background:#03121e;
+color:white;
 }
 
 .footer{
-max-width:1200px;
+max-width:1280px;
 margin:auto;
-padding:60px 20px 25px
+padding:60px 20px 25px;
 }
 
-.footer-grid{
+.footerGrid{
 display:grid;
 grid-template-columns:1.5fr repeat(3,1fr);
 gap:40px;
-margin-bottom:45px
+margin-bottom:40px;
 }
 
-.footer-brand p{
-color:#8fa4af;
-max-width:330px;
-margin-top:15px
+.footerText{
+color:#8da1ac;
+max-width:350px;
+margin-top:14px;
+font-size:14px;
 }
 
-.footer h4{margin-bottom:15px}
+.footer h4{
+margin-bottom:14px;
+}
 
 .footer a{
 display:block;
-color:#8fa4af;
-font-size:14px;
-margin:8px 0
+color:#8da1ac;
+font-size:13px;
+margin:8px 0;
 }
 
-.footer a:hover{color:var(--teal)}
+.footer a:hover{
+color:var(--teal);
+}
 
-.copy{
+.footerBottom{
 border-top:1px solid rgba(255,255,255,.08);
 padding-top:20px;
-color:#718894;
-font-size:13px;
 display:flex;
-justify-content:space-between
+justify-content:space-between;
+gap:20px;
+color:#6f8490;
+font-size:12px;
 }
 
-/* MODAL */
+/* =========================
+MODALS
+========================= */
+
 .modal{
 position:fixed;
 inset:0;
-background:rgba(2,13,22,.75);
-backdrop-filter:blur(5px);
+z-index:5000;
 display:none;
 align-items:center;
 justify-content:center;
-padding:20px;
-z-index:5000
+background:rgba(2,12,20,.78);
+backdrop-filter:blur(5px);
+padding:18px;
 }
 
-.modal.active{display:flex}
+.modal.active{
+display:flex;
+}
 
-.modal-box{
-width:min(620px,100%);
+.modalBox{
+width:min(680px,100%);
 max-height:90vh;
 overflow:auto;
 background:white;
 border-radius:25px;
 padding:30px;
-position:relative
+position:relative;
 }
 
 .close{
 position:absolute;
-right:17px;
+right:15px;
 top:15px;
 width:38px;
 height:38px;
 border:0;
 border-radius:50%;
-background:#eef3f5;
-font-size:21px
+background:#edf2f4;
+font-size:21px;
 }
 
-.modal-box h2{
+.modalBox h2{
+font-size:28px;
 color:var(--navy);
-margin-bottom:7px
+margin-bottom:5px;
 }
 
-.modal-box>p{
+.modalBox>p{
 color:var(--muted);
-margin-bottom:22px
+margin-bottom:21px;
 }
 
 .submit{
 width:100%;
-margin-top:15px
+margin-top:16px;
 }
 
-/* TOAST */
+/* =========================
+TOAST
+========================= */
+
 .toast{
 position:fixed;
 right:20px;
@@ -728,206 +973,327 @@ border-radius:14px;
 box-shadow:var(--shadow);
 transform:translateY(120px);
 opacity:0;
-transition:.3s
+transition:.3s;
+max-width:350px;
 }
 
 .toast.show{
 transform:translateY(0);
-opacity:1
+opacity:1;
 }
 
-/* MOBILE */
-@media(max-width:900px){
-.navlinks,.actions{display:none}
-.menu{display:block}
+/* =========================
+RESPONSIVE
+========================= */
 
-.hero-inner{grid-template-columns:1fr}
+@media(max-width:1000px){
 
-.categories{grid-template-columns:repeat(3,1fr)}
-
-.pros{grid-template-columns:1fr 1fr}
-
-.trust,.steps{grid-template-columns:1fr 1fr}
-
-.footer-grid{grid-template-columns:1fr 1fr}
+.navLinks,
+.navButtons{
+display:none;
 }
 
-@media(max-width:600px){
+.mobileMenu{
+display:block;
+}
+
+.heroGrid{
+grid-template-columns:1fr;
+}
+
+.categories{
+grid-template-columns:repeat(3,1fr);
+}
+
+.profiles{
+grid-template-columns:1fr 1fr;
+}
+
+.trustGrid,
+.steps{
+grid-template-columns:1fr 1fr;
+}
+
+.proLayout{
+grid-template-columns:1fr;
+}
+
+.footerGrid{
+grid-template-columns:1fr 1fr;
+}
+
+}
+
+@media(max-width:620px){
 
 .hero{
-padding:55px 16px 80px
+padding:58px 16px 80px;
 }
 
-.hero h1{font-size:43px}
+.hero h1{
+font-size:44px;
+letter-spacing:-2px;
+}
 
-.hero p{font-size:16px}
+.heroText{
+font-size:16px;
+}
 
-.grid{grid-template-columns:1fr}
+.heroMini{
+display:block;
+}
 
-.full{grid-column:auto}
+.heroMini span{
+display:block;
+margin-top:5px;
+}
 
-.stats{
-margin:0 16px;
+.searchGrid{
+grid-template-columns:1fr;
+}
+
+.full{
+grid-column:auto;
+}
+
+.trustBar{
+margin:0 14px;
 grid-template-columns:1fr 1fr;
-padding:13px
+padding:10px;
 }
 
-.stat{
-border:0;
-border-bottom:1px solid var(--border);
-padding:14px 5px
+.trustItem{
+padding:13px 5px;
+border-right:0;
+border-bottom:1px solid var(--line);
 }
 
-.stat:nth-child(odd){
-border-right:1px solid var(--border)
+.trustItem:nth-child(odd){
+border-right:1px solid var(--line);
 }
 
-.stat:nth-last-child(-n+2){border-bottom:0}
+.trustItem:nth-last-child(-n+2){
+border-bottom:0;
+}
 
-.section{padding:60px 16px}
+.section{
+padding:60px 16px;
+}
 
-.head{display:block}
+.sectionHead{
+display:block;
+}
 
-.head h2{font-size:29px}
+.sectionHead h2{
+font-size:30px;
+}
 
 .link{
 display:inline-block;
-margin-top:10px
+margin-top:9px;
 }
 
-.categories{grid-template-columns:repeat(2,1fr)}
+.categories{
+grid-template-columns:repeat(2,1fr);
+}
 
-.pros,
-.trust,
+.profiles,
+.needs,
+.trustGrid,
 .steps,
-.pro-area,
-.prices{
-grid-template-columns:1fr
-}
-
-.need{
+.plans{
 grid-template-columns:1fr;
-padding:35px 25px
 }
 
-.need h2{font-size:30px}
+.request{
+grid-template-columns:1fr;
+padding:35px 25px;
+}
 
-.pro-area h2{font-size:32px}
+.request h2{
+font-size:30px;
+}
 
-.footer-grid{grid-template-columns:1fr}
+.proLayout h2{
+font-size:33px;
+}
 
-.copy{
+.plan.featured{
+transform:none;
+}
+
+.footerGrid{
+grid-template-columns:1fr;
+}
+
+.footerBottom{
 flex-direction:column;
-gap:8px
 }
+
 }
 </style>
 </head>
 
 <body>
 
+<!-- ================= HEADER ================= -->
+
 <header>
+
 <nav class="nav">
 
 <a href="#" class="logo">
-<div class="logo-mark">V</div>
-VERI<span>FIA</span>
+<div class="logoMark">V</div>
+<div>VERI<span>FIA</span></div>
 </a>
 
-<div class="navlinks">
+<div class="navLinks">
+
 <a href="#services">Services</a>
 <a href="#professionnels">Professionnels</a>
+<a href="#besoins">Besoins</a>
 <a href="#fonctionnement">Comment ça marche</a>
 <a href="#pro">Pour les pros</a>
+
 </div>
 
-<div class="actions">
-<button class="btn outline" onclick="openModal('login')">Connexion</button>
-<button class="btn primary" onclick="openModal('register')">Créer un compte</button>
+<div class="navButtons">
+
+<button class="btn btnGhost" onclick="openModal('login')">
+Connexion
+</button>
+
+<button class="btn btnPrimary" onclick="openModal('register')">
+Créer un compte
+</button>
+
 </div>
 
-<button class="menu" onclick="mobileMenu()">☰</button>
+<button class="mobileMenu" onclick="mobileNav()">☰</button>
 
 </nav>
+
 </header>
 
-<main>
+
+<!-- ================= HERO ================= -->
 
 <section class="hero">
 
-<div class="hero-inner">
+<div class="heroGrid">
 
 <div>
 
-<div class="badge">● PLATEFORME DE CONFIANCE AU BÉNIN</div>
+<div class="pill">
+● PLATEFORME DE CONFIANCE AU BÉNIN
+</div>
 
 <h1>
-Trouvez un professionnel
-<span>fiable.</span>
+Trouvez la bonne personne pour votre <span>besoin.</span>
 </h1>
 
-<p>
-VERIFIA connecte particuliers, professionnels et entreprises.
-Trouvez le bon prestataire, comparez les profils et prenez
-contact en toute simplicité.
+<p class="heroText">
+VERIFIA facilite la mise en relation entre particuliers,
+professionnels et entreprises. Recherchez un service,
+comparez les profils et contactez directement le professionnel
+qui vous convient.
 </p>
 
-<div class="hero-buttons">
-<button class="btn primary" onclick="document.getElementById('services').scrollIntoView()">
-Trouver un professionnel →
+<div class="heroActions">
+
+<button class="btn btnPrimary"
+onclick="go('services')">
+🔎 Trouver un professionnel
 </button>
 
-<button class="btn outline" onclick="openModal('need')">
-Publier un besoin
+<button class="btn btnGhost"
+onclick="openModal('request')">
+＋ Publier un besoin
 </button>
+
+</div>
+
+<div class="heroMini">
+
+<strong>🛡️ Profils vérifiables</strong>
+
+<span>⭐ Avis & réputation</span>
+
+<span>📍 Recherche par localisation</span>
+
 </div>
 
 </div>
 
-<div class="search">
 
-<h2>🔎 Que recherchez-vous ?</h2>
+<div class="searchBox">
 
-<div class="grid">
+<h2>🔎 Rechercher un professionnel</h2>
+
+<div class="searchGrid">
 
 <div class="field">
-<label>SERVICE</label>
+
+<label>QUE RECHERCHEZ-VOUS ?</label>
+
 <select id="service">
+
 <option value="">Tous les services</option>
-<option>Mécanicien</option>
-<option>Plombier</option>
-<option>Électricien</option>
-<option>Climatisation</option>
+<option>Automobile</option>
+<option>Construction & bâtiment</option>
+<option>Plomberie</option>
+<option>Électricité</option>
 <option>Informatique</option>
+<option>Climatisation</option>
 <option>Réparation téléphone</option>
 <option>Transport</option>
 <option>Nettoyage</option>
 <option>Beauté</option>
+<option>Formation</option>
+<option>Événementiel</option>
 <option>Photographie</option>
+<option>Commerce</option>
+
 </select>
+
 </div>
 
+
 <div class="field">
-<label>VILLE</label>
-<select id="ville">
+
+<label>OÙ ?</label>
+
+<select id="city">
+
 <option value="">Tout le Bénin</option>
 <option>Cotonou</option>
 <option>Abomey-Calavi</option>
 <option>Porto-Novo</option>
 <option>Ouidah</option>
+<option>Bohicon</option>
 <option>Parakou</option>
+<option>Abomey</option>
+<option>Nikki</option>
+
 </select>
+
 </div>
+
 
 <div class="field full">
+
 <label>MOT-CLÉ</label>
-<input id="keyword" placeholder="Ex. réparation de climatiseur...">
-</div>
+
+<input id="keyword"
+placeholder="Ex. mécanicien Mercedes, plombier...">
 
 </div>
 
-<button class="btn primary search-btn" onclick="search()">
-Rechercher
+</div>
+
+<button class="btn btnPrimary searchBtn"
+onclick="search()">
+Rechercher maintenant →
 </button>
 
 </div>
@@ -936,138 +1302,185 @@ Rechercher
 
 </section>
 
-<div class="stats">
 
-<div class="stat">
-<strong>+500</strong>
-<small>Professionnels</small>
+<!-- ================= TRUST BAR ================= -->
+
+<div class="trustBar">
+
+<div class="trustItem">
+<strong>🇧🇯</strong>
+<span>Pensé pour le Bénin</span>
 </div>
 
-<div class="stat">
-<strong>+1 200</strong>
-<small>Services</small>
+<div class="trustItem">
+<strong>⭐</strong>
+<span>Avis & réputation</span>
 </div>
 
-<div class="stat">
-<strong>4.8/5</strong>
-<small>Satisfaction</small>
+<div class="trustItem">
+<strong>🛡️</strong>
+<span>Vérification</span>
 </div>
 
-<div class="stat">
+<div class="trustItem">
 <strong>24/7</strong>
-<small>Plateforme</small>
+<span>Accessible en ligne</span>
 </div>
 
 </div>
 
+
+<!-- ================= CATEGORIES ================= -->
 
 <section class="section" id="services">
 
-<div class="head">
+<div class="sectionHead">
 
 <div>
-<h2>Quel service recherchez-vous ?</h2>
+<h2>Explorez les services</h2>
 <p>
-Explorez les catégories disponibles et trouvez plus facilement
-le professionnel adapté.
+Des catégories conçues autour des besoins du quotidien.
 </p>
 </div>
 
-<a class="link" href="#">Voir toutes les catégories →</a>
+<a href="#" class="link">
+Voir toutes les catégories →
+</a>
 
 </div>
+
 
 <div class="categories">
 
-<div class="category"><div class="icon">🚗</div><strong>Automobile</strong></div>
-<div class="category"><div class="icon">🏠</div><strong>Maison & bâtiment</strong></div>
-<div class="category"><div class="icon">💻</div><strong>Informatique</strong></div>
-<div class="category"><div class="icon">❄️</div><strong>Climatisation</strong></div>
-<div class="category"><div class="icon">📱</div><strong>Réparation</strong></div>
-<div class="category"><div class="icon">🚚</div><strong>Transport</strong></div>
-<div class="category"><div class="icon">💄</div><strong>Beauté</strong></div>
-<div class="category"><div class="icon">📸</div><strong>Événementiel</strong></div>
-<div class="category"><div class="icon">🧹</div><strong>Nettoyage</strong></div>
-<div class="category"><div class="icon">🎓</div><strong>Formation</strong></div>
-<div class="category"><div class="icon">🪚</div><strong>Artisanat</strong></div>
-<div class="category" onclick="openModal('need')"><div class="icon">＋</div><strong>Autre besoin</strong></div>
+<div class="category" onclick="category('Automobile')">
+<div class="categoryIcon">🚗</div>
+<strong>Automobile</strong>
+</div>
+
+<div class="category" onclick="category('Construction')">
+<div class="categoryIcon">🏗️</div>
+<strong>Bâtiment</strong>
+</div>
+
+<div class="category" onclick="category('Plomberie')">
+<div class="categoryIcon">🚿</div>
+<strong>Plomberie</strong>
+</div>
+
+<div class="category" onclick="category('Électricité')">
+<div class="categoryIcon">⚡</div>
+<strong>Électricité</strong>
+</div>
+
+<div class="category" onclick="category('Informatique')">
+<div class="categoryIcon">💻</div>
+<strong>Informatique</strong>
+</div>
+
+<div class="category" onclick="category('Climatisation')">
+<div class="categoryIcon">❄️</div>
+<strong>Climatisation</strong>
+</div>
+
+<div class="category" onclick="category('Réparation')">
+<div class="categoryIcon">📱</div>
+<strong>Réparation</strong>
+</div>
+
+<div class="category" onclick="category('Transport')">
+<div class="categoryIcon">🚚</div>
+<strong>Transport</strong>
+</div>
+
+<div class="category" onclick="category('Beauté')">
+<div class="categoryIcon">💄</div>
+<strong>Beauté</strong>
+</div>
+
+<div class="category" onclick="category('Nettoyage')">
+<div class="categoryIcon">🧹</div>
+<strong>Nettoyage</strong>
+</div>
+
+<div class="category" onclick="category('Formation')">
+<div class="categoryIcon">🎓</div>
+<strong>Formation</strong>
+</div>
+
+<div class="category" onclick="openModal('request')">
+<div class="categoryIcon">＋</div>
+<strong>Autre besoin</strong>
+</div>
 
 </div>
 
 </section>
 
+
+<!-- ================= PROFILES ================= -->
 
 <section class="section" id="professionnels">
 
-<div class="head">
+<div class="sectionHead">
 
 <div>
-<h2>Professionnels recommandés</h2>
+<h2>Professionnels à découvrir</h2>
 <p>
-Découvrez des profils présentés clairement avec leurs services,
-leur localisation et leur réputation.
+Une présentation claire pour aider les clients à faire leur choix.
 </p>
 </div>
 
-<a class="link" href="#">Explorer tous les profils →</a>
+<a href="#" class="link">Explorer les profils →</a>
 
 </div>
 
-<div class="pros">
 
-<article class="card">
+<div class="profiles">
 
-<div class="cover"></div>
+<article class="profile">
 
-<div class="profile">
+<div class="profileCover"></div>
+
+<div class="profileBody">
+
+<button class="favorite"
+onclick="favorite(this)">
+♡
+</button>
 
 <div class="avatar">🔧</div>
 
-<div class="pro-name">Koffi Automobile</div>
+<div class="profileName">
+Koffi Automobile
+</div>
 
-<div class="verify">✓ PROFESSIONNEL VÉRIFIÉ</div>
+<div class="verified">
+✓ PROFIL VÉRIFIÉ
+</div>
 
-<div class="rating">⭐ 4.9 <span>(127 avis)</span></div>
+<div class="rating">
+⭐ 4.9 <small>• 127 avis</small>
+</div>
 
-<div class="meta">
-🔧 Mécanique automobile<br>
+<div class="profileInfo">
+🚗 Mécanique automobile<br>
 📍 Cotonou<br>
-🟢 Disponible aujourd'hui
+🟢 Disponible
 </div>
 
-<div class="card-actions">
-<button class="btn light" onclick="profile('Koffi Automobile')">Profil</button>
-<button class="btn primary" onclick="contact('Koffi Automobile')">Contacter</button>
-</div>
+<div class="profileActions">
 
-</div>
+<button class="btn btnGhost"
+style="color:var(--navy);border-color:var(--line)"
+onclick="profile('Koffi Automobile')">
+Profil
+</button>
 
-</article>
+<button class="btn btnPrimary"
+onclick="contact('Koffi Automobile')">
+Contacter
+</button>
 
-
-<article class="card">
-
-<div class="cover" style="background:linear-gradient(135deg,#073443,#087f73)"></div>
-
-<div class="profile">
-
-<div class="avatar">❄️</div>
-
-<div class="pro-name">Clima Expert BJ</div>
-
-<div class="verify">✓ PROFESSIONNEL VÉRIFIÉ</div>
-
-<div class="rating">⭐ 4.8 <span>(89 avis)</span></div>
-
-<div class="meta">
-❄️ Climatisation & froid<br>
-📍 Abomey-Calavi<br>
-🟢 Disponible aujourd'hui
-</div>
-
-<div class="card-actions">
-<button class="btn light" onclick="profile('Clima Expert BJ')">Profil</button>
-<button class="btn primary" onclick="contact('Clima Expert BJ')">Contacter</button>
 </div>
 
 </div>
@@ -1075,29 +1488,101 @@ leur localisation et leur réputation.
 </article>
 
 
-<article class="card">
+<article class="profile">
 
-<div class="cover" style="background:linear-gradient(135deg,#17264b,#315aa4)"></div>
+<div class="profileCover blue"></div>
 
-<div class="profile">
+<div class="profileBody">
+
+<button class="favorite"
+onclick="favorite(this)">
+♡
+</button>
 
 <div class="avatar">💻</div>
 
-<div class="pro-name">Tech Solutions</div>
-
-<div class="verify">✓ PROFESSIONNEL VÉRIFIÉ</div>
-
-<div class="rating">⭐ 4.9 <span>(64 avis)</span></div>
-
-<div class="meta">
-💻 Informatique & réseaux<br>
-📍 Cotonou<br>
-🟢 Disponible aujourd'hui
+<div class="profileName">
+Tech Solutions BJ
 </div>
 
-<div class="card-actions">
-<button class="btn light" onclick="profile('Tech Solutions')">Profil</button>
-<button class="btn primary" onclick="contact('Tech Solutions')">Contacter</button>
+<div class="verified">
+✓ PROFIL VÉRIFIÉ
+</div>
+
+<div class="rating">
+⭐ 4.9 <small>• 86 avis</small>
+</div>
+
+<div class="profileInfo">
+💻 Informatique & réseaux<br>
+📍 Abomey-Calavi<br>
+🟢 Disponible
+</div>
+
+<div class="profileActions">
+
+<button class="btn btnGhost"
+style="color:var(--navy);border-color:var(--line)"
+onclick="profile('Tech Solutions BJ')">
+Profil
+</button>
+
+<button class="btn btnPrimary"
+onclick="contact('Tech Solutions BJ')">
+Contacter
+</button>
+
+</div>
+
+</div>
+
+</article>
+
+
+<article class="profile">
+
+<div class="profileCover gold"></div>
+
+<div class="profileBody">
+
+<button class="favorite"
+onclick="favorite(this)">
+♡
+</button>
+
+<div class="avatar">❄️</div>
+
+<div class="profileName">
+Clima Expert BJ
+</div>
+
+<div class="verified">
+✓ PROFIL VÉRIFIÉ
+</div>
+
+<div class="rating">
+⭐ 4.8 <small>• 89 avis</small>
+</div>
+
+<div class="profileInfo">
+❄️ Climatisation & froid<br>
+📍 Cotonou<br>
+🟢 Disponible
+</div>
+
+<div class="profileActions">
+
+<button class="btn btnGhost"
+style="color:var(--navy);border-color:var(--line)"
+onclick="profile('Clima Expert BJ')">
+Profil
+</button>
+
+<button class="btn btnPrimary"
+onclick="contact('Clima Expert BJ')">
+Contacter
+</button>
+
 </div>
 
 </div>
@@ -1108,58 +1593,175 @@ leur localisation et leur réputation.
 
 </section>
 
+
+<!-- ================= NEEDS ================= -->
+
+<section class="section" id="besoins">
+
+<div class="sectionHead">
+
+<div>
+<h2>Besoins populaires</h2>
+<p>
+Des exemples de demandes que les utilisateurs pourront publier.
+</p>
+</div>
+
+</div>
+
+
+<div class="needs">
+
+<div class="need">
+
+<div class="needTop">
+<span class="needTag">AUTOMOBILE</span>
+<span>📍 Cotonou</span>
+</div>
+
+<h3>Recherche mécanicien</h3>
+
+<p>
+Besoin d'un professionnel pour diagnostiquer un problème
+sur mon véhicule.
+</p>
+
+<div class="needBottom">
+<span>Publié récemment</span>
+<button class="btn btnPrimary"
+onclick="openModal('request')">
+Répondre
+</button>
+</div>
+
+</div>
+
+
+<div class="need">
+
+<div class="needTop">
+<span class="needTag">MAISON</span>
+<span>📍 Calavi</span>
+</div>
+
+<h3>Recherche plombier</h3>
+
+<p>
+Installation et réparation d'une plomberie domestique.
+</p>
+
+<div class="needBottom">
+<span>Demande urgente</span>
+<button class="btn btnPrimary"
+onclick="openModal('request')">
+Répondre
+</button>
+</div>
+
+</div>
+
+
+<div class="need">
+
+<div class="needTop">
+<span class="needTag">INFORMATIQUE</span>
+<span>📍 Cotonou</span>
+</div>
+
+<h3>Besoin d'un informaticien</h3>
+
+<p>
+Installation, configuration et maintenance informatique.
+</p>
+
+<div class="needBottom">
+<span>Cette semaine</span>
+<button class="btn btnPrimary"
+onclick="openModal('request')">
+Répondre
+</button>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= TRUST ================= -->
 
 <section class="dark">
 
 <div class="section">
 
-<div class="head">
+<div class="sectionHead">
 
 <div>
-<h2>La confiance au cœur de VERIFIA</h2>
+<h2>Pourquoi utiliser VERIFIA ?</h2>
 <p>
-Nous voulons rendre les mises en relation plus simples,
-transparentes et fiables.
+Nous voulons rendre la recherche de services plus simple,
+plus transparente et plus fiable.
 </p>
 </div>
 
 </div>
 
-<div class="trust">
 
-<div class="trust-card">
-<div class="big">🪪</div>
-<h3>Identité vérifiée</h3>
+<div class="trustGrid">
+
+<div class="trustCard">
+
+<div class="icon">🛡️</div>
+
+<h3>Profils vérifiables</h3>
+
 <p>
-Les professionnels pourront faire vérifier leurs informations
-et obtenir un badge de confiance.
+Les professionnels pourront faire vérifier leur identité
+et leurs informations.
 </p>
+
 </div>
 
-<div class="trust-card">
-<div class="big">⭐</div>
-<h3>Avis clients</h3>
+
+<div class="trustCard">
+
+<div class="icon">⭐</div>
+
+<h3>Réputation</h3>
+
 <p>
-Les utilisateurs pourront partager leurs expériences et
-évaluer les prestations.
+Les clients pourront partager leurs expériences et noter
+les prestations.
 </p>
+
 </div>
 
-<div class="trust-card">
-<div class="big">📍</div>
+
+<div class="trustCard">
+
+<div class="icon">📍</div>
+
 <h3>Proximité</h3>
+
 <p>
 Trouvez des professionnels selon votre ville et votre zone.
 </p>
+
 </div>
 
-<div class="trust-card">
-<div class="big">🛡️</div>
+
+<div class="trustCard">
+
+<div class="icon">🚨</div>
+
 <h3>Signalement</h3>
+
 <p>
 Un système de signalement aidera à lutter contre les abus
 et les faux profils.
 </p>
+
 </div>
 
 </div>
@@ -1169,20 +1771,26 @@ et les faux profils.
 </section>
 
 
+<!-- ================= REQUEST ================= -->
+
 <section class="section">
 
-<div class="need">
+<div class="request">
 
 <div>
-<h2>Vous avez un besoin particulier ?</h2>
+
+<h2>Vous avez un besoin ?</h2>
+
 <p>
-Publiez gratuitement votre demande et permettez aux professionnels
-correspondant à votre besoin de vous contacter.
+Expliquez ce que vous recherchez et préparez-vous à recevoir
+des réponses de professionnels adaptés.
 </p>
+
 </div>
 
-<button class="btn light" onclick="openModal('need')">
-Publier mon besoin →
+<button class="btn btnWhite"
+onclick="openModal('request')">
+Publier gratuitement →
 </button>
 
 </div>
@@ -1190,43 +1798,76 @@ Publier mon besoin →
 </section>
 
 
+<!-- ================= HOW ================= -->
+
 <section class="section" id="fonctionnement">
 
-<div class="head">
+<div class="sectionHead">
 
 <div>
-<h2>Comment fonctionne VERIFIA ?</h2>
+
+<h2>Comment ça marche ?</h2>
+
 <p>
-Une expérience simple pour les particuliers et les professionnels.
+Un parcours simple pour trouver un professionnel.
 </p>
+
 </div>
 
 </div>
+
 
 <div class="steps">
 
 <div class="step">
-<div class="number">01</div>
+
+<div class="stepNumber">01</div>
+
 <h3>Recherchez</h3>
-<p>Indiquez le service et la localisation dont vous avez besoin.</p>
+
+<p>
+Indiquez votre besoin et votre localisation.
+</p>
+
 </div>
 
+
 <div class="step">
-<div class="number">02</div>
+
+<div class="stepNumber">02</div>
+
 <h3>Comparez</h3>
-<p>Consultez les profils, services, avis et informations disponibles.</p>
+
+<p>
+Consultez les profils, informations et avis.
+</p>
+
 </div>
 
+
 <div class="step">
-<div class="number">03</div>
+
+<div class="stepNumber">03</div>
+
 <h3>Contactez</h3>
-<p>Prenez contact avec le professionnel avant de choisir.</p>
+
+<p>
+Choisissez le professionnel qui vous convient.
+</p>
+
 </div>
 
+
 <div class="step">
-<div class="number">04</div>
+
+<div class="stepNumber">04</div>
+
 <h3>Évaluez</h3>
-<p>Après la prestation, partagez votre expérience.</p>
+
+<p>
+Après la prestation, partagez votre expérience.
+</p>
+
 </div>
 
 </div>
@@ -1234,53 +1875,77 @@ Une expérience simple pour les particuliers et les professionnels.
 </section>
 
 
-<section class="pro-section" id="pro">
+<!-- ================= PRO ================= -->
+
+<section class="proSection" id="pro">
 
 <div class="section">
 
-<div class="pro-area">
+<div class="proLayout">
 
 <div>
 
-<div style="color:var(--teal2);font-weight:900;margin-bottom:10px">
+<div class="proLabel">
 POUR LES PROFESSIONNELS
 </div>
 
-<h2>Développez votre activité avec VERIFIA.</h2>
+<h2>
+Faites connaître votre activité et trouvez de nouveaux clients.
+</h2>
 
 <p>
-Présentez votre activité, développez votre réputation et
-atteignez de nouveaux clients.
+VERIFIA donnera aux professionnels une présence numérique
+simple et adaptée au marché béninois.
 </p>
 
-<div class="list">
 
-<div><span class="check">✓</span> Créez votre profil professionnel</div>
-<div><span class="check">✓</span> Recevez des demandes</div>
-<div><span class="check">✓</span> Collectez des avis</div>
-<div><span class="check">✓</span> Développez votre visibilité</div>
+<div class="benefits">
+
+<div class="benefit">
+<span class="check">✓</span>
+Créer un profil professionnel
+</div>
+
+<div class="benefit">
+<span class="check">✓</span>
+Recevoir des demandes
+</div>
+
+<div class="benefit">
+<span class="check">✓</span>
+Construire sa réputation
+</div>
+
+<div class="benefit">
+<span class="check">✓</span>
+Améliorer sa visibilité
+</div>
 
 </div>
 
-<button class="btn primary" style="margin-top:25px" onclick="openModal('pro')">
+
+<button class="btn btnPrimary"
+style="margin-top:24px"
+onclick="openModal('pro')">
 Inscrire mon activité
 </button>
 
 </div>
 
 
-<div class="prices">
+<div class="plans">
+
+<div class="plan">
+
+<h3>Profil Standard</h3>
 
 <div class="price">
-
-<h3>Gratuit</h3>
-
-<div class="amount">
-0 F <small>/ mois</small>
+Gratuit
 </div>
 
 <ul>
 <li>✓ Profil professionnel</li>
+<li>✓ Présentation de l'activité</li>
 <li>✓ Services</li>
 <li>✓ Avis clients</li>
 <li>✓ Contact</li>
@@ -1289,20 +1954,20 @@ Inscrire mon activité
 </div>
 
 
-<div class="price featured">
+<div class="plan featured">
 
-<h3>PRO</h3>
+<h3>VERIFIA PRO</h3>
 
-<div class="amount">
+<div class="price">
 Bientôt disponible
 </div>
 
 <ul>
-<li>✓ Plus de visibilité</li>
-<li>✓ Profil prioritaire</li>
-<li>✓ Statistiques</li>
 <li>✓ Mise en avant</li>
-<li>✓ Badge professionnel</li>
+<li>✓ Visibilité supérieure</li>
+<li>✓ Statistiques</li>
+<li>✓ Profil prioritaire</li>
+<li>✓ Options publicitaires</li>
 </ul>
 
 </div>
@@ -1316,66 +1981,177 @@ Bientôt disponible
 </section>
 
 
-<section class="cta">
+<!-- ================= FAQ ================= -->
 
-<h2>Un besoin ? Trouvez la bonne personne.</h2>
+<section class="section">
+
+<div class="sectionHead">
+
+<div>
+<h2>Questions fréquentes</h2>
+<p>
+Quelques réponses sur le fonctionnement de VERIFIA.
+</p>
+</div>
+
+</div>
+
+
+<div class="faq">
+
+<div class="faqItem">
+
+<button class="faqQuestion"
+onclick="faq(this)">
+VERIFIA est-il gratuit ?
+<span>＋</span>
+</button>
+
+<div class="faqAnswer">
+La recherche et la publication de besoins pourront rester
+gratuites pour les utilisateurs. Certaines fonctionnalités
+professionnelles pourront être proposées en option.
+</div>
+
+</div>
+
+
+<div class="faqItem">
+
+<button class="faqQuestion"
+onclick="faq(this)">
+Comment devenir professionnel vérifié ?
+<span>＋</span>
+</button>
+
+<div class="faqAnswer">
+Le professionnel pourra fournir certaines informations
+nécessaires à la vérification. La validation sera effectuée
+par l'équipe VERIFIA.
+</div>
+
+</div>
+
+
+<div class="faqItem">
+
+<button class="faqQuestion"
+onclick="faq(this)">
+Comment VERIFIA gagne-t-il de l'argent ?
+<span>＋</span>
+</button>
+
+<div class="faqAnswer">
+Le modèle pourra reposer notamment sur les profils Premium,
+la mise en avant des professionnels, la publicité locale et
+des partenariats.
+</div>
+
+</div>
+
+
+<div class="faqItem">
+
+<button class="faqQuestion"
+onclick="faq(this)">
+Puis-je publier une demande ?
+<span>＋</span>
+</button>
+
+<div class="faqAnswer">
+Oui. L'objectif est de permettre aux particuliers de décrire
+leur besoin afin de recevoir des réponses de professionnels.
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= FINAL ================= -->
+
+<section class="final">
+
+<h2>
+Votre besoin mérite le bon professionnel.
+</h2>
 
 <p>
-Recherchez un professionnel ou publiez directement votre demande.
+Commencez gratuitement avec VERIFIA.
 </p>
 
-<button class="btn primary" onclick="openModal('need')">
-Publier un besoin gratuitement →
+<button class="btn btnPrimary"
+onclick="openModal('request')">
+Publier mon besoin →
 </button>
 
 </section>
 
-</main>
 
+<!-- ================= FOOTER ================= -->
 
 <footer>
 
 <div class="footer">
 
-<div class="footer-grid">
+<div class="footerGrid">
 
-<div class="footer-brand">
+<div>
 
 <a href="#" class="logo">
-<div class="logo-mark">V</div>
-VERI<span>FIA</span>
+
+<div class="logoMark">V</div>
+
+<div>VERI<span>FIA</span></div>
+
 </a>
 
-<p>
-La plateforme de confiance pour trouver des professionnels
-et services près de chez vous.
+<p class="footerText">
+VERIFIA — une plateforme pensée pour faciliter la mise en
+relation entre clients et professionnels au Bénin.
 </p>
 
 </div>
 
+
 <div>
 
-<h4>VERIFIA</h4>
-<a href="#">Accueil</a>
+<h4>Découvrir</h4>
+
 <a href="#services">Services</a>
 <a href="#professionnels">Professionnels</a>
-<a href="#fonctionnement">Comment ça marche</a>
+<a href="#besoins">Besoins</a>
+<a href="#fonctionnement">Fonctionnement</a>
 
 </div>
+
 
 <div>
 
 <h4>Professionnels</h4>
+
 <a href="#pro">Solutions PRO</a>
-<a href="#" onclick="openModal('pro')">Inscrire mon activité</a>
-<a href="#">Vérification</a>
-<a href="#">Publicité</a>
+<a href="#" onclick="openModal('pro')">
+Inscrire mon activité
+</a>
+
+<a href="#">
+Vérification
+</a>
+
+<a href="#">
+Publicité
+</a>
 
 </div>
 
+
 <div>
 
-<h4>Aide</h4>
+<h4>Assistance</h4>
+
 <a href="#">Centre d'aide</a>
 <a href="#">Sécurité</a>
 <a href="#">Signaler un problème</a>
@@ -1385,9 +2161,17 @@ et services près de chez vous.
 
 </div>
 
-<div class="copy">
-<span>© 2026 VERIFIA. Tous droits réservés.</span>
-<span>Une plateforme pensée pour le Bénin 🇧🇯</span>
+
+<div class="footerBottom">
+
+<span>
+© 2026 VERIFIA — Tous droits réservés.
+</span>
+
+<span>
+Fait pour le Bénin 🇧🇯
+</span>
+
 </div>
 
 </div>
@@ -1395,67 +2179,104 @@ et services près de chez vous.
 </footer>
 
 
-<!-- MODAL BESOIN -->
-<div class="modal" id="need">
+<!-- ================= MODAL REQUEST ================= -->
 
-<div class="modal-box">
+<div class="modal" id="request">
 
-<button class="close" onclick="closeModal('need')">×</button>
+<div class="modalBox">
+
+<button class="close"
+onclick="closeModal('request')">
+×
+</button>
 
 <h2>Publier un besoin</h2>
 
 <p>
-Décrivez votre besoin afin de préparer votre demande.
+Décrivez précisément ce que vous recherchez.
 </p>
 
-<form onsubmit="submitForm(event,'need')">
+<form onsubmit="demoSubmit(event,'request')">
 
-<div class="grid">
+<div class="searchGrid">
 
 <div class="field">
+
+<label>PRÉNOM</label>
+
+<input required placeholder="Votre prénom">
+
+</div>
+
+<div class="field">
+
 <label>NOM</label>
+
 <input required placeholder="Votre nom">
+
 </div>
 
 <div class="field">
+
 <label>TÉLÉPHONE</label>
+
 <input required placeholder="+229 ...">
+
 </div>
 
 <div class="field">
-<label>CATÉGORIE</label>
-<select required>
-<option value="">Choisir</option>
-<option>Automobile</option>
-<option>Maison & bâtiment</option>
-<option>Informatique</option>
-<option>Climatisation</option>
-<option>Réparation</option>
-<option>Transport</option>
-<option>Autre</option>
-</select>
-</div>
 
-<div class="field">
 <label>VILLE</label>
+
 <select required>
+
 <option value="">Choisir</option>
 <option>Cotonou</option>
 <option>Abomey-Calavi</option>
 <option>Porto-Novo</option>
 <option>Ouidah</option>
 <option>Parakou</option>
+
 </select>
+
 </div>
 
 <div class="field full">
+
+<label>SERVICE RECHERCHÉ</label>
+
+<select required>
+
+<option value="">Choisir un service</option>
+<option>Automobile</option>
+<option>Bâtiment</option>
+<option>Plomberie</option>
+<option>Électricité</option>
+<option>Informatique</option>
+<option>Climatisation</option>
+<option>Réparation</option>
+<option>Transport</option>
+<option>Autre</option>
+
+</select>
+
+</div>
+
+<div class="field full">
+
 <label>DESCRIPTION</label>
-<textarea rows="5" required placeholder="Décrivez votre besoin..."></textarea>
-</div>
+
+<textarea rows="5"
+required
+placeholder="Décrivez votre besoin..."></textarea>
 
 </div>
 
-<button class="btn primary submit">Publier ma demande</button>
+</div>
+
+<button class="btn btnPrimary submit">
+Publier ma demande
+</button>
 
 </form>
 
@@ -1464,19 +2285,26 @@ Décrivez votre besoin afin de préparer votre demande.
 </div>
 
 
-<!-- MODAL INSCRIPTION -->
+<!-- ================= MODAL REGISTER ================= -->
+
 <div class="modal" id="register">
 
-<div class="modal-box">
+<div class="modalBox">
 
-<button class="close" onclick="closeModal('register')">×</button>
+<button class="close"
+onclick="closeModal('register')">
+×
+</button>
 
-<h2>Créer un compte</h2>
-<p>Rejoignez gratuitement VERIFIA.</p>
+<h2>Créer mon compte</h2>
 
-<form onsubmit="submitForm(event,'register')">
+<p>
+Rejoignez gratuitement VERIFIA.
+</p>
 
-<div class="grid">
+<form onsubmit="demoSubmit(event,'register')">
+
+<div class="searchGrid">
 
 <div class="field">
 <label>PRÉNOM</label>
@@ -1494,7 +2322,7 @@ Décrivez votre besoin afin de préparer votre demande.
 </div>
 
 <div class="field">
-<label>E-MAIL</label>
+<label>EMAIL</label>
 <input type="email" required placeholder="vous@email.com">
 </div>
 
@@ -1505,7 +2333,9 @@ Décrivez votre besoin afin de préparer votre demande.
 
 </div>
 
-<button class="btn primary submit">Créer mon compte</button>
+<button class="btn btnPrimary submit">
+Créer mon compte
+</button>
 
 </form>
 
@@ -1514,29 +2344,44 @@ Décrivez votre besoin afin de préparer votre demande.
 </div>
 
 
-<!-- MODAL CONNEXION -->
+<!-- ================= MODAL LOGIN ================= -->
+
 <div class="modal" id="login">
 
-<div class="modal-box">
+<div class="modalBox">
 
-<button class="close" onclick="closeModal('login')">×</button>
+<button class="close"
+onclick="closeModal('login')">
+×
+</button>
 
 <h2>Connexion</h2>
-<p>Accédez à votre espace VERIFIA.</p>
 
-<form onsubmit="submitForm(event,'login')">
+<p>
+Accédez à votre espace VERIFIA.
+</p>
+
+<form onsubmit="demoSubmit(event,'login')">
 
 <div class="field">
-<label>E-MAIL OU TÉLÉPHONE</label>
-<input required placeholder="Votre e-mail ou téléphone">
+
+<label>EMAIL OU TÉLÉPHONE</label>
+
+<input required placeholder="Email ou téléphone">
+
 </div>
 
 <div class="field" style="margin-top:14px">
+
 <label>MOT DE PASSE</label>
+
 <input type="password" required placeholder="••••••••">
+
 </div>
 
-<button class="btn primary submit">Se connecter</button>
+<button class="btn btnPrimary submit">
+Se connecter
+</button>
 
 </form>
 
@@ -1545,67 +2390,94 @@ Décrivez votre besoin afin de préparer votre demande.
 </div>
 
 
-<!-- MODAL PRO -->
+<!-- ================= MODAL PRO ================= -->
+
 <div class="modal" id="pro">
 
-<div class="modal-box">
+<div class="modalBox">
 
-<button class="close" onclick="closeModal('pro')">×</button>
+<button class="close"
+onclick="closeModal('pro')">
+×
+</button>
 
 <h2>Inscrire mon activité</h2>
 
 <p>
-Présentez votre activité aux utilisateurs de VERIFIA.
+Présentez votre entreprise ou votre activité sur VERIFIA.
 </p>
 
-<form onsubmit="submitForm(event,'pro')">
+<form onsubmit="demoSubmit(event,'pro')">
 
-<div class="grid">
+<div class="searchGrid">
 
 <div class="field">
+
 <label>NOM DE L'ACTIVITÉ</label>
-<input required placeholder="Ex. Koffi Automobile">
+
+<input required placeholder="Nom de votre activité">
+
 </div>
 
 <div class="field">
+
 <label>TÉLÉPHONE</label>
+
 <input required placeholder="+229 ...">
+
 </div>
 
 <div class="field">
+
 <label>CATÉGORIE</label>
+
 <select required>
+
 <option value="">Choisir</option>
 <option>Automobile</option>
-<option>Maison & bâtiment</option>
+<option>Bâtiment</option>
+<option>Plomberie</option>
+<option>Électricité</option>
 <option>Informatique</option>
 <option>Climatisation</option>
-<option>Réparation</option>
 <option>Transport</option>
 <option>Beauté</option>
 <option>Autre</option>
+
 </select>
+
 </div>
 
 <div class="field">
+
 <label>VILLE</label>
+
 <select required>
+
 <option value="">Choisir</option>
 <option>Cotonou</option>
 <option>Abomey-Calavi</option>
 <option>Porto-Novo</option>
+<option>Ouidah</option>
 <option>Parakou</option>
+
 </select>
+
 </div>
 
 <div class="field full">
-<label>PRÉSENTATION</label>
-<textarea rows="5" required placeholder="Présentez votre activité..."></textarea>
-</div>
+
+<label>DESCRIPTION</label>
+
+<textarea rows="5"
+required
+placeholder="Présentez votre activité..."></textarea>
 
 </div>
 
-<button class="btn primary submit">
+</div>
+
+<button class="btn btnPrimary submit">
 Créer mon profil professionnel
 </button>
 
@@ -1621,78 +2493,25 @@ Créer mon profil professionnel
 
 <script>
 
-function openModal(id){
-document.getElementById(id).classList.add("active");
-document.body.style.overflow="hidden";
-}
+/* =========================
+NAVIGATION
+========================= */
 
-function closeModal(id){
-document.getElementById(id).classList.remove("active");
-document.body.style.overflow="";
-}
+function go(id){
 
-document.querySelectorAll(".modal").forEach(m=>{
-m.addEventListener("click",e=>{
-if(e.target===m) closeModal(m.id);
-});
-});
+const el=document.getElementById(id);
 
-function toast(message){
-
-const t=document.getElementById("toast");
-
-t.textContent=message;
-t.classList.add("show");
-
-setTimeout(()=>{
-t.classList.remove("show");
-},3500);
-
-}
-
-function search(){
-
-const service=document.getElementById("service").value;
-const ville=document.getElementById("ville").value;
-const keyword=document.getElementById("keyword").value;
-
-let message="Recherche lancée";
-
-if(service) message+=" : "+service;
-if(ville) message+=" à "+ville;
-if(keyword) message+=" — "+keyword;
-
-toast(message);
-
-document.getElementById("professionnels").scrollIntoView({
+if(el){
+el.scrollIntoView({
 behavior:"smooth"
 });
+}
 
 }
 
-function profile(name){
-toast("Profil de "+name+" — espace professionnel bientôt disponible.");
-}
+function mobileNav(){
 
-function contact(name){
-toast("Contact de "+name+" — messagerie bientôt disponible.");
-}
-
-function submitForm(event,id){
-
-event.preventDefault();
-
-closeModal(id);
-
-toast("Votre demande a bien été enregistrée. Cette fonctionnalité sera connectée au serveur dans la prochaine version.");
-
-event.target.reset();
-
-}
-
-function mobileMenu(){
-
-const links=document.querySelector(".navlinks");
+const links=document.querySelector(".navLinks");
 
 if(links.style.display==="flex"){
 
@@ -1701,28 +2520,235 @@ links.style.display="";
 }else{
 
 links.style.display="flex";
-links.style.flexDirection="column";
 links.style.position="absolute";
 links.style.top="70px";
 links.style.left="0";
 links.style.right="0";
-links.style.padding="22px";
-links.style.background="#071827";
+links.style.padding="25px";
+links.style.flexDirection="column";
+links.style.background="#061826";
 
 }
 
 }
 
-document.addEventListener("keydown",e=>{
 
-if(e.key==="Escape"){
+/* =========================
+MODALS
+========================= */
 
-document.querySelectorAll(".modal.active")
-.forEach(m=>closeModal(m.id));
+function openModal(id){
+
+const el=document.getElementById(id);
+
+if(el){
+
+el.classList.add("active");
+
+document.body.style.overflow="hidden";
+
+}
+
+}
+
+function closeModal(id){
+
+const el=document.getElementById(id);
+
+if(el){
+
+el.classList.remove("active");
+
+document.body.style.overflow="";
+
+}
+
+}
+
+document.querySelectorAll(".modal").forEach(function(modal){
+
+modal.addEventListener("click",function(e){
+
+if(e.target===modal){
+
+closeModal(modal.id);
 
 }
 
 });
+
+});
+
+document.addEventListener("keydown",function(e){
+
+if(e.key==="Escape"){
+
+document.querySelectorAll(".modal.active").forEach(function(m){
+
+closeModal(m.id);
+
+});
+
+}
+
+});
+
+
+/* =========================
+TOAST
+========================= */
+
+function toast(message){
+
+const box=document.getElementById("toast");
+
+box.textContent=message;
+
+box.classList.add("show");
+
+setTimeout(function(){
+
+box.classList.remove("show");
+
+},3500);
+
+}
+
+
+/* =========================
+SEARCH
+========================= */
+
+function search(){
+
+const service=document.getElementById("service").value;
+
+const city=document.getElementById("city").value;
+
+const keyword=document.getElementById("keyword").value;
+
+let text="Recherche";
+
+if(service){
+
+text+=" : "+service;
+
+}
+
+if(city){
+
+text+=" — "+city;
+
+}
+
+if(keyword){
+
+text+=" — "+keyword;
+
+}
+
+toast(text);
+
+go("professionnels");
+
+}
+
+
+/* =========================
+CATEGORY
+========================= */
+
+function category(name){
+
+document.getElementById("service").value=name;
+
+toast("Catégorie sélectionnée : "+name);
+
+go("professionnels");
+
+}
+
+
+/* =========================
+PROFILE
+========================= */
+
+function profile(name){
+
+toast(
+"Le profil complet de "+name+
+" sera disponible avec la prochaine version connectée."
+);
+
+}
+
+function contact(name){
+
+toast(
+"Le contact de "+name+
+" sera connecté dans notre espace professionnel."
+);
+
+}
+
+
+/* =========================
+FAVORITES
+========================= */
+
+function favorite(button){
+
+if(button.textContent.trim()==="♡"){
+
+button.textContent="♥";
+
+toast("Professionnel ajouté aux favoris.");
+
+}else{
+
+button.textContent="♡";
+
+toast("Professionnel retiré des favoris.");
+
+}
+
+}
+
+
+/* =========================
+FORMS
+========================= */
+
+function demoSubmit(event,id){
+
+event.preventDefault();
+
+closeModal(id);
+
+event.target.reset();
+
+toast(
+"Formulaire enregistré. Cette fonction sera connectée à la base de données dans l'étape suivante."
+);
+
+}
+
+
+/* =========================
+FAQ
+========================= */
+
+function faq(button){
+
+const item=button.parentElement;
+
+item.classList.toggle("open");
+
+const symbol=button.querySelector("span");
+
+symbol.textContent=item.classList.contains("open")?"−":"＋";
+
+}
 
 </script>
 
