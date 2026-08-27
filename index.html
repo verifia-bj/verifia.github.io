@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -12,8 +11,6 @@
     content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
   >
 
-  <meta name="theme-color" content="#07111f">
-
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
@@ -26,7 +23,7 @@
     :root {
       --primary: #0b5ed7;
       --primary-dark: #084298;
-      --secondary: #07111f;
+      --secondary: #0f172a;
       --light: #f5f7fb;
       --white: #ffffff;
       --border: #e2e8f0;
@@ -35,8 +32,13 @@
       --success: #198754;
       --danger: #dc3545;
       --warning: #f59e0b;
+      --purple: #7c3aed;
       --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
       --radius: 16px;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -48,7 +50,8 @@
 
     button,
     input,
-    select {
+    select,
+    textarea {
       font: inherit;
     }
 
@@ -64,9 +67,9 @@
       display: none !important;
     }
 
-    /* =========================
+    /* =====================================================
        AUTHENTIFICATION
-    ========================= */
+    ===================================================== */
 
     #authScreen {
       min-height: 100vh;
@@ -78,7 +81,7 @@
         linear-gradient(
           135deg,
           rgba(11, 94, 215, 0.97),
-          rgba(7, 17, 31, 0.99)
+          rgba(15, 23, 42, 0.98)
         );
     }
 
@@ -163,7 +166,8 @@
     }
 
     .form-group input,
-    .form-group select {
+    .form-group select,
+    .form-group textarea {
       width: 100%;
       border: 1px solid var(--border);
       border-radius: 10px;
@@ -173,8 +177,14 @@
       transition: 0.2s;
     }
 
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
     .form-group input:focus,
-    .form-group select:focus {
+    .form-group select:focus,
+    .form-group textarea:focus {
       border-color: var(--primary);
       box-shadow: 0 0 0 3px rgba(11, 94, 215, 0.1);
     }
@@ -222,9 +232,9 @@
       color: #842029;
     }
 
-    /* =========================
+    /* =====================================================
        APPLICATION
-    ========================= */
+    ===================================================== */
 
     #app {
       min-height: 100vh;
@@ -239,13 +249,13 @@
     }
 
     .navbar {
-      max-width: 1250px;
+      max-width: 1280px;
       margin: auto;
-      padding: 14px 20px;
+      padding: 12px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 15px;
+      gap: 18px;
     }
 
     .brand {
@@ -255,6 +265,7 @@
       font-weight: 900;
       font-size: 23px;
       color: var(--secondary);
+      flex-shrink: 0;
     }
 
     .brand-mark {
@@ -269,16 +280,58 @@
       font-weight: 900;
     }
 
+    .desktop-nav {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .nav-btn {
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      padding: 9px 11px;
+      border-radius: 9px;
+      font-size: 13px;
+      font-weight: 700;
+      position: relative;
+    }
+
+    .nav-btn:hover,
+    .nav-btn.active {
+      color: var(--primary);
+      background: #e8f0fe;
+    }
+
+    .notification-dot {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      min-width: 16px;
+      height: 16px;
+      padding: 0 4px;
+      border-radius: 20px;
+      background: var(--danger);
+      color: white;
+      font-size: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
     .user-menu {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
+      flex-shrink: 0;
     }
 
     .user-email {
       color: var(--muted);
-      font-size: 13px;
-      max-width: 260px;
+      font-size: 12px;
+      max-width: 180px;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -293,20 +346,50 @@
       font-weight: 700;
     }
 
-    /* =========================
+    .mobile-menu-btn {
+      display: none;
+      border: 1px solid var(--border);
+      background: white;
+      border-radius: 9px;
+      padding: 8px 11px;
+      font-size: 20px;
+    }
+
+    .mobile-nav {
+      display: none;
+      padding: 8px 15px 14px;
+      border-top: 1px solid var(--border);
+      background: white;
+    }
+
+    .mobile-nav.open {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 7px;
+    }
+
+    .mobile-nav button {
+      border: none;
+      padding: 11px;
+      border-radius: 9px;
+      background: #f1f5f9;
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    /* =====================================================
        HERO
-    ========================= */
+    ===================================================== */
 
     .hero {
       background:
         linear-gradient(
           120deg,
           #0b5ed7,
-          #123b73,
-          #07111f
+          #123b73
         );
       color: white;
-      padding: 60px 20px 80px;
+      padding: 58px 20px 85px;
     }
 
     .hero-inner {
@@ -318,7 +401,7 @@
     .hero h2 {
       font-size: clamp(30px, 5vw, 48px);
       margin-bottom: 12px;
-      line-height: 1.15;
+      line-height: 1.1;
     }
 
     .hero p {
@@ -329,13 +412,30 @@
       font-size: 16px;
     }
 
-    /* =========================
+    .hero-badges {
+      margin-top: 22px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .hero-badge {
+      padding: 8px 12px;
+      border-radius: 30px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.18);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    /* =====================================================
        FILTRES
-    ========================= */
+    ===================================================== */
 
     .filters-section {
-      max-width: 1100px;
-      margin: -35px auto 0;
+      max-width: 1150px;
+      margin: -42px auto 0;
       padding: 0 20px;
       position: relative;
       z-index: 5;
@@ -346,9 +446,13 @@
       border-radius: 18px;
       padding: 22px;
       box-shadow: var(--shadow);
+    }
+
+    .filters-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr 1.5fr;
-      gap: 14px;
+      grid-template-columns: 1fr 1fr 1.5fr auto;
+      gap: 12px;
+      align-items: end;
     }
 
     .filter-box label {
@@ -375,14 +479,35 @@
       border-color: var(--primary);
     }
 
-    /* =========================
+    .reset-btn {
+      border: 1px solid var(--border);
+      background: white;
+      color: var(--muted);
+      border-radius: 10px;
+      padding: 13px 15px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .reset-btn:hover {
+      color: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .category-count {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    /* =====================================================
        CONTENU
-    ========================= */
+    ===================================================== */
 
     main {
-      max-width: 1250px;
+      max-width: 1280px;
       margin: auto;
-      padding: 40px 20px 70px;
+      padding: 42px 20px 70px;
     }
 
     .section-title {
@@ -390,17 +515,17 @@
       justify-content: space-between;
       align-items: center;
       gap: 15px;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
     }
 
     .section-title h3 {
-      font-size: 24px;
+      font-size: 25px;
+      margin-bottom: 4px;
     }
 
     .result-count {
       color: var(--muted);
       font-size: 14px;
-      margin-top: 5px;
     }
 
     .professionals-grid {
@@ -409,11 +534,15 @@
       gap: 20px;
     }
 
+    /* =====================================================
+       CARTE PROFESSIONNEL
+    ===================================================== */
+
     .professional-card {
       background: white;
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 20px;
+      overflow: hidden;
       box-shadow: 0 5px 20px rgba(15, 23, 42, 0.04);
       transition: 0.2s;
     }
@@ -423,32 +552,96 @@
       box-shadow: var(--shadow);
     }
 
+    .card-cover {
+      height: 145px;
+      position: relative;
+      background:
+        linear-gradient(
+          135deg,
+          #e8f0fe,
+          #dbeafe
+        );
+      overflow: hidden;
+    }
+
+    .card-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-cover-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 42px;
+      font-weight: 900;
+      color: var(--primary);
+      background:
+        linear-gradient(
+          135deg,
+          #e8f0fe,
+          #dbeafe
+        );
+    }
+
+    .featured-label {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: var(--warning);
+      color: #4a3200;
+      padding: 6px 9px;
+      border-radius: 20px;
+      font-size: 10px;
+      font-weight: 900;
+    }
+
+    .card-body {
+      padding: 18px;
+    }
+
     .card-top {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
       gap: 10px;
-      margin-bottom: 14px;
+      margin-top: -42px;
+      position: relative;
+      margin-bottom: 10px;
     }
 
     .professional-avatar {
-      width: 52px;
-      height: 52px;
-      border-radius: 14px;
-      background: #e8f0fe;
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      background: white;
       color: var(--primary);
+      border: 4px solid white;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 21px;
       font-weight: 900;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+      overflow: hidden;
+    }
+
+    .professional-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .badges {
       display: flex;
-      flex-wrap: wrap;
       justify-content: flex-end;
+      flex-wrap: wrap;
       gap: 4px;
+      padding-top: 6px;
     }
 
     .badge {
@@ -456,8 +649,8 @@
       align-items: center;
       gap: 4px;
       border-radius: 30px;
-      padding: 5px 9px;
-      font-size: 11px;
+      padding: 5px 8px;
+      font-size: 10px;
       font-weight: 800;
     }
 
@@ -469,6 +662,11 @@
     .badge-pro {
       background: #fff3cd;
       color: #664d03;
+    }
+
+    .badge-pro-plus {
+      background: #ede9fe;
+      color: #5b21b6;
     }
 
     .professional-card h4 {
@@ -502,6 +700,11 @@
       margin-bottom: 15px;
     }
 
+    .rating-stars {
+      color: #f59e0b;
+      letter-spacing: 1px;
+    }
+
     .card-actions {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -528,9 +731,13 @@
       color: #0f5132;
     }
 
-    .whatsapp-btn.disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
+    .favorite-btn {
+      background: #fff1f2;
+      color: #be123c;
+    }
+
+    .favorite-btn.active {
+      background: #ffe4e6;
     }
 
     .empty-state {
@@ -564,37 +771,103 @@
       line-height: 1.5;
     }
 
-    .stats-bar {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
-      margin-bottom: 30px;
-    }
+    /* =====================================================
+       PANELS
+    ===================================================== */
 
-    .stat-box {
+    .panel {
       background: white;
       border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 18px;
+      border-radius: 18px;
+      padding: 25px;
+      box-shadow: var(--shadow);
+    }
+
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .panel-header h3 {
+      font-size: 23px;
+    }
+
+    .panel-description {
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .list-item {
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      padding: 15px;
+      margin-bottom: 10px;
+      background: #fff;
+    }
+
+    .list-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .list-item-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 7px;
+    }
+
+    .list-item-title {
+      font-weight: 800;
+    }
+
+    .list-item-meta {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .status {
+      display: inline-flex;
+      padding: 5px 9px;
+      border-radius: 20px;
+      font-size: 10px;
+      font-weight: 800;
+      background: #e2e8f0;
+      color: var(--text);
+    }
+
+    .status.success {
+      background: #d1e7dd;
+      color: #0f5132;
+    }
+
+    .status.pending {
+      background: #fff3cd;
+      color: #664d03;
+    }
+
+    .status.danger {
+      background: #f8d7da;
+      color: #842029;
+    }
+
+    .empty-panel {
       text-align: center;
-    }
-
-    .stat-number {
-      display: block;
-      font-size: 26px;
-      font-weight: 900;
-      color: var(--primary);
-      margin-bottom: 4px;
-    }
-
-    .stat-label {
-      font-size: 13px;
+      padding: 45px 20px;
       color: var(--muted);
     }
 
-    /* =========================
+    .empty-panel h4 {
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    /* =====================================================
        MODAL
-    ========================= */
+    ===================================================== */
 
     .modal-overlay {
       position: fixed;
@@ -609,7 +882,7 @@
 
     .modal {
       width: 100%;
-      max-width: 600px;
+      max-width: 680px;
       background: white;
       border-radius: 20px;
       padding: 25px;
@@ -652,12 +925,60 @@
       line-height: 1.5;
     }
 
+    .modal-cover {
+      width: 100%;
+      height: 220px;
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      background: #e8f0fe;
+    }
+
+    .modal-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .services-list {
+      display: grid;
+      gap: 9px;
+      margin-top: 10px;
+    }
+
+    .service-item {
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+
+    .service-name {
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .service-description {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 5px;
+    }
+
+    .service-price {
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 13px;
+    }
+
     .modal-actions {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(2, 1fr);
       gap: 10px;
       margin-top: 20px;
     }
+
+    /* =====================================================
+       FOOTER
+    ===================================================== */
 
     footer {
       background: var(--secondary);
@@ -671,56 +992,63 @@
       font-size: 13px;
     }
 
-    /* =========================
+    /* =====================================================
        RESPONSIVE
-    ========================= */
+    ===================================================== */
 
-    @media (max-width: 900px) {
+    @media (max-width: 1050px) {
+      .desktop-nav {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .filters-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .filters-grid .filter-box:nth-child(3) {
+        grid-column: 1 / -1;
+      }
+
+      .filters-grid .reset-btn {
+        grid-column: 1 / -1;
+      }
 
       .professionals-grid {
         grid-template-columns: repeat(2, 1fr);
       }
-
-      .filters-card {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .filter-box:last-child {
-        grid-column: 1 / -1;
-      }
-
-      .stats-bar {
-        grid-template-columns: repeat(3, 1fr);
-      }
     }
 
     @media (max-width: 650px) {
-
       .navbar {
-        padding: 12px 15px;
-      }
-
-      .user-email {
-        display: none;
+        padding: 10px 15px;
       }
 
       .brand {
         font-size: 20px;
       }
 
+      .user-email {
+        display: none;
+      }
+
       .hero {
-        padding: 42px 15px 65px;
+        padding: 42px 15px 70px;
       }
 
       .filters-section {
         padding: 0 15px;
       }
 
-      .filters-card {
+      .filters-grid {
         grid-template-columns: 1fr;
       }
 
-      .filter-box:last-child {
+      .filters-grid .filter-box:nth-child(3),
+      .filters-grid .reset-btn {
         grid-column: auto;
       }
 
@@ -742,15 +1070,19 @@
       }
 
       .card-actions {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .modal {
+        padding: 20px;
       }
 
       .modal-actions {
         grid-template-columns: 1fr;
       }
 
-      .stats-bar {
-        grid-template-columns: 1fr;
+      .mobile-nav.open {
+        grid-template-columns: 1fr 1fr;
       }
     }
   </style>
@@ -802,8 +1134,6 @@
 
         </div>
 
-        <!-- CONNEXION -->
-
         <form id="loginForm">
 
           <div class="form-group">
@@ -847,8 +1177,6 @@
           </button>
 
         </form>
-
-        <!-- INSCRIPTION -->
 
         <form
           id="registerForm"
@@ -966,12 +1294,87 @@
 
         </div>
 
+        <div class="desktop-nav">
+
+          <button
+            class="nav-btn active"
+            type="button"
+            data-section="home"
+          >
+            🏠 Accueil
+          </button>
+
+          <button
+            class="nav-btn"
+            type="button"
+            data-section="search"
+          >
+            🔎 Professionnels
+          </button>
+
+          <button
+            class="nav-btn"
+            type="button"
+            data-section="requests"
+          >
+            📋 Demandes
+          </button>
+
+          <button
+            class="nav-btn"
+            type="button"
+            data-section="favorites"
+          >
+            ❤️ Favoris
+          </button>
+
+          <button
+            class="nav-btn"
+            type="button"
+            data-section="messages"
+          >
+            💬 Messages
+          </button>
+
+          <button
+            class="nav-btn"
+            type="button"
+            data-section="notifications"
+          >
+            🔔 Notifications
+            <span
+              id="notificationBadge"
+              class="notification-dot hidden"
+            >
+              0
+            </span>
+          </button>
+
+          <button
+            class="nav-btn"
+            type="button"
+            data-section="profile"
+          >
+            👤 Profil
+          </button>
+
+        </div>
+
         <div class="user-menu">
 
           <span
             id="userEmail"
             class="user-email"
           ></span>
+
+          <button
+            class="mobile-menu-btn"
+            id="mobileMenuBtn"
+            type="button"
+            aria-label="Menu"
+          >
+            ☰
+          </button>
 
           <button
             class="logout-btn"
@@ -985,207 +1388,571 @@
 
       </nav>
 
+      <div
+        id="mobileNav"
+        class="mobile-nav"
+      >
+
+        <button type="button" data-section="home">
+          🏠 Accueil
+        </button>
+
+        <button type="button" data-section="search">
+          🔎 Professionnels
+        </button>
+
+        <button type="button" data-section="requests">
+          📋 Demandes
+        </button>
+
+        <button type="button" data-section="favorites">
+          ❤️ Favoris
+        </button>
+
+        <button type="button" data-section="messages">
+          💬 Messages
+        </button>
+
+        <button type="button" data-section="notifications">
+          🔔 Notifications
+        </button>
+
+        <button type="button" data-section="profile">
+          👤 Profil
+        </button>
+
+      </div>
+
     </header>
 
 
-    <!-- HERO -->
+    <!-- ===================================================
+         ACCUEIL
+    ==================================================== -->
 
-    <section class="hero">
+    <section
+      id="homeSection"
+      class="page-section"
+    >
 
-      <div class="hero-inner">
+      <section class="hero">
 
-        <h2>
-          Trouvez le professionnel qu'il vous faut
-        </h2>
+        <div class="hero-inner">
 
-        <p>
-          Recherchez des professionnels fiables
-          partout au Bénin selon leur ville
-          et leur domaine d'activité.
-        </p>
+          <h2>
+            Trouvez le professionnel qu'il vous faut
+          </h2>
 
-      </div>
+          <p>
+            Recherchez des professionnels et entreprises
+            de confiance partout au Bénin.
+          </p>
 
-    </section>
+          <div class="hero-badges">
 
+            <span class="hero-badge">
+              ✓ Professionnels vérifiés
+            </span>
 
-    <!-- FILTRES -->
+            <span class="hero-badge">
+              ★ Professionnels PRO
+            </span>
 
-    <section class="filters-section">
+            <span class="hero-badge">
+              📍 Toutes les villes
+            </span>
 
-      <div class="filters-card">
-
-        <div class="filter-box">
-
-          <label for="cityFilter">
-            Ville
-          </label>
-
-          <select id="cityFilter">
-
-            <option value="">
-              Toutes les villes
-            </option>
-
-          </select>
-
-        </div>
-
-        <div class="filter-box">
-
-          <label for="categoryFilter">
-            Catégorie
-          </label>
-
-          <select id="categoryFilter">
-
-            <option value="">
-              Toutes les catégories
-            </option>
-
-          </select>
-
-        </div>
-
-        <div class="filter-box">
-
-          <label for="searchInput">
-            Recherche
-          </label>
-
-          <input
-            type="search"
-            id="searchInput"
-            placeholder="Nom, activité, description..."
-          >
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- CONTENU -->
-
-    <main>
-
-      <!-- STATISTIQUES -->
-
-      <div class="stats-bar">
-
-        <div class="stat-box">
-
-          <span
-            class="stat-number"
-            id="totalProfessionals"
-          >
-            0
-          </span>
-
-          <span class="stat-label">
-            Professionnels
-          </span>
-
-        </div>
-
-        <div class="stat-box">
-
-          <span
-            class="stat-number"
-            id="totalCities"
-          >
-            0
-          </span>
-
-          <span class="stat-label">
-            Villes
-          </span>
-
-        </div>
-
-        <div class="stat-box">
-
-          <span
-            class="stat-number"
-            id="totalCategories"
-          >
-            0
-          </span>
-
-          <span class="stat-label">
-            Catégories
-          </span>
-
-        </div>
-
-      </div>
-
-
-      <div class="section-title">
-
-        <div>
-
-          <h3>
-            Professionnels
-          </h3>
-
-          <div
-            id="selectedLocation"
-            class="result-count"
-          >
-            Tous les professionnels
           </div>
 
         </div>
 
-        <div
-          id="resultCount"
-          class="result-count"
-        >
-          Chargement...
+      </section>
+
+
+      <!-- FILTRES -->
+
+      <section class="filters-section">
+
+        <div class="filters-card">
+
+          <div class="filters-grid">
+
+            <div class="filter-box">
+
+              <label for="cityFilter">
+                Ville
+              </label>
+
+              <select id="cityFilter">
+
+                <option value="">
+                  Toutes les villes
+                </option>
+
+              </select>
+
+            </div>
+
+            <div class="filter-box">
+
+              <label for="categoryFilter">
+                Catégorie
+              </label>
+
+              <select id="categoryFilter">
+
+                <option value="">
+                  Toutes les catégories
+                </option>
+
+              </select>
+
+            </div>
+
+            <div class="filter-box">
+
+              <label for="searchInput">
+                Recherche
+              </label>
+
+              <input
+                type="search"
+                id="searchInput"
+                placeholder="Nom, activité, service..."
+              >
+
+            </div>
+
+            <button
+              class="reset-btn"
+              id="resetFilters"
+              type="button"
+            >
+              Réinitialiser
+            </button>
+
+          </div>
+
+          <div
+            id="categoryCount"
+            class="category-count"
+          >
+            Chargement des catégories...
+          </div>
+
         </div>
 
-      </div>
+      </section>
 
 
-      <div
-        id="loading"
-        class="loading"
-      >
-        Chargement des données VERIFIA...
-      </div>
+      <main>
+
+        <div class="section-title">
+
+          <div>
+
+            <h3>
+              Professionnels
+            </h3>
+
+            <div
+              id="selectedLocation"
+              class="result-count"
+            >
+              Tous les professionnels
+            </div>
+
+          </div>
+
+          <div
+            id="resultCount"
+            class="result-count"
+          >
+            Chargement...
+          </div>
+
+        </div>
 
 
-      <div
-        id="dataError"
-        class="data-error hidden"
-      ></div>
+        <div
+          id="loading"
+          class="loading"
+        >
+          Chargement des professionnels...
+        </div>
 
 
-      <div
-        id="professionalsGrid"
-        class="professionals-grid hidden"
-      ></div>
+        <div
+          id="dataError"
+          class="data-error hidden"
+        ></div>
 
 
-      <div
-        id="emptyState"
-        class="empty-state hidden"
-      >
+        <div
+          id="professionalsGrid"
+          class="professionals-grid hidden"
+        ></div>
 
-        <h4>
-          Aucun professionnel trouvé
-        </h4>
 
-        <p>
-          Aucun professionnel ne correspond
-          actuellement à vos critères de recherche.
-        </p>
+        <div
+          id="emptyState"
+          class="empty-state hidden"
+        >
 
-      </div>
+          <h4>
+            Aucun professionnel trouvé
+          </h4>
 
-    </main>
+          <p>
+            Aucun professionnel ne correspond
+            actuellement à vos critères de recherche.
+          </p>
+
+        </div>
+
+      </main>
+
+    </section>
+
+
+    <!-- ===================================================
+         RECHERCHE / PROFESSIONNELS
+    ==================================================== -->
+
+    <section
+      id="searchSection"
+      class="page-section hidden"
+    >
+
+      <main>
+
+        <div class="panel">
+
+          <div class="panel-header">
+
+            <div>
+
+              <h3>
+                🔎 Trouver un professionnel
+              </h3>
+
+              <p class="panel-description">
+                Utilisez les filtres ci-dessous pour
+                trouver le professionnel adapté à votre besoin.
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="filters-grid">
+
+            <div class="filter-box">
+
+              <label>
+                Ville
+              </label>
+
+              <select id="cityFilterSecondary">
+
+                <option value="">
+                  Toutes les villes
+                </option>
+
+              </select>
+
+            </div>
+
+            <div class="filter-box">
+
+              <label>
+                Catégorie
+              </label>
+
+              <select id="categoryFilterSecondary">
+
+                <option value="">
+                  Toutes les catégories
+                </option>
+
+              </select>
+
+            </div>
+
+            <div class="filter-box">
+
+              <label>
+                Recherche
+              </label>
+
+              <input
+                type="search"
+                id="searchInputSecondary"
+                placeholder="Rechercher..."
+              >
+
+            </div>
+
+          </div>
+
+          <div
+            id="secondaryResults"
+            style="margin-top:25px;"
+          ></div>
+
+        </div>
+
+      </main>
+
+    </section>
+
+
+    <!-- ===================================================
+         DEMANDES
+    ==================================================== -->
+
+    <section
+      id="requestsSection"
+      class="page-section hidden"
+    >
+
+      <main>
+
+        <div class="panel">
+
+          <div class="panel-header">
+
+            <div>
+
+              <h3>
+                📋 Mes demandes
+              </h3>
+
+              <p class="panel-description">
+                Retrouvez ici les demandes de services
+                associées à votre compte.
+              </p>
+
+            </div>
+
+            <button
+              class="primary-btn"
+              id="newRequestBtn"
+              type="button"
+              style="max-width:180px;"
+            >
+              + Nouvelle demande
+            </button>
+
+          </div>
+
+          <div id="requestsList">
+
+            <div class="empty-panel">
+
+              <h4>
+                Chargement...
+              </h4>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </main>
+
+    </section>
+
+
+    <!-- ===================================================
+         FAVORIS
+    ==================================================== -->
+
+    <section
+      id="favoritesSection"
+      class="page-section hidden"
+    >
+
+      <main>
+
+        <div class="panel">
+
+          <div class="panel-header">
+
+            <div>
+
+              <h3>
+                ❤️ Mes favoris
+              </h3>
+
+              <p class="panel-description">
+                Les professionnels que vous avez enregistrés.
+              </p>
+
+            </div>
+
+          </div>
+
+          <div
+            id="favoritesGrid"
+            class="professionals-grid"
+          ></div>
+
+        </div>
+
+      </main>
+
+    </section>
+
+
+    <!-- ===================================================
+         MESSAGES
+    ==================================================== -->
+
+    <section
+      id="messagesSection"
+      class="page-section hidden"
+    >
+
+      <main>
+
+        <div class="panel">
+
+          <div class="panel-header">
+
+            <div>
+
+              <h3>
+                💬 Mes messages
+              </h3>
+
+              <p class="panel-description">
+                Consultez vos échanges liés à vos demandes.
+              </p>
+
+            </div>
+
+          </div>
+
+          <div id="messagesList">
+
+            <div class="empty-panel">
+
+              <h4>
+                Chargement...
+              </h4>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </main>
+
+    </section>
+
+
+    <!-- ===================================================
+         NOTIFICATIONS
+    ==================================================== -->
+
+    <section
+      id="notificationsSection"
+      class="page-section hidden"
+    >
+
+      <main>
+
+        <div class="panel">
+
+          <div class="panel-header">
+
+            <div>
+
+              <h3>
+                🔔 Notifications
+              </h3>
+
+              <p class="panel-description">
+                Retrouvez les informations importantes
+                concernant votre activité sur VERIFIA.
+              </p>
+
+            </div>
+
+            <button
+              class="reset-btn"
+              id="markNotificationsRead"
+              type="button"
+            >
+              Tout marquer comme lu
+            </button>
+
+          </div>
+
+          <div id="notificationsList">
+
+            <div class="empty-panel">
+
+              <h4>
+                Chargement...
+              </h4>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </main>
+
+    </section>
+
+
+    <!-- ===================================================
+         PROFIL
+    ==================================================== -->
+
+    <section
+      id="profileSection"
+      class="page-section hidden"
+    >
+
+      <main>
+
+        <div class="panel">
+
+          <div class="panel-header">
+
+            <div>
+
+              <h3>
+                👤 Mon profil
+              </h3>
+
+              <p class="panel-description">
+                Informations associées à votre compte VERIFIA.
+              </p>
+
+            </div>
+
+          </div>
+
+          <div id="profileContent">
+
+            <div class="loading">
+              Chargement du profil...
+            </div>
+
+          </div>
+
+        </div>
+
+      </main>
+
+    </section>
 
 
     <footer>
@@ -1200,7 +1967,7 @@
 
 
   <!-- =====================================================
-       MODAL
+       MODAL PROFESSIONNEL
   ====================================================== -->
 
   <div
@@ -1234,11 +2001,175 @@
   </div>
 
 
+  <!-- =====================================================
+       MODAL DEMANDE
+  ====================================================== -->
+
+  <div
+    id="requestModal"
+    class="modal-overlay hidden"
+  >
+
+    <div class="modal">
+
+      <div class="modal-header">
+
+        <h3>
+          Nouvelle demande
+        </h3>
+
+        <button
+          class="close-btn"
+          id="closeRequestModal"
+          type="button"
+        >
+          ×
+        </button>
+
+      </div>
+
+      <form id="requestForm">
+
+        <div class="form-group">
+
+          <label for="requestTitle">
+            Titre
+          </label>
+
+          <input
+            id="requestTitle"
+            type="text"
+            placeholder="Ex. Recherche d'un plombier"
+            required
+          >
+
+        </div>
+
+        <div class="form-group">
+
+          <label for="requestDescription">
+            Description
+          </label>
+
+          <textarea
+            id="requestDescription"
+            placeholder="Décrivez votre besoin..."
+            required
+          ></textarea>
+
+        </div>
+
+        <div class="form-group">
+
+          <label for="requestCategory">
+            Catégorie
+          </label>
+
+          <select
+            id="requestCategory"
+            required
+          >
+
+            <option value="">
+              Sélectionner une catégorie
+            </option>
+
+          </select>
+
+        </div>
+
+        <div class="form-group">
+
+          <label for="requestCity">
+            Ville
+          </label>
+
+          <select
+            id="requestCity"
+            required
+          >
+
+            <option value="">
+              Sélectionner une ville
+            </option>
+
+          </select>
+
+        </div>
+
+        <div
+          style="
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:10px;
+          "
+        >
+
+          <div class="form-group">
+
+            <label for="requestBudgetMin">
+              Budget minimum
+            </label>
+
+            <input
+              id="requestBudgetMin"
+              type="number"
+              min="0"
+              placeholder="0"
+            >
+
+          </div>
+
+          <div class="form-group">
+
+            <label for="requestBudgetMax">
+              Budget maximum
+            </label>
+
+            <input
+              id="requestBudgetMax"
+              type="number"
+              min="0"
+              placeholder="0"
+            >
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <label>
+            <input
+              id="requestUrgent"
+              type="checkbox"
+              style="width:auto;margin-right:7px;"
+            >
+            Demande urgente
+          </label>
+
+        </div>
+
+        <button
+          class="primary-btn"
+          id="requestSubmitBtn"
+          type="submit"
+        >
+          Publier la demande
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+
+
   <script>
 
     /* =====================================================
        CONFIGURATION SUPABASE
-    ====================================================== */
+    ===================================================== */
 
     const SUPABASE_URL =
       "https://yjqyieotlrbynqxktfcr.supabase.co";
@@ -1255,7 +2186,7 @@
 
     /* =====================================================
        ELEMENTS
-    ====================================================== */
+    ===================================================== */
 
     const authScreen =
       document.getElementById("authScreen");
@@ -1299,6 +2230,15 @@
     const searchInput =
       document.getElementById("searchInput");
 
+    const cityFilterSecondary =
+      document.getElementById("cityFilterSecondary");
+
+    const categoryFilterSecondary =
+      document.getElementById("categoryFilterSecondary");
+
+    const searchInputSecondary =
+      document.getElementById("searchInputSecondary");
+
     const professionalsGrid =
       document.getElementById("professionalsGrid");
 
@@ -1329,46 +2269,52 @@
     const closeModal =
       document.getElementById("closeModal");
 
-    const totalProfessionals =
-      document.getElementById(
-        "totalProfessionals"
-      );
+    const mobileMenuBtn =
+      document.getElementById("mobileMenuBtn");
 
-    const totalCities =
-      document.getElementById(
-        "totalCities"
-      );
+    const mobileNav =
+      document.getElementById("mobileNav");
 
-    const totalCategories =
-      document.getElementById(
-        "totalCategories"
-      );
+    const notificationBadge =
+      document.getElementById("notificationBadge");
+
+    const categoryCount =
+      document.getElementById("categoryCount");
+
+    const requestModal =
+      document.getElementById("requestModal");
+
+    const closeRequestModal =
+      document.getElementById("closeRequestModal");
+
+    const requestForm =
+      document.getElementById("requestForm");
 
 
     /* =====================================================
        VARIABLES
-    ====================================================== */
+    ===================================================== */
 
     let cities = [];
     let categories = [];
     let professionals = [];
+    let professionalPhotos = [];
+    let professionalServices = [];
+    let favorites = [];
     let currentUser = null;
+    let currentProfile = null;
     let dataLoaded = false;
 
 
     /* =====================================================
-       AFFICHAGE AUTH
-    ====================================================== */
+       AUTH SCREEN
+    ===================================================== */
 
     function showAuthScreen() {
 
-      authScreen.classList.remove(
-        "hidden"
-      );
+      authScreen.classList.remove("hidden");
 
-      app.classList.add(
-        "hidden"
-      );
+      app.classList.add("hidden");
 
       currentUser = null;
 
@@ -1379,13 +2325,9 @@
 
       currentUser = user;
 
-      authScreen.classList.add(
-        "hidden"
-      );
+      authScreen.classList.add("hidden");
 
-      app.classList.remove(
-        "hidden"
-      );
+      app.classList.remove("hidden");
 
       userEmail.textContent =
         user?.email || "";
@@ -1395,7 +2337,7 @@
 
     /* =====================================================
        MESSAGES
-    ====================================================== */
+    ===================================================== */
 
     function showAuthMessage(
       message,
@@ -1446,27 +2388,19 @@
 
     /* =====================================================
        ONGLETS AUTH
-    ====================================================== */
+    ===================================================== */
 
     loginTab.addEventListener(
       "click",
       () => {
 
-        loginTab.classList.add(
-          "active"
-        );
+        loginTab.classList.add("active");
 
-        registerTab.classList.remove(
-          "active"
-        );
+        registerTab.classList.remove("active");
 
-        loginForm.classList.remove(
-          "hidden"
-        );
+        loginForm.classList.remove("hidden");
 
-        registerForm.classList.add(
-          "hidden"
-        );
+        registerForm.classList.add("hidden");
 
         clearAuthMessage();
 
@@ -1478,21 +2412,13 @@
       "click",
       () => {
 
-        registerTab.classList.add(
-          "active"
-        );
+        registerTab.classList.add("active");
 
-        loginTab.classList.remove(
-          "active"
-        );
+        loginTab.classList.remove("active");
 
-        registerForm.classList.remove(
-          "hidden"
-        );
+        registerForm.classList.remove("hidden");
 
-        loginForm.classList.add(
-          "hidden"
-        );
+        loginForm.classList.add("hidden");
 
         clearAuthMessage();
 
@@ -1502,11 +2428,11 @@
 
     /* =====================================================
        INSCRIPTION
-    ====================================================== */
+    ===================================================== */
 
     registerForm.addEventListener(
       "submit",
-      async (event) => {
+      async event => {
 
         event.preventDefault();
 
@@ -1561,24 +2487,6 @@
         }
 
 
-        if (
-          password.length < 6
-        ) {
-
-          showAuthMessage(
-            "Le mot de passe doit contenir au moins 6 caractères."
-          );
-
-          registerButton.disabled = false;
-
-          registerButton.textContent =
-            "Créer mon compte";
-
-          return;
-
-        }
-
-
         try {
 
           const {
@@ -1587,9 +2495,9 @@
           } =
             await supabaseClient.auth.signUp({
 
-              email: email,
+              email,
 
-              password: password,
+              password,
 
               options: {
 
@@ -1637,15 +2545,12 @@
           );
 
           showAuthMessage(
-            getFriendlyAuthError(
-              error
-            )
+            getFriendlyAuthError(error)
           );
 
         } finally {
 
-          registerButton.disabled =
-            false;
+          registerButton.disabled = false;
 
           registerButton.textContent =
             "Créer mon compte";
@@ -1658,11 +2563,11 @@
 
     /* =====================================================
        CONNEXION
-    ====================================================== */
+    ===================================================== */
 
     loginForm.addEventListener(
       "submit",
-      async (event) => {
+      async event => {
 
         event.preventDefault();
 
@@ -1695,9 +2600,9 @@
             await supabaseClient.auth
               .signInWithPassword({
 
-                email: email,
+                email,
 
-                password: password
+                password
 
               });
 
@@ -1717,12 +2622,6 @@
 
             await loadData();
 
-          } else {
-
-            throw new Error(
-              "Utilisateur introuvable."
-            );
-
           }
 
         } catch (error) {
@@ -1733,15 +2632,12 @@
           );
 
           showAuthMessage(
-            getFriendlyAuthError(
-              error
-            )
+            getFriendlyAuthError(error)
           );
 
         } finally {
 
-          loginButton.disabled =
-            false;
+          loginButton.disabled = false;
 
           loginButton.textContent =
             "Se connecter";
@@ -1754,11 +2650,9 @@
 
     /* =====================================================
        ERREURS AUTH
-    ====================================================== */
+    ===================================================== */
 
-    function getFriendlyAuthError(
-      error
-    ) {
+    function getFriendlyAuthError(error) {
 
       const message =
         String(
@@ -1772,9 +2666,7 @@
         )
       ) {
 
-        return (
-          "E-mail ou mot de passe incorrect."
-        );
+        return "E-mail ou mot de passe incorrect.";
 
       }
 
@@ -1785,9 +2677,7 @@
         )
       ) {
 
-        return (
-          "Votre adresse e-mail n'est pas encore confirmée."
-        );
+        return "Votre adresse e-mail n'est pas encore confirmée.";
 
       }
 
@@ -1798,22 +2688,21 @@
         )
       ) {
 
-        return (
-          "Cette adresse e-mail possède déjà un compte."
-        );
+        return "Cette adresse e-mail possède déjà un compte.";
 
       }
 
 
       if (
         message.includes(
-          "password should be at least"
+          "password"
+        ) &&
+        message.includes(
+          "6"
         )
       ) {
 
-        return (
-          "Le mot de passe est trop court."
-        );
+        return "Le mot de passe est trop court.";
 
       }
 
@@ -1828,7 +2717,7 @@
 
     /* =====================================================
        DECONNEXION
-    ====================================================== */
+    ===================================================== */
 
     logoutBtn.addEventListener(
       "click",
@@ -1838,15 +2727,7 @@
 
         try {
 
-          const {
-            error
-          } =
-            await supabaseClient.auth
-              .signOut();
-
-          if (error) {
-            throw error;
-          }
+          await supabaseClient.auth.signOut();
 
         } catch (error) {
 
@@ -1863,6 +2744,8 @@
 
           professionals = [];
 
+          favorites = [];
+
           showAuthScreen();
 
           loginForm.reset();
@@ -1871,8 +2754,7 @@
 
           clearAuthMessage();
 
-          logoutBtn.disabled =
-            false;
+          logoutBtn.disabled = false;
 
         }
 
@@ -1882,7 +2764,7 @@
 
     /* =====================================================
        SESSION
-    ====================================================== */
+    ===================================================== */
 
     supabaseClient.auth.onAuthStateChange(
       (event, session) => {
@@ -1965,9 +2847,11 @@
 
 
     /* =====================================================
-       CHARGEMENT DES VILLES
-       AUCUNE RELATION SUPABASE NECESSAIRE
-    ====================================================== */
+       CHARGEMENT VILLES
+       IMPORTANT :
+       Les villes sont chargées indépendamment des
+       professionnels.
+    ===================================================== */
 
     async function loadCities() {
 
@@ -1995,10 +2879,40 @@
         data || [];
 
 
-      cityFilter.innerHTML =
+      fillCitySelect(
+        cityFilter
+      );
+
+      fillCitySelect(
+        cityFilterSecondary
+      );
+
+      fillCitySelect(
+        document.getElementById(
+          "requestCity"
+        )
+      );
+
+    }
+
+
+    function fillCitySelect(select) {
+
+      if (!select) {
+        return;
+      }
+
+
+      const firstOption =
+        select.id === "requestCity"
+          ? "Sélectionner une ville"
+          : "Toutes les villes";
+
+
+      select.innerHTML =
         `
           <option value="">
-            Toutes les villes
+            ${firstOption}
           </option>
         `;
 
@@ -2017,24 +2931,21 @@
           option.textContent =
             city.name;
 
-          cityFilter.appendChild(
+          select.appendChild(
             option
           );
 
         }
       );
 
-
-      totalCities.textContent =
-        cities.length;
-
     }
 
 
     /* =====================================================
-       CHARGEMENT DES CATEGORIES
-       AUCUNE RELATION SUPABASE NECESSAIRE
-    ====================================================== */
+       CHARGEMENT CATEGORIES
+       Les 15 catégories ou davantage sont chargées
+       indépendamment des professionnels.
+    ===================================================== */
 
     async function loadCategories() {
 
@@ -2044,9 +2955,7 @@
       } =
         await supabaseClient
           .from("categories")
-          .select(
-            "id,name,icon,description"
-          )
+          .select("id,name,icon,description")
           .order(
             "name",
             {
@@ -2064,10 +2973,48 @@
         data || [];
 
 
-      categoryFilter.innerHTML =
+      fillCategorySelect(
+        categoryFilter
+      );
+
+      fillCategorySelect(
+        categoryFilterSecondary
+      );
+
+      fillCategorySelect(
+        document.getElementById(
+          "requestCategory"
+        ));
+
+
+      categoryCount.textContent =
+        categories.length +
+        (
+          categories.length > 1
+            ? " catégories disponibles"
+            : " catégorie disponible"
+        );
+
+    }
+
+
+    function fillCategorySelect(select) {
+
+      if (!select) {
+        return;
+      }
+
+
+      const firstOption =
+        select.id === "requestCategory"
+          ? "Sélectionner une catégorie"
+          : "Toutes les catégories";
+
+
+      select.innerHTML =
         `
           <option value="">
-            Toutes les catégories
+            ${firstOption}
           </option>
         `;
 
@@ -2084,27 +3031,27 @@
             category.id;
 
           option.textContent =
+            (
+              category.icon
+                ? category.icon + " "
+                : ""
+            ) +
             category.name;
 
-          categoryFilter.appendChild(
+          select.appendChild(
             option
           );
 
         }
       );
 
-
-      totalCategories.textContent =
-        categories.length;
-
     }
 
 
     /* =====================================================
-       CHARGEMENT DES PROFESSIONNELS
-       IMPORTANT :
-       ON NE FAIT PLUS DE JOIN CATEGORIES/CITIES
-    ====================================================== */
+       CHARGEMENT PROFESSIONNELS
+       AUCUNE RELATION SUPABASE AUTOMATIQUE.
+    ===================================================== */
 
     async function loadProfessionals() {
 
@@ -2182,10 +3129,11 @@
       professionals =
         data || [];
 
-      dataLoaded = true;
 
-      totalProfessionals.textContent =
-        professionals.length;
+      attachProfessionalReferences();
+
+
+      dataLoaded = true;
 
 
       applyFilters();
@@ -2194,49 +3142,384 @@
 
 
     /* =====================================================
-       RECUPERER UNE VILLE
-    ====================================================== */
+       PHOTOS
+    ===================================================== */
 
-    function getCityById(
-      cityId
-    ) {
+    async function loadProfessionalPhotos() {
 
-      return cities.find(
-        city =>
-          String(city.id) ===
-          String(cityId)
-      ) || null;
+      professionalPhotos = [];
+
+      if (!professionals.length) {
+        return;
+      }
+
+
+      const ids =
+        professionals.map(
+          professional =>
+            professional.id
+        );
+
+
+      const {
+        data,
+        error
+      } =
+        await supabaseClient
+          .from("professional_photos")
+          .select(
+            "id,professional_id,image_url,caption,is_cover"
+          )
+          .in(
+            "professional_id",
+            ids
+          )
+          .order(
+            "is_cover",
+            {
+              ascending: false
+            }
+          );
+
+
+      if (error) {
+
+        console.warn(
+          "Photos non chargées :",
+          error.message
+        );
+
+        return;
+
+      }
+
+
+      professionalPhotos =
+        data || [];
+
+
+      attachProfessionalReferences();
 
     }
 
 
     /* =====================================================
-       RECUPERER UNE CATEGORIE
-    ====================================================== */
+       SERVICES
+    ===================================================== */
 
-    function getCategoryById(
-      categoryId
+    async function loadProfessionalServices() {
+
+      professionalServices = [];
+
+      if (!professionals.length) {
+        return;
+      }
+
+
+      const ids =
+        professionals.map(
+          professional =>
+            professional.id
+        );
+
+
+      const {
+        data,
+        error
+      } =
+        await supabaseClient
+          .from("professional_services")
+          .select(`
+            id,
+            professional_id,
+            service_name,
+            description,
+            price_from,
+            price_to
+          `)
+          .in(
+            "professional_id",
+            ids
+          )
+          .order(
+            "service_name",
+            {
+              ascending: true
+            }
+          );
+
+
+      if (error) {
+
+        console.warn(
+          "Services non chargés :",
+          error.message
+        );
+
+        return;
+
+      }
+
+
+      professionalServices =
+        data || [];
+
+
+      attachProfessionalReferences();
+
+    }
+
+
+    /* =====================================================
+       FAVORIS
+    ===================================================== */
+
+    async function loadFavorites() {
+
+      favorites = [];
+
+      if (!currentUser) {
+        return;
+      }
+
+
+      const {
+        data,
+        error
+      } =
+        await supabaseClient
+          .from("favorites")
+          .select(
+            "id,user_id,professional_id,created_at"
+          )
+          .eq(
+            "user_id",
+            currentUser.id
+          );
+
+
+      if (error) {
+
+        console.warn(
+          "Favoris non chargés :",
+          error.message
+        );
+
+        return;
+
+      }
+
+
+      favorites =
+        data || [];
+
+    }
+
+
+    function isFavorite(
+      professionalId
     ) {
 
-      return categories.find(
-        category =>
-          String(category.id) ===
-          String(categoryId)
-      ) || null;
+      return favorites.some(
+        favorite =>
+          String(
+            favorite.professional_id
+          ) ===
+          String(professionalId)
+      );
+
+    }
+
+
+    async function toggleFavorite(
+      professionalId
+    ) {
+
+      if (!currentUser) {
+        return;
+      }
+
+
+      try {
+
+        if (
+          isFavorite(
+            professionalId
+          )
+        ) {
+
+          const favorite =
+            favorites.find(
+              item =>
+                String(
+                  item.professional_id
+                ) ===
+                String(
+                  professionalId
+                )
+            );
+
+
+          const {
+            error
+          } =
+            await supabaseClient
+              .from("favorites")
+              .delete()
+              .eq(
+                "id",
+                favorite.id
+              );
+
+
+          if (error) {
+            throw error;
+          }
+
+
+          favorites =
+            favorites.filter(
+              item =>
+                String(
+                  item.professional_id
+                ) !==
+                String(
+                  professionalId
+                )
+            );
+
+        } else {
+
+          const {
+            data,
+            error
+          } =
+            await supabaseClient
+              .from("favorites")
+              .insert({
+
+                user_id:
+                  currentUser.id,
+
+                professional_id:
+                  professionalId
+
+              })
+              .select()
+              .single();
+
+
+          if (error) {
+            throw error;
+          }
+
+
+          if (data) {
+            favorites.push(data);
+          }
+
+        }
+
+
+        applyFilters();
+
+      } catch (error) {
+
+        console.error(
+          "Erreur favori :",
+          error
+        );
+
+        alert(
+          "Impossible de modifier les favoris. Vérifiez les autorisations Supabase."
+        );
+
+      }
+
+    }
+
+
+    /* =====================================================
+       REFERENCES
+    ===================================================== */
+
+    function attachProfessionalReferences() {
+
+      professionals =
+        professionals.map(
+          professional => {
+
+            const category =
+              categories.find(
+                item =>
+                  String(item.id) ===
+                  String(
+                    professional.category_id
+                  )
+              );
+
+
+            const city =
+              cities.find(
+                item =>
+                  String(item.id) ===
+                  String(
+                    professional.city_id
+                  )
+              );
+
+
+            const photos =
+              professionalPhotos.filter(
+                photo =>
+                  String(
+                    photo.professional_id
+                  ) ===
+                  String(
+                    professional.id
+                  )
+              );
+
+
+            const services =
+              professionalServices.filter(
+                service =>
+                  String(
+                    service.professional_id
+                  ) ===
+                  String(
+                    professional.id
+                  )
+              );
+
+
+            return {
+
+              ...professional,
+
+              categories:
+                category || null,
+
+              cities:
+                city || null,
+
+              photos,
+
+              services
+
+            };
+
+          }
+        );
 
     }
 
 
     /* =====================================================
        FILTRES
-    ====================================================== */
+    ===================================================== */
 
     function applyFilters() {
-
-      if (!dataLoaded) {
-        return;
-      }
-
 
       const cityId =
         cityFilter.value;
@@ -2288,15 +3571,20 @@
           results.filter(
             professional => {
 
-              const city =
-                getCityById(
-                  professional.city_id
-                );
-
-              const category =
-                getCategoryById(
-                  professional.category_id
-                );
+              const serviceText =
+                (
+                  professional.services || []
+                )
+                  .map(
+                    service =>
+                      [
+                        service.service_name,
+                        service.description
+                      ]
+                        .filter(Boolean)
+                        .join(" ")
+                  )
+                  .join(" ");
 
 
               const text = [
@@ -2311,9 +3599,11 @@
 
                 professional.whatsapp,
 
-                city?.name,
+                professional.categories?.name,
 
-                category?.name
+                professional.cities?.name,
+
+                serviceText
 
               ]
                 .filter(Boolean)
@@ -2344,24 +3634,24 @@
     }
 
 
-    /* =====================================================
-       LOCALISATION
-    ====================================================== */
-
     function updateLocationText(
       cityId,
       categoryId
     ) {
 
       const city =
-        getCityById(
-          cityId
+        cities.find(
+          item =>
+            String(item.id) ===
+            String(cityId)
         );
 
 
       const category =
-        getCategoryById(
-          categoryId
+        categories.find(
+          item =>
+            String(item.id) ===
+            String(categoryId)
         );
 
 
@@ -2375,17 +3665,13 @@
           " à " +
           city.name;
 
-      } else if (
-        city
-      ) {
+      } else if (city) {
 
         selectedLocation.textContent =
           "Professionnels à " +
           city.name;
 
-      } else if (
-        category
-      ) {
+      } else if (category) {
 
         selectedLocation.textContent =
           category.name +
@@ -2401,9 +3687,28 @@
     }
 
 
+    function resetFilters() {
+
+      cityFilter.value = "";
+
+      categoryFilter.value = "";
+
+      searchInput.value = "";
+
+      cityFilterSecondary.value = "";
+
+      categoryFilterSecondary.value = "";
+
+      searchInputSecondary.value = "";
+
+      applyFilters();
+
+    }
+
+
     /* =====================================================
-       AFFICHAGE
-    ====================================================== */
+       AFFICHAGE PROFESSIONNELS
+    ===================================================== */
 
     function renderProfessionals(
       results
@@ -2465,9 +3770,29 @@
     }
 
 
-    /* =====================================================
-       CARTE PROFESSIONNEL
-    ====================================================== */
+    function getCoverPhoto(
+      professional
+    ) {
+
+      const photos =
+        professional.photos || [];
+
+
+      const cover =
+        photos.find(
+          photo =>
+            photo.is_cover
+        );
+
+
+      return (
+        cover ||
+        photos[0] ||
+        null
+      );
+
+    }
+
 
     function createProfessionalCard(
       professional
@@ -2486,29 +3811,17 @@
         );
 
 
-      const city =
-        getCityById(
-          professional.city_id
-        );
-
-
       const category =
-        getCategoryById(
-          professional.category_id
-        );
-
-
-      const cityName =
         escapeHtml(
-          city?.name ||
-          "Bénin"
-        );
-
-
-      const categoryName =
-        escapeHtml(
-          category?.name ||
+          professional.categories?.name ||
           "Autre"
+        );
+
+
+      const city =
+        escapeHtml(
+          professional.cities?.name ||
+          "Bénin"
         );
 
 
@@ -2524,6 +3837,31 @@
           getInitials(
             professional.business_name
           )
+        );
+
+
+      const cover =
+        getCoverPhoto(
+          professional
+        );
+
+
+      const avatar =
+        cover?.image_url
+          ? `
+            <img
+              src="${escapeHtml(cover.image_url)}"
+              alt="${name}"
+              loading="lazy"
+              onerror="this.style.display='none'"
+            >
+          `
+          : initials;
+
+
+      const phone =
+        normalizePhone(
+          professional.phone
         );
 
 
@@ -2544,14 +3882,32 @@
           : "";
 
 
+      const proPlus =
+        professional.is_pro_plus
+          ? `
+            <span class="badge badge-pro-plus">
+              ★ PRO+
+            </span>
+          `
+          : "";
+
+
       const pro =
-        (
-          professional.is_pro ||
-          professional.is_pro_plus
-        )
+        professional.is_pro &&
+        !professional.is_pro_plus
           ? `
             <span class="badge badge-pro">
               ★ PRO
+            </span>
+          `
+          : "";
+
+
+      const featured =
+        professional.featured
+          ? `
+            <span class="featured-label">
+              ⭐ À la une
             </span>
           `
           : "";
@@ -2569,66 +3925,129 @@
         );
 
 
+      const favoriteActive =
+        isFavorite(
+          professional.id
+        );
+
+
       return `
 
         <article class="professional-card">
 
-          <div class="card-top">
-
-            <div class="professional-avatar">
-              ${initials}
-            </div>
-
-            <div class="badges">
-              ${verified}
-              ${pro}
-            </div>
-
-          </div>
-
-
-          <h4>
-            ${name}
-          </h4>
-
-
-          <div class="category">
-            ${categoryName}
-          </div>
-
-
-          <div class="location">
-            📍 ${cityName}
-          </div>
-
-
-          <div class="description">
-            ${description}
-          </div>
-
-
-          <div class="rating">
-
-            ⭐ ${rating.toFixed(1)}
+          <div class="card-cover">
 
             ${
-              reviews > 0
-                ? `(${reviews} avis)`
-                : "(Aucun avis)"
+              cover?.image_url
+                ? `
+                  <img
+                    src="${escapeHtml(cover.image_url)}"
+                    alt="${name}"
+                    loading="lazy"
+                    onerror="
+                      this.style.display='none';
+                      this.nextElementSibling.classList.remove('hidden');
+                    "
+                  >
+
+                  <div class="card-cover-placeholder hidden">
+                    ${initials}
+                  </div>
+                `
+                : `
+                  <div class="card-cover-placeholder">
+                    ${initials}
+                  </div>
+                `
             }
+
+            ${featured}
 
           </div>
 
 
-          <div class="card-actions">
+          <div class="card-body">
 
-            <button
-              class="action-btn contact-btn"
-              type="button"
-              onclick="openProfessional('${id}')"
-            >
-              Voir la fiche
-            </button>
+            <div class="card-top">
+
+              <div class="professional-avatar">
+                ${avatar}
+              </div>
+
+              <div class="badges">
+                ${verified}
+                ${pro}
+                ${proPlus}
+              </div>
+
+            </div>
+
+
+            <h4>
+              ${name}
+            </h4>
+
+
+            <div class="category">
+              ${category}
+            </div>
+
+
+            <div class="location">
+              📍 ${city}
+            </div>
+
+
+            <div class="description">
+              ${description}
+            </div>
+
+
+            <div class="rating">
+
+              <span class="rating-stars">
+                ⭐
+              </span>
+
+              ${rating.toFixed(1)}
+
+              ${
+                reviews > 0
+                  ? `(${reviews} avis)`
+                  : "(Aucun avis)"
+              }
+
+            </div>
+
+
+            <div class="card-actions">
+
+              <button
+                class="action-btn contact-btn"
+                type="button"
+                onclick="openProfessional('${id}')"
+              >
+                Voir la fiche
+              </button>
+
+
+              <button
+                class="action-btn favorite-btn ${
+                  favoriteActive
+                    ? "active"
+                    : ""
+                }"
+                type="button"
+                onclick="toggleFavorite('${id}')"
+              >
+                ${
+                  favoriteActive
+                    ? "♥ Favori"
+                    : "♡ Favori"
+                }
+              </button>
+
+            </div>
 
 
             ${
@@ -2639,17 +4058,12 @@
                     href="https://wa.me/${whatsapp}"
                     target="_blank"
                     rel="noopener noreferrer"
+                    style="margin-top:8px;"
                   >
                     WhatsApp
                   </a>
                 `
-                : `
-                  <span
-                    class="action-btn whatsapp-btn disabled"
-                  >
-                    WhatsApp
-                  </span>
-                `
+                : ""
             }
 
           </div>
@@ -2662,8 +4076,8 @@
 
 
     /* =====================================================
-       FICHE PROFESSIONNEL
-    ====================================================== */
+       FICHE PROFESSIONNELLE
+    ===================================================== */
 
     window.openProfessional =
       function(id) {
@@ -2679,18 +4093,6 @@
         if (!professional) {
           return;
         }
-
-
-        const city =
-          getCityById(
-            professional.city_id
-          );
-
-
-        const category =
-          getCategoryById(
-            professional.category_id
-          );
 
 
         modalTitle.textContent =
@@ -2717,7 +4119,36 @@
           );
 
 
+        const cover =
+          getCoverPhoto(
+            professional
+          );
+
+
+        const services =
+          professional.services || [];
+
+
         modalContent.innerHTML = `
+
+          ${
+            cover?.image_url
+              ? `
+                <div class="modal-cover">
+
+                  <img
+                    src="${escapeHtml(cover.image_url)}"
+                    alt="${escapeHtml(
+                      professional.business_name ||
+                      "Professionnel"
+                    )}"
+                  >
+
+                </div>
+              `
+              : ""
+          }
+
 
           <div class="detail-row">
 
@@ -2728,7 +4159,7 @@
             <div class="detail-value">
               ${
                 escapeHtml(
-                  category?.name ||
+                  professional.categories?.name ||
                   "Non précisée"
                 )
               }
@@ -2747,7 +4178,7 @@
               📍
               ${
                 escapeHtml(
-                  city?.name ||
+                  professional.cities?.name ||
                   "Non précisée"
                 )
               }
@@ -2830,6 +4261,112 @@
           </div>
 
 
+          ${
+            services.length
+              ? `
+                <div class="detail-row">
+
+                  <div class="detail-label">
+                    Services proposés
+                  </div>
+
+                  <div class="services-list">
+
+                    ${
+                      services
+                        .map(
+                          service => {
+
+                            let price = "";
+
+                            if (
+                              service.price_from !== null &&
+                              service.price_from !== undefined
+                            ) {
+
+                              price =
+                                "À partir de " +
+                                Number(
+                                  service.price_from
+                                ).toLocaleString(
+                                  "fr-FR"
+                                ) +
+                                " FCFA";
+
+                            }
+
+
+                            if (
+                              service.price_to !== null &&
+                              service.price_to !== undefined
+                            ) {
+
+                              price +=
+                                " — " +
+                                Number(
+                                  service.price_to
+                                ).toLocaleString(
+                                  "fr-FR"
+                                ) +
+                                " FCFA";
+
+                            }
+
+
+                            return `
+
+                              <div class="service-item">
+
+                                <div class="service-name">
+                                  ${
+                                    escapeHtml(
+                                      service.service_name ||
+                                      "Service"
+                                    )
+                                  }
+                                </div>
+
+                                ${
+                                  service.description
+                                    ? `
+                                      <div class="service-description">
+                                        ${
+                                          escapeHtml(
+                                            service.description
+                                          )
+                                        }
+                                      </div>
+                                    `
+                                    : ""
+                                }
+
+                                ${
+                                  price
+                                    ? `
+                                      <div class="service-price">
+                                        ${price}
+                                      </div>
+                                    `
+                                    : ""
+                                }
+
+                              </div>
+
+                            `;
+
+                          }
+                        )
+                        .join("")
+                    }
+
+                  </div>
+
+                </div>
+              `
+              : ""
+          }
+
+
           <div class="detail-row">
 
             <div class="detail-label">
@@ -2867,13 +4404,7 @@
                     📞 Appeler
                   </a>
                 `
-                : `
-                  <span
-                    class="action-btn contact-btn disabled"
-                  >
-                    📞 Appeler
-                  </span>
-                `
+                : ""
             }
 
 
@@ -2889,14 +4420,36 @@
                     WhatsApp
                   </a>
                 `
-                : `
-                  <span
-                    class="action-btn whatsapp-btn disabled"
-                  >
-                    WhatsApp
-                  </span>
-                `
+                : ""
             }
+
+
+            <button
+              class="action-btn favorite-btn ${
+                isFavorite(
+                  professional.id
+                )
+                  ? "active"
+                  : ""
+              }"
+              type="button"
+              onclick="
+                toggleFavorite('${escapeHtml(
+                  professional.id
+                )}');
+                openProfessional('${escapeHtml(
+                  professional.id
+                )}');
+              "
+            >
+              ${
+                isFavorite(
+                  professional.id
+                )
+                  ? "♥ Retirer des favoris"
+                  : "♡ Ajouter aux favoris"
+              }
+            </button>
 
           </div>
 
@@ -2912,7 +4465,7 @@
 
     /* =====================================================
        FERMETURE MODAL
-    ====================================================== */
+    ===================================================== */
 
     closeModal.addEventListener(
       "click",
@@ -2957,6 +4510,10 @@
             "hidden"
           );
 
+          requestModal.classList.add(
+            "hidden"
+          );
+
         }
 
       }
@@ -2965,29 +4522,1338 @@
 
     /* =====================================================
        FILTRES
-    ====================================================== */
+    ===================================================== */
 
     cityFilter.addEventListener(
       "change",
-      applyFilters
+      () => {
+
+        cityFilterSecondary.value =
+          cityFilter.value;
+
+        applyFilters();
+
+      }
     );
 
 
     categoryFilter.addEventListener(
       "change",
-      applyFilters
+      () => {
+
+        categoryFilterSecondary.value =
+          categoryFilter.value;
+
+        applyFilters();
+
+      }
     );
 
 
     searchInput.addEventListener(
       "input",
-      applyFilters
+      () => {
+
+        searchInputSecondary.value =
+          searchInput.value;
+
+        applyFilters();
+
+      }
+    );
+
+
+    cityFilterSecondary.addEventListener(
+      "change",
+      () => {
+
+        cityFilter.value =
+          cityFilterSecondary.value;
+
+        applyFilters();
+
+      }
+    );
+
+
+    categoryFilterSecondary.addEventListener(
+      "change",
+      () => {
+
+        categoryFilter.value =
+          categoryFilterSecondary.value;
+
+        applyFilters();
+
+      }
+    );
+
+
+    searchInputSecondary.addEventListener(
+      "input",
+      () => {
+
+        searchInput.value =
+          searchInputSecondary.value;
+
+        applyFilters();
+
+      }
+    );
+
+
+    document
+      .getElementById(
+        "resetFilters"
+      )
+      .addEventListener(
+        "click",
+        resetFilters
+      );
+
+
+    /* =====================================================
+       NAVIGATION
+    ===================================================== */
+
+    document
+      .querySelectorAll(
+        "[data-section]"
+      )
+      .forEach(
+        button => {
+
+          button.addEventListener(
+            "click",
+            () => {
+
+              const section =
+                button.dataset.section;
+
+              showSection(
+                section
+              );
+
+              mobileNav.classList.remove(
+                "open"
+              );
+
+            }
+          );
+
+        }
+      );
+
+
+    function showSection(
+      section
+    ) {
+
+      document
+        .querySelectorAll(
+          ".page-section"
+        )
+        .forEach(
+          element =>
+            element.classList.add(
+              "hidden"
+            )
+        );
+
+
+      const target =
+        document.getElementById(
+          section + "Section"
+        );
+
+
+      if (target) {
+
+        target.classList.remove(
+          "hidden"
+        );
+
+      }
+
+
+      document
+        .querySelectorAll(
+          ".nav-btn"
+        )
+        .forEach(
+          button => {
+
+            button.classList.toggle(
+              "active",
+              button.dataset.section ===
+                section
+            );
+
+          }
+        );
+
+
+      if (
+        section === "favorites"
+      ) {
+
+        renderFavorites();
+
+      }
+
+
+      if (
+        section === "requests"
+      ) {
+
+        loadRequests();
+
+      }
+
+
+      if (
+        section === "messages"
+      ) {
+
+        loadMessages();
+
+      }
+
+
+      if (
+        section === "notifications"
+      ) {
+
+        loadNotifications();
+
+      }
+
+
+      if (
+        section === "profile"
+      ) {
+
+        loadProfile();
+
+      }
+
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    }
+
+
+    mobileMenuBtn.addEventListener(
+      "click",
+      () => {
+
+        mobileNav.classList.toggle(
+          "open"
+        );
+
+      }
     );
 
 
     /* =====================================================
-       CHARGEMENT GENERAL
-    ====================================================== */
+       FAVORIS
+    ===================================================== */
+
+    function renderFavorites() {
+
+      const grid =
+        document.getElementById(
+          "favoritesGrid"
+        );
+
+
+      const favoriteProfessionals =
+        professionals.filter(
+          professional =>
+            isFavorite(
+              professional.id
+            )
+        );
+
+
+      if (
+        favoriteProfessionals.length === 0
+      ) {
+
+        grid.innerHTML =
+          `
+            <div
+              class="empty-panel"
+              style="grid-column:1/-1;"
+            >
+
+              <h4>
+                Aucun favori
+              </h4>
+
+              <p>
+                Ajoutez des professionnels à vos favoris
+                depuis leur fiche.
+              </p>
+
+            </div>
+          `;
+
+        return;
+
+      }
+
+
+      grid.innerHTML =
+        favoriteProfessionals
+          .map(
+            professional =>
+              createProfessionalCard(
+                professional
+              )
+          )
+          .join("");
+
+    }
+
+
+    /* =====================================================
+       DEMANDES
+    ===================================================== */
+
+    async function loadRequests() {
+
+      const container =
+        document.getElementById(
+          "requestsList"
+        );
+
+
+      if (!currentUser) {
+        return;
+      }
+
+
+      container.innerHTML =
+        `
+          <div class="loading">
+            Chargement des demandes...
+          </div>
+        `;
+
+
+      const {
+        data,
+        error
+      } =
+        await supabaseClient
+          .from("requests")
+          .select(`
+            id,
+            title,
+            description,
+            category_id,
+            city_id,
+            budget_min,
+            budget_max,
+            is_urgent,
+            status,
+            created_at
+          `)
+          .eq(
+            "client_id",
+            currentUser.id
+          )
+          .order(
+            "created_at",
+            {
+              ascending: false
+            }
+          );
+
+
+      if (error) {
+
+        container.innerHTML =
+          `
+            <div class="empty-panel">
+
+              <h4>
+                Impossible de charger les demandes
+              </h4>
+
+              <p>
+                ${escapeHtml(error.message)}
+              </p>
+
+            </div>
+          `;
+
+        return;
+
+      }
+
+
+      if (
+        !data ||
+        data.length === 0
+      ) {
+
+        container.innerHTML =
+          `
+            <div class="empty-panel">
+
+              <h4>
+                Aucune demande
+              </h4>
+
+              <p>
+                Vous n'avez pas encore publié de demande.
+              </p>
+
+            </div>
+          `;
+
+        return;
+
+      }
+
+
+      container.innerHTML =
+        data
+          .map(
+            request => {
+
+              const category =
+                categories.find(
+                  item =>
+                    String(item.id) ===
+                    String(
+                      request.category_id
+                    )
+                );
+
+
+              const city =
+                cities.find(
+                  item =>
+                    String(item.id) ===
+                    String(
+                      request.city_id
+                    )
+                );
+
+
+              return `
+
+                <div class="list-item">
+
+                  <div class="list-item-header">
+
+                    <div class="list-item-title">
+                      ${escapeHtml(
+                        request.title
+                      )}
+                    </div>
+
+                    <span class="status ${
+                      request.status === "completed"
+                        ? "success"
+                        : request.status === "cancelled"
+                          ? "danger"
+                          : "pending"
+                    }">
+                      ${escapeHtml(
+                        request.status ||
+                        "En attente"
+                      )}
+                    </span>
+
+                  </div>
+
+                  <div class="list-item-meta">
+
+                    ${
+                      category?.name
+                        ? escapeHtml(
+                            category.name
+                          )
+                        : "Catégorie"
+                    }
+
+                    ·
+
+                    ${
+                      city?.name
+                        ? escapeHtml(
+                            city.name
+                          )
+                        : "Ville"
+                    }
+
+                    ${
+                      request.is_urgent
+                        ? " · 🔥 Urgent"
+                        : ""
+                    }
+
+                  </div>
+
+                  <p
+                    style="
+                      margin-top:10px;
+                      line-height:1.5;
+                      color:#475569;
+                    "
+                  >
+                    ${escapeHtml(
+                      request.description
+                    )}
+                  </p>
+
+                </div>
+
+              `;
+
+            }
+          )
+          .join("");
+
+    }
+
+
+    /* =====================================================
+       NOUVELLE DEMANDE
+    ===================================================== */
+
+    document
+      .getElementById(
+        "newRequestBtn"
+      )
+      .addEventListener(
+        "click",
+        () => {
+
+          requestForm.reset();
+
+          requestModal.classList.remove(
+            "hidden"
+          );
+
+        }
+      );
+
+
+    closeRequestModal.addEventListener(
+      "click",
+      () => {
+
+        requestModal.classList.add(
+          "hidden"
+        );
+
+      }
+    );
+
+
+    requestModal.addEventListener(
+      "click",
+      event => {
+
+        if (
+          event.target ===
+          requestModal
+        ) {
+
+          requestModal.classList.add(
+            "hidden"
+          );
+
+        }
+
+      }
+    );
+
+
+    requestForm.addEventListener(
+      "submit",
+      async event => {
+
+        event.preventDefault();
+
+
+        if (!currentUser) {
+          return;
+        }
+
+
+        const button =
+          document.getElementById(
+            "requestSubmitBtn"
+          );
+
+
+        button.disabled = true;
+
+        button.textContent =
+          "Publication...";
+
+
+        try {
+
+          const payload = {
+
+            client_id:
+              currentUser.id,
+
+            title:
+              document
+                .getElementById(
+                  "requestTitle"
+                )
+                .value
+                .trim(),
+
+            description:
+              document
+                .getElementById(
+                  "requestDescription"
+                )
+                .value
+                .trim(),
+
+            category_id:
+              document
+                .getElementById(
+                  "requestCategory"
+                )
+                .value,
+
+            city_id:
+              document
+                .getElementById(
+                  "requestCity"
+                )
+                .value,
+
+            budget_min:
+              parseNullableNumber(
+                document
+                  .getElementById(
+                    "requestBudgetMin"
+                  )
+                  .value
+              ),
+
+            budget_max:
+              parseNullableNumber(
+                document
+                  .getElementById(
+                    "requestBudgetMax"
+                  )
+                  .value
+              ),
+
+            is_urgent:
+              document
+                .getElementById(
+                  "requestUrgent"
+                )
+                .checked,
+
+            status:
+              "open"
+
+          };
+
+
+          const {
+            error
+          } =
+            await supabaseClient
+              .from("requests")
+              .insert(
+                payload
+              );
+
+
+          if (error) {
+            throw error;
+          }
+
+
+          requestModal.classList.add(
+            "hidden"
+          );
+
+          requestForm.reset();
+
+          alert(
+            "Votre demande a été publiée avec succès."
+          );
+
+          loadRequests();
+
+        } catch (error) {
+
+          console.error(
+            "Erreur demande :",
+            error
+          );
+
+          alert(
+            "Impossible de publier la demande : " +
+            error.message
+          );
+
+        } finally {
+
+          button.disabled = false;
+
+          button.textContent =
+            "Publier la demande";
+
+        }
+
+      }
+    );
+
+
+    /* =====================================================
+       MESSAGES
+    ===================================================== */
+
+    async function loadMessages() {
+
+      const container =
+        document.getElementById(
+          "messagesList"
+        );
+
+
+      if (!currentUser) {
+        return;
+      }
+
+
+      container.innerHTML =
+        `
+          <div class="loading">
+            Chargement des messages...
+          </div>
+        `;
+
+
+      const {
+        data,
+        error
+      } =
+        await supabaseClient
+          .from("messages")
+          .select(`
+            id,
+            sender_id,
+            receiver_id,
+            request_id,
+            message,
+            is_read,
+            created_at
+          `)
+          .or(
+            "sender_id.eq." +
+            currentUser.id +
+            ",receiver_id.eq." +
+            currentUser.id
+          )
+          .order(
+            "created_at",
+            {
+              ascending: false
+            }
+          );
+
+
+      if (error) {
+
+        container.innerHTML =
+          `
+            <div class="empty-panel">
+
+              <h4>
+                Impossible de charger les messages
+              </h4>
+
+              <p>
+                ${escapeHtml(error.message)}
+              </p>
+
+            </div>
+          `;
+
+        return;
+
+      }
+
+
+      if (
+        !data ||
+        data.length === 0
+      ) {
+
+        container.innerHTML =
+          `
+            <div class="empty-panel">
+
+              <h4>
+                Aucun message
+              </h4>
+
+              <p>
+                Vous n'avez encore aucun échange.
+              </p>
+
+            </div>
+          `;
+
+        return;
+
+      }
+
+
+      container.innerHTML =
+        data
+          .map(
+            message => `
+
+              <div class="list-item">
+
+                <div class="list-item-header">
+
+                  <div class="list-item-title">
+                    ${
+                      String(
+                        message.sender_id
+                      ) ===
+                      String(
+                        currentUser.id
+                      )
+                        ? "Vous"
+                        : "Message reçu"
+                    }
+                  </div>
+
+                  <span class="status ${
+                    message.is_read
+                      ? "success"
+                      : "pending"
+                  }">
+                    ${
+                      message.is_read
+                        ? "Lu"
+                        : "Nouveau"
+                    }
+                  </span>
+
+                </div>
+
+                <p
+                  style="
+                    line-height:1.5;
+                    color:#475569;
+                  "
+                >
+                  ${escapeHtml(
+                    message.message
+                  )}
+                </p>
+
+              </div>
+
+            `
+          )
+          .join("");
+
+    }
+
+
+    /* =====================================================
+       NOTIFICATIONS
+    ===================================================== */
+
+    async function loadNotifications() {
+
+      const container =
+        document.getElementById(
+          "notificationsList"
+        );
+
+
+      if (!currentUser) {
+        return;
+      }
+
+
+      container.innerHTML =
+        `
+          <div class="loading">
+            Chargement des notifications...
+          </div>
+        `;
+
+
+      const {
+        data,
+        error
+      } =
+        await supabaseClient
+          .from("notifications")
+          .select(`
+            id,
+            title,
+            message,
+            is_read,
+            created_at
+          `)
+          .eq(
+            "user_id",
+            currentUser.id
+          )
+          .order(
+            "created_at",
+            {
+              ascending: false
+            }
+          );
+
+
+      if (error) {
+
+        container.innerHTML =
+          `
+            <div class="empty-panel">
+
+              <h4>
+                Impossible de charger les notifications
+              </h4>
+
+              <p>
+                ${escapeHtml(error.message)}
+              </p>
+
+            </div>
+          `;
+
+        return;
+
+      }
+
+
+      updateNotificationBadge(
+        data || []
+      );
+
+
+      if (
+        !data ||
+        data.length === 0
+      ) {
+
+        container.innerHTML =
+          `
+            <div class="empty-panel">
+
+              <h4>
+                Aucune notification
+              </h4>
+
+              <p>
+                Vous êtes à jour.
+              </p>
+
+            </div>
+          `;
+
+        return;
+
+      }
+
+
+      container.innerHTML =
+        data
+          .map(
+            notification => `
+
+              <div
+                class="list-item"
+                style="${
+                  notification.is_read
+                    ? ""
+                    : "border-left:4px solid var(--primary);"
+                }"
+              >
+
+                <div class="list-item-header">
+
+                  <div class="list-item-title">
+                    ${escapeHtml(
+                      notification.title ||
+                      "Notification"
+                    )}
+                  </div>
+
+                  <span class="status ${
+                    notification.is_read
+                      ? "success"
+                      : "pending"
+                  }">
+                    ${
+                      notification.is_read
+                        ? "Lu"
+                        : "Nouveau"
+                    }
+                  </span>
+
+                </div>
+
+                <p
+                  style="
+                    line-height:1.5;
+                    color:#475569;
+                  "
+                >
+                  ${escapeHtml(
+                    notification.message
+                  )}
+                </p>
+
+              </div>
+
+            `
+          )
+          .join("");
+
+    }
+
+
+    function updateNotificationBadge(
+      notifications
+    ) {
+
+      const unread =
+        notifications.filter(
+          item =>
+            !item.is_read
+        ).length;
+
+
+      if (
+        unread > 0
+      ) {
+
+        notificationBadge.textContent =
+          unread > 99
+            ? "99+"
+            : unread;
+
+        notificationBadge.classList.remove(
+          "hidden"
+        );
+
+      } else {
+
+        notificationBadge.classList.add(
+          "hidden"
+        );
+
+      }
+
+    }
+
+
+    document
+      .getElementById(
+        "markNotificationsRead"
+      )
+      .addEventListener(
+        "click",
+        async () => {
+
+          if (!currentUser) {
+            return;
+          }
+
+
+          const {
+            error
+          } =
+            await supabaseClient
+              .from("notifications")
+              .update({
+                is_read: true
+              })
+              .eq(
+                "user_id",
+                currentUser.id
+              )
+              .eq(
+                "is_read",
+                false
+              );
+
+
+          if (error) {
+
+            alert(
+              "Impossible de marquer les notifications comme lues."
+            );
+
+            return;
+
+          }
+
+
+          loadNotifications();
+
+        }
+      );
+
+
+    /* =====================================================
+       PROFIL
+    ===================================================== */
+
+    async function loadProfile() {
+
+      const container =
+        document.getElementById(
+          "profileContent"
+        );
+
+
+      if (!currentUser) {
+        return;
+      }
+
+
+      container.innerHTML =
+        `
+          <div class="loading">
+            Chargement du profil...
+          </div>
+        `;
+
+
+      const {
+        data,
+        error
+      } =
+        await supabaseClient
+          .from("profiles")
+          .select(`
+            id,
+            first_name,
+            last_name,
+            phone,
+            role,
+            avatar_url,
+            created_at,
+            updated_at
+          `)
+          .eq(
+            "id",
+            currentUser.id
+          )
+          .maybeSingle();
+
+
+      if (error) {
+
+        container.innerHTML =
+          `
+            <div class="empty-panel">
+
+              <h4>
+                Profil non disponible
+              </h4>
+
+              <p>
+                ${escapeHtml(error.message)}
+              </p>
+
+            </div>
+          `;
+
+        return;
+
+      }
+
+
+      currentProfile =
+        data;
+
+
+      const fullName =
+        [
+          data?.first_name,
+          data?.last_name
+        ]
+          .filter(Boolean)
+          .join(" ");
+
+
+      container.innerHTML =
+        `
+
+          <div
+            style="
+              display:grid;
+              grid-template-columns:100px 1fr;
+              gap:25px;
+              align-items:center;
+            "
+          >
+
+            <div
+              style="
+                width:100px;
+                height:100px;
+                border-radius:22px;
+                overflow:hidden;
+                background:#e8f0fe;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                color:var(--primary);
+                font-size:30px;
+                font-weight:900;
+              "
+            >
+
+              ${
+                data?.avatar_url
+                  ? `
+                    <img
+                      src="${escapeHtml(
+                        data.avatar_url
+                      )}"
+                      alt="Profil"
+                      style="
+                        width:100%;
+                        height:100%;
+                        object-fit:cover;
+                      "
+                    >
+                  `
+                  : escapeHtml(
+                      getInitials(
+                        fullName ||
+                        currentUser.email
+                      )
+                    )
+              }
+
+            </div>
+
+
+            <div>
+
+              <h4
+                style="
+                  font-size:22px;
+                  margin-bottom:6px;
+                "
+              >
+                ${
+                  escapeHtml(
+                    fullName ||
+                    "Utilisateur VERIFIA"
+                  )
+                }
+              </h4>
+
+              <p
+                style="
+                  color:var(--muted);
+                  margin-bottom:6px;
+                "
+              >
+                ${escapeHtml(
+                  currentUser.email || ""
+                )}
+              </p>
+
+              <span class="status success">
+                ${
+                  escapeHtml(
+                    data?.role ||
+                    "Client"
+                  )
+                }
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div
+            style="
+              margin-top:30px;
+              border-top:1px solid var(--border);
+              padding-top:20px;
+            "
+          >
+
+            <div class="detail-row">
+
+              <div class="detail-label">
+                Téléphone
+              </div>
+
+              <div class="detail-value">
+                ${
+                  escapeHtml(
+                    data?.phone ||
+                    "Non renseigné"
+                  )
+                }
+              </div>
+
+            </div>
+
+
+            <div class="detail-row">
+
+              <div class="detail-label">
+                E-mail
+              </div>
+
+              <div class="detail-value">
+                ${
+                  escapeHtml(
+                    currentUser.email ||
+                    ""
+                  )
+                }
+              </div>
+
+            </div>
+
+          </div>
+
+        `;
+
+    }
+
+
+    /* =====================================================
+       CHARGEMENT GLOBAL
+       Chaque table est chargée séparément afin d'éviter
+       les erreurs dues aux relations Supabase.
+    ===================================================== */
 
     async function loadData() {
 
@@ -3007,7 +5873,7 @@
         clearDataError();
 
         loading.textContent =
-          "Chargement des données VERIFIA...";
+          "Chargement des professionnels...";
 
         loading.classList.remove(
           "hidden"
@@ -3015,22 +5881,46 @@
 
 
         /*
-          IMPORTANT :
-          On charge les trois tables séparément.
-          Aucune jointure relationnelle Supabase.
+          1. Tables de référence
         */
 
-        await loadCities();
+        await Promise.all([
+          loadCities(),
+          loadCategories()
+        ]);
 
-        await loadCategories();
+
+        /*
+          2. Professionnels
+        */
 
         await loadProfessionals();
+
+
+        /*
+          3. Données complémentaires.
+          Une erreur dans photos/services/favoris
+          ne bloque PAS l'annuaire principal.
+        */
+
+        await Promise.all([
+          loadProfessionalPhotos(),
+          loadProfessionalServices(),
+          loadFavorites()
+        ]);
+
+
+        attachProfessionalReferences();
+
+        applyFilters();
+
+        loadNotifications();
 
 
       } catch (error) {
 
         console.error(
-          "Erreur chargement données VERIFIA :",
+          "Erreur chargement VERIFIA :",
           error
         );
 
@@ -3049,7 +5939,7 @@
 
 
         showDataError(
-          "Impossible de charger les données VERIFIA. Vérifiez les autorisations de lecture (RLS) sur les tables cities, categories et professionals."
+          "Impossible de charger les données VERIFIA. Vérifiez les autorisations de lecture Supabase."
         );
 
       }
@@ -3058,8 +5948,8 @@
 
 
     /* =====================================================
-       TELEPHONE
-    ====================================================== */
+       UTILITAIRES
+    ===================================================== */
 
     function normalizePhone(
       phone
@@ -3129,10 +6019,6 @@
     }
 
 
-    /* =====================================================
-       INITIALES
-    ====================================================== */
-
     function getInitials(
       name
     ) {
@@ -3168,9 +6054,31 @@
     }
 
 
-    /* =====================================================
-       SECURITE HTML
-    ====================================================== */
+    function parseNullableNumber(
+      value
+    ) {
+
+      if (
+        value === null ||
+        value === undefined ||
+        value === ""
+      ) {
+
+        return null;
+
+      }
+
+
+      const number =
+        Number(value);
+
+
+      return Number.isFinite(number)
+        ? number
+        : null;
+
+    }
+
 
     function escapeHtml(
       value
@@ -3213,7 +6121,7 @@
 
     /* =====================================================
        DEMARRAGE
-    ====================================================== */
+    ===================================================== */
 
     checkSession();
 
@@ -3221,4 +6129,3 @@
 
 </body>
 </html>
-```
