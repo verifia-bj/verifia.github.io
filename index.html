@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -6,8 +7,13 @@
 
 <title>VERIFIA — Trouvez un professionnel fiable au Bénin</title>
 
-<meta name="description" content="VERIFIA, plateforme béninoise de référencement de professionnels et entreprises fiables.">
+<meta name="description" content="VERIFIA vous permet de rechercher des professionnels et entreprises fiables au Bénin.">
 <meta name="theme-color" content="#0b1220">
+
+<!-- =========================================================
+     SUPABASE JS
+     ========================================================= -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 *{
@@ -23,7 +29,7 @@
     --blue2:#1d4ed8;
     --green:#16a34a;
     --green2:#15803d;
-    --white:#fff;
+    --white:#ffffff;
     --light:#f4f7fb;
     --text:#172033;
     --muted:#667085;
@@ -43,7 +49,9 @@ body{
     line-height:1.5;
 }
 
-button,input,select{
+button,
+input,
+select{
     font:inherit;
 }
 
@@ -51,60 +59,62 @@ button{
     cursor:pointer;
 }
 
-/* =========================
+/* =========================================================
    AUTHENTIFICATION
-========================= */
+   ========================================================= */
 
 #authScreen{
     min-height:100vh;
+    background:
+        radial-gradient(circle at top right,rgba(37,99,235,.35),transparent 35%),
+        radial-gradient(circle at bottom left,rgba(22,163,74,.15),transparent 30%),
+        linear-gradient(135deg,var(--dark),#172554);
     display:flex;
     align-items:center;
     justify-content:center;
     padding:25px;
-    background:
-        radial-gradient(circle at top right,rgba(37,99,235,.35),transparent 35%),
-        linear-gradient(135deg,#0b1220,#172554);
 }
 
-.auth-container{
+.auth-wrapper{
     width:100%;
-    max-width:450px;
+    max-width:460px;
+}
+
+.auth-brand{
+    text-align:center;
+    color:white;
+    margin-bottom:25px;
 }
 
 .auth-logo{
-    text-align:center;
-    color:white;
-    font-size:38px;
+    font-size:36px;
     font-weight:900;
     letter-spacing:.5px;
-    margin-bottom:8px;
 }
 
 .auth-logo span{
     color:#60a5fa;
 }
 
-.auth-tagline{
-    text-align:center;
+.auth-brand p{
     color:#dbeafe;
-    margin-bottom:25px;
+    margin-top:6px;
 }
 
 .auth-card{
     background:white;
-    border-radius:22px;
-    padding:30px;
-    box-shadow:0 25px 60px rgba(0,0,0,.28);
+    border-radius:24px;
+    padding:32px;
+    box-shadow:0 25px 70px rgba(0,0,0,.3);
 }
 
 .auth-card h1{
-    text-align:center;
     font-size:27px;
-    margin-bottom:8px;
+    margin-bottom:7px;
+    color:var(--text);
 }
 
 .auth-subtitle{
-    text-align:center;
     color:var(--muted);
     font-size:14px;
     margin-bottom:25px;
@@ -113,8 +123,9 @@ button{
 .auth-tabs{
     display:grid;
     grid-template-columns:1fr 1fr;
+    gap:5px;
     background:#f1f5f9;
-    padding:4px;
+    padding:5px;
     border-radius:12px;
     margin-bottom:22px;
 }
@@ -134,6 +145,14 @@ button{
     box-shadow:0 2px 8px rgba(0,0,0,.08);
 }
 
+.auth-form{
+    display:none;
+}
+
+.auth-form.active{
+    display:block;
+}
+
 .form-group{
     margin-bottom:16px;
 }
@@ -143,13 +162,14 @@ button{
     font-size:13px;
     font-weight:bold;
     margin-bottom:7px;
+    color:var(--text);
 }
 
 .form-group input{
     width:100%;
-    border:1px solid var(--border);
-    border-radius:11px;
     padding:13px 14px;
+    border:1px solid var(--border);
+    border-radius:10px;
     outline:none;
     transition:.2s;
 }
@@ -181,8 +201,8 @@ button{
 
 .auth-message{
     display:none;
-    margin-bottom:15px;
-    padding:11px 13px;
+    margin-bottom:16px;
+    padding:12px 14px;
     border-radius:10px;
     font-size:13px;
 }
@@ -201,16 +221,16 @@ button{
 
 .auth-note{
     text-align:center;
-    color:#98a2b3;
-    font-size:11px;
-    margin-top:20px;
+    color:var(--muted);
+    font-size:12px;
+    margin-top:18px;
 }
 
-/* =========================
-   SITE
-========================= */
+/* =========================================================
+   SITE PRINCIPAL
+   ========================================================= */
 
-#site{
+#app{
     display:none;
 }
 
@@ -226,7 +246,7 @@ header{
 .nav{
     max-width:1200px;
     margin:auto;
-    padding:14px 20px;
+    padding:16px 20px;
     display:flex;
     align-items:center;
     justify-content:space-between;
@@ -246,7 +266,7 @@ header{
 .nav-right{
     display:flex;
     align-items:center;
-    gap:14px;
+    gap:15px;
 }
 
 .nav-links{
@@ -266,9 +286,15 @@ header{
     opacity:1;
 }
 
+.user-area{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
 .user-email{
+    color:#cbd5e1;
     font-size:12px;
-    color:#bfdbfe;
     max-width:180px;
     overflow:hidden;
     text-overflow:ellipsis;
@@ -276,7 +302,7 @@ header{
 }
 
 .logout-button{
-    border:1px solid rgba(255,255,255,.25);
+    border:1px solid rgba(255,255,255,.2);
     background:rgba(255,255,255,.08);
     color:white;
     padding:8px 12px;
@@ -289,9 +315,9 @@ header{
     background:rgba(255,255,255,.15);
 }
 
-/* =========================
+/* =========================================================
    HERO
-========================= */
+   ========================================================= */
 
 .hero{
     background:
@@ -357,9 +383,9 @@ header{
     background:var(--blue2);
 }
 
-/* =========================
-   STATS
-========================= */
+/* =========================================================
+   STATISTIQUES
+   ========================================================= */
 
 .stats{
     max-width:1000px;
@@ -385,13 +411,9 @@ header{
     color:var(--blue);
 }
 
-.stat span{
-    color:var(--muted);
-}
-
-/* =========================
+/* =========================================================
    CONTENU
-========================= */
+   ========================================================= */
 
 .container{
     max-width:1200px;
@@ -426,12 +448,7 @@ header{
     padding:12px 15px;
     border-radius:10px;
     outline:0;
-    min-width:190px;
 }
-
-/* =========================
-   CARTES
-========================= */
 
 .professionals{
     display:grid;
@@ -548,9 +565,9 @@ header{
     color:var(--muted);
 }
 
-/* =========================
+/* =========================================================
    COMMENT ÇA MARCHE
-========================= */
+   ========================================================= */
 
 .payment{
     margin:70px auto;
@@ -590,6 +607,14 @@ header{
     font-weight:bold;
 }
 
+.payment-button:hover{
+    background:#15803d;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
 footer{
     background:var(--dark);
     color:white;
@@ -609,9 +634,9 @@ footer p{
     font-size:14px;
 }
 
-/* =========================
+/* =========================================================
    TOAST
-========================= */
+   ========================================================= */
 
 .toast{
     position:fixed;
@@ -623,17 +648,25 @@ footer p{
     border-radius:10px;
     display:none;
     z-index:999;
-    max-width:350px;
-    font-size:13px;
+    box-shadow:0 10px 30px rgba(0,0,0,.2);
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
+.toast.show{
+    display:block;
+}
 
-@media(max-width:1000px){
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media(max-width:850px){
+
     .professionals{
         grid-template-columns:repeat(2,1fr);
+    }
+
+    .nav-links{
+        display:none;
     }
 
     .user-email{
@@ -643,12 +676,16 @@ footer p{
 
 @media(max-width:650px){
 
-    .nav{
-        padding:12px 15px;
+    #authScreen{
+        padding:15px;
     }
 
-    .nav-links{
-        display:none;
+    .auth-card{
+        padding:24px 20px;
+    }
+
+    .auth-logo{
+        font-size:31px;
     }
 
     .hero{
@@ -672,20 +709,12 @@ footer p{
         grid-template-columns:1fr;
     }
 
-    .filters{
-        flex-direction:column;
+    .actions{
+        grid-template-columns:1fr 1fr;
     }
 
-    .filters select{
-        width:100%;
-    }
-
-    .auth-card{
-        padding:23px;
-    }
-
-    .auth-logo{
-        font-size:32px;
+    .logout-button{
+        padding:8px 10px;
     }
 }
 </style>
@@ -693,81 +722,77 @@ footer p{
 
 <body>
 
-<!-- =====================================================
+<!-- =========================================================
      ÉCRAN DE CONNEXION
-====================================================== -->
+     ========================================================= -->
 
 <section id="authScreen">
 
-    <div class="auth-container">
+    <div class="auth-wrapper">
 
-        <div class="auth-logo">
-            VERI<span>FIA</span>
-        </div>
+        <div class="auth-brand">
+            <div class="auth-logo">
+                VERI<span>FIA</span>
+            </div>
 
-        <div class="auth-tagline">
-            Trouvez un professionnel fiable au Bénin.
+            <p>
+                L'annuaire des professionnels au Bénin
+            </p>
         </div>
 
         <div class="auth-card">
 
-            <h1 id="authTitle">Bienvenue</h1>
+            <h1 id="authTitle">
+                Bienvenue sur VERIFIA
+            </h1>
 
             <p class="auth-subtitle" id="authSubtitle">
-                Connectez-vous pour accéder à VERIFIA.
+                Connectez-vous pour accéder aux professionnels référencés.
             </p>
 
             <div class="auth-tabs">
 
                 <button
-                    class="auth-tab active"
                     id="loginTab"
+                    class="auth-tab active"
+                    type="button"
                     onclick="showLogin()"
                 >
                     Connexion
                 </button>
 
                 <button
+                    id="registerTab"
                     class="auth-tab"
-                    id="signupTab"
-                    onclick="showSignup()"
+                    type="button"
+                    onclick="showRegister()"
                 >
-                    Inscription
+                    Créer un compte
                 </button>
 
             </div>
 
-            <div id="authMessage" class="auth-message"></div>
+            <div
+                id="authMessage"
+                class="auth-message"
+            ></div>
 
-            <form id="authForm">
+            <!-- CONNEXION -->
 
-                <div
-                    class="form-group"
-                    id="nameGroup"
-                    style="display:none;"
-                >
-
-                    <label for="fullName">
-                        Nom complet
-                    </label>
-
-                    <input
-                        id="fullName"
-                        type="text"
-                        placeholder="Votre nom complet"
-                        autocomplete="name"
-                    >
-
-                </div>
+            <form
+                id="loginForm"
+                class="auth-form active"
+                onsubmit="loginUser(event)"
+            >
 
                 <div class="form-group">
 
-                    <label for="email">
+                    <label for="loginEmail">
                         Adresse e-mail
                     </label>
 
                     <input
-                        id="email"
+                        id="loginEmail"
                         type="email"
                         placeholder="exemple@email.com"
                         autocomplete="email"
@@ -778,34 +803,101 @@ footer p{
 
                 <div class="form-group">
 
-                    <label for="password">
+                    <label for="loginPassword">
                         Mot de passe
                     </label>
 
                     <input
-                        id="password"
+                        id="loginPassword"
                         type="password"
-                        placeholder="Minimum 6 caractères"
+                        placeholder="Votre mot de passe"
                         autocomplete="current-password"
                         required
-                        minlength="6"
                     >
 
                 </div>
 
                 <button
-                    type="submit"
+                    id="loginButton"
                     class="auth-button"
-                    id="authButton"
+                    type="submit"
                 >
                     Se connecter
                 </button>
 
             </form>
 
-            <div class="auth-note">
-                VERIFIA protège l'accès aux informations de sa plateforme.
-            </div>
+            <!-- INSCRIPTION -->
+
+            <form
+                id="registerForm"
+                class="auth-form"
+                onsubmit="registerUser(event)"
+            >
+
+                <div class="form-group">
+
+                    <label for="registerEmail">
+                        Adresse e-mail
+                    </label>
+
+                    <input
+                        id="registerEmail"
+                        type="email"
+                        placeholder="exemple@email.com"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="registerPassword">
+                        Mot de passe
+                    </label>
+
+                    <input
+                        id="registerPassword"
+                        type="password"
+                        placeholder="Minimum 6 caractères"
+                        minlength="6"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="registerPasswordConfirm">
+                        Confirmer le mot de passe
+                    </label>
+
+                    <input
+                        id="registerPasswordConfirm"
+                        type="password"
+                        placeholder="Répétez votre mot de passe"
+                        minlength="6"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                </div>
+
+                <button
+                    id="registerButton"
+                    class="auth-button"
+                    type="submit"
+                >
+                    Créer mon compte
+                </button>
+
+            </form>
+
+            <p class="auth-note">
+                VERIFIA protège l'accès aux informations de son annuaire.
+            </p>
 
         </div>
 
@@ -814,11 +906,11 @@ footer p{
 </section>
 
 
-<!-- =====================================================
-     SITE PRINCIPAL
-====================================================== -->
+<!-- =========================================================
+     APPLICATION PRINCIPALE
+     ========================================================= -->
 
-<div id="site">
+<div id="app">
 
 <header>
 
@@ -828,35 +920,39 @@ footer p{
             VERI<span>FIA</span>
         </div>
 
-        <nav class="nav-links">
-
-            <a href="#professionnels">
-                Professionnels
-            </a>
-
-            <a href="#comment">
-                Comment ça marche
-            </a>
-
-            <a href="#contact">
-                Contact
-            </a>
-
-        </nav>
-
         <div class="nav-right">
 
-            <span
-                class="user-email"
-                id="userEmail"
-            ></span>
+            <nav class="nav-links">
 
-            <button
-                class="logout-button"
-                onclick="logout()"
-            >
-                Déconnexion
-            </button>
+                <a href="#professionnels">
+                    Professionnels
+                </a>
+
+                <a href="#comment">
+                    Comment ça marche
+                </a>
+
+                <a href="#contact">
+                    Contact
+                </a>
+
+            </nav>
+
+            <div class="user-area">
+
+                <span
+                    id="userEmail"
+                    class="user-email"
+                ></span>
+
+                <button
+                    class="logout-button"
+                    onclick="logoutUser()"
+                >
+                    Déconnexion
+                </button>
+
+            </div>
 
         </div>
 
@@ -864,6 +960,10 @@ footer p{
 
 </header>
 
+
+<!-- =========================================================
+     HERO
+     ========================================================= -->
 
 <section class="hero">
 
@@ -875,9 +975,8 @@ footer p{
         </h1>
 
         <p>
-            Recherchez des professionnels et entreprises
-            au Bénin, consultez leurs informations et
-            contactez-les directement.
+            Recherchez des professionnels et entreprises au Bénin,
+            consultez leurs informations et contactez-les directement.
         </p>
 
         <div class="search-box">
@@ -899,6 +998,10 @@ footer p{
 
 </section>
 
+
+<!-- =========================================================
+     STATISTIQUES
+     ========================================================= -->
 
 <section class="stats">
 
@@ -941,6 +1044,10 @@ footer p{
 </section>
 
 
+<!-- =========================================================
+     PROFESSIONNELS
+     ========================================================= -->
+
 <main
     class="container"
     id="professionnels"
@@ -953,12 +1060,11 @@ footer p{
         </h2>
 
         <p>
-            Retrouvez les professionnels et entreprises
-            référencés sur VERIFIA.
+            Des entreprises et professionnels référencés à partir
+            d'informations publiques.
         </p>
 
     </div>
-
 
     <div class="filters">
 
@@ -973,7 +1079,6 @@ footer p{
 
         </select>
 
-
         <select
             id="cityFilter"
             onchange="filterProfessionals()"
@@ -986,7 +1091,6 @@ footer p{
         </select>
 
     </div>
-
 
     <div
         id="professionalsList"
@@ -1001,6 +1105,10 @@ footer p{
 
 </main>
 
+
+<!-- =========================================================
+     COMMENT ÇA MARCHE
+     ========================================================= -->
 
 <section
     class="container"
@@ -1020,7 +1128,6 @@ footer p{
 
     </div>
 
-
     <div class="professionals">
 
         <div class="card">
@@ -1034,12 +1141,11 @@ footer p{
             </h3>
 
             <p class="info">
-                Trouvez rapidement un professionnel
-                selon son activité, sa catégorie ou sa ville.
+                Trouvez rapidement un professionnel selon
+                son activité, sa catégorie ou sa ville.
             </p>
 
         </div>
-
 
         <div class="card">
 
@@ -1052,12 +1158,11 @@ footer p{
             </h3>
 
             <p class="info">
-                Consultez les informations disponibles
-                sur son activité.
+                Consultez son adresse, son téléphone et
+                les informations disponibles sur son activité.
             </p>
 
         </div>
-
 
         <div class="card">
 
@@ -1070,8 +1175,8 @@ footer p{
             </h3>
 
             <p class="info">
-                Appelez directement le professionnel
-                ou ouvrez une conversation WhatsApp.
+                Appelez directement le professionnel ou
+                ouvrez une conversation WhatsApp.
             </p>
 
         </div>
@@ -1080,6 +1185,10 @@ footer p{
 
 </section>
 
+
+<!-- =========================================================
+     RÉFÉRENCEMENT
+     ========================================================= -->
 
 <section class="container">
 
@@ -1113,6 +1222,10 @@ footer p{
 </section>
 
 
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+
 <footer id="contact">
 
     <div class="footer-inner">
@@ -1122,8 +1235,7 @@ footer p{
         </div>
 
         <p>
-            Plateforme de référencement de professionnels
-            au Bénin.
+            Plateforme de référencement de professionnels au Bénin.
         </p>
 
         <p>
@@ -1143,17 +1255,11 @@ footer p{
 ></div>
 
 
-<!-- =====================================================
-     SUPABASE
-====================================================== -->
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <script>
 
 /* =========================================================
    CONFIGURATION SUPABASE
-========================================================= */
+   ========================================================= */
 
 const SUPABASE_URL =
     "https://yjqyieotlrbynqxktfcr.supabase.co";
@@ -1171,20 +1277,36 @@ const supabaseClient =
 
 /* =========================================================
    VARIABLES
-========================================================= */
+   ========================================================= */
 
 let professionals = [];
 let categories = [];
 let cities = [];
 
-let authMode = "login";
-
 
 /* =========================================================
-   UTILITAIRE MESSAGE
-========================================================= */
+   UTILITAIRES
+   ========================================================= */
 
-function showAuthMessage(message,type){
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    setTimeout(() => {
+
+        toast.classList.remove("show");
+
+    }, 3500);
+
+}
+
+
+function showAuthMessage(message,type="error"){
 
     const box =
         document.getElementById("authMessage");
@@ -1197,366 +1319,149 @@ function showAuthMessage(message,type){
 }
 
 
+function clearAuthMessage(){
+
+    const box =
+        document.getElementById("authMessage");
+
+    box.textContent = "";
+
+    box.className =
+        "auth-message";
+
+}
+
+
 /* =========================================================
-   MODE CONNEXION
-========================================================= */
+   AFFICHAGE CONNEXION / INSCRIPTION
+   ========================================================= */
 
 function showLogin(){
 
-    authMode = "login";
-
     document
         .getElementById("loginTab")
-        .classList.add("active");
+        .classList
+        .add("active");
 
     document
-        .getElementById("signupTab")
-        .classList.remove("active");
+        .getElementById("registerTab")
+        .classList
+        .remove("active");
+
 
     document
-        .getElementById("nameGroup")
-        .style.display = "none";
+        .getElementById("loginForm")
+        .classList
+        .add("active");
 
     document
-        .getElementById("authTitle")
-        .textContent = "Bienvenue";
+        .getElementById("registerForm")
+        .classList
+        .remove("active");
 
-    document
-        .getElementById("authSubtitle")
-        .textContent =
-        "Connectez-vous pour accéder à VERIFIA.";
-
-    document
-        .getElementById("authButton")
-        .textContent =
-        "Se connecter";
-
-    document
-        .getElementById("password")
-        .autocomplete =
-        "current-password";
-
-    document
-        .getElementById("authMessage")
-        .className =
-        "auth-message";
-
-}
-
-
-/* =========================================================
-   MODE INSCRIPTION
-========================================================= */
-
-function showSignup(){
-
-    authMode = "signup";
-
-    document
-        .getElementById("signupTab")
-        .classList.add("active");
-
-    document
-        .getElementById("loginTab")
-        .classList.remove("active");
-
-    document
-        .getElementById("nameGroup")
-        .style.display = "block";
 
     document
         .getElementById("authTitle")
         .textContent =
-        "Créer un compte";
+        "Bienvenue sur VERIFIA";
+
 
     document
         .getElementById("authSubtitle")
         .textContent =
-        "Créez votre compte pour accéder à VERIFIA.";
+        "Connectez-vous pour accéder aux professionnels référencés.";
+
+
+    clearAuthMessage();
+
+}
+
+
+function showRegister(){
 
     document
-        .getElementById("authButton")
+        .getElementById("loginTab")
+        .classList
+        .remove("active");
+
+    document
+        .getElementById("registerTab")
+        .classList
+        .add("active");
+
+
+    document
+        .getElementById("loginForm")
+        .classList
+        .remove("active");
+
+    document
+        .getElementById("registerForm")
+        .classList
+        .add("active");
+
+
+    document
+        .getElementById("authTitle")
         .textContent =
-        "Créer mon compte";
+        "Créer votre compte";
+
 
     document
-        .getElementById("password")
-        .autocomplete =
-        "new-password";
+        .getElementById("authSubtitle")
+        .textContent =
+        "Créez gratuitement votre compte pour accéder à VERIFIA.";
 
-    document
-        .getElementById("authMessage")
-        .className =
-        "auth-message";
+
+    clearAuthMessage();
 
 }
 
 
 /* =========================================================
-   FORMULAIRE AUTHENTIFICATION
-========================================================= */
+   CONNEXION
+   ========================================================= */
 
-document
-    .getElementById("authForm")
-    .addEventListener(
-        "submit",
-        async function(event){
+async function loginUser(event){
 
-            event.preventDefault();
+    event.preventDefault();
 
-            const email =
-                document
-                    .getElementById("email")
-                    .value
-                    .trim();
+    clearAuthMessage();
 
-            const password =
-                document
-                    .getElementById("password")
-                    .value;
 
-            const fullName =
-                document
-                    .getElementById("fullName")
-                    .value
-                    .trim();
+    const email =
+        document
+            .getElementById("loginEmail")
+            .value
+            .trim();
 
-            const button =
-                document
-                    .getElementById("authButton");
 
+    const password =
+        document
+            .getElementById("loginPassword")
+            .value;
 
-            if(!email || !password){
 
-                showAuthMessage(
-                    "Veuillez remplir tous les champs.",
-                    "error"
-                );
+    const button =
+        document
+            .getElementById("loginButton");
 
-                return;
 
-            }
+    button.disabled = true;
 
+    button.textContent =
+        "Connexion...";
 
-            if(password.length < 6){
-
-                showAuthMessage(
-                    "Le mot de passe doit contenir au moins 6 caractères.",
-                    "error"
-                );
-
-                return;
-
-            }
-
-
-            button.disabled = true;
-
-            button.textContent =
-                authMode === "login"
-                ? "Connexion..."
-                : "Création du compte...";
-
-
-            try{
-
-                if(authMode === "login"){
-
-                    const {data,error} =
-                        await supabaseClient.auth.signInWithPassword({
-
-                            email:email,
-
-                            password:password
-
-                        });
-
-
-                    if(error)
-                        throw error;
-
-
-                    if(data.session){
-
-                        showSite(data.session);
-
-                    }
-
-                }
-                else{
-
-                    const {data,error} =
-                        await supabaseClient.auth.signUp({
-
-                            email:email,
-
-                            password:password,
-
-                            options:{
-                                data:{
-                                    full_name:fullName
-                                }
-                            }
-
-                        });
-
-
-                    if(error)
-                        throw error;
-
-
-                    if(data.session){
-
-                        showSite(data.session);
-
-                    }
-                    else{
-
-                        showAuthMessage(
-                            "Compte créé. Vérifiez votre adresse e-mail si une confirmation vous est demandée, puis connectez-vous.",
-                            "success"
-                        );
-
-                        showLogin();
-
-                    }
-
-                }
-
-            }
-            catch(error){
-
-                console.error(error);
-
-                let message =
-                    "Une erreur est survenue.";
-
-                if(error.message){
-
-                    if(
-                        error.message
-                            .toLowerCase()
-                            .includes("invalid login")
-                    ){
-
-                        message =
-                            "E-mail ou mot de passe incorrect.";
-
-                    }
-                    else if(
-                        error.message
-                            .toLowerCase()
-                            .includes("user already registered")
-                    ){
-
-                        message =
-                            "Cette adresse e-mail possède déjà un compte.";
-
-                    }
-                    else{
-
-                        message = error.message;
-
-                    }
-
-                }
-
-                showAuthMessage(
-                    message,
-                    "error"
-                );
-
-            }
-            finally{
-
-                button.disabled = false;
-
-                button.textContent =
-                    authMode === "login"
-                    ? "Se connecter"
-                    : "Créer mon compte";
-
-            }
-
-        }
-    );
-
-
-/* =========================================================
-   AFFICHER LE SITE
-========================================================= */
-
-function showSite(session){
-
-    document
-        .getElementById("authScreen")
-        .style.display = "none";
-
-    document
-        .getElementById("site")
-        .style.display = "block";
-
-
-    document
-        .getElementById("userEmail")
-        .textContent =
-        session.user.email || "";
-
-
-    loadData();
-
-}
-
-
-/* =========================================================
-   DÉCONNEXION
-========================================================= */
-
-async function logout(){
 
     try{
 
-        await supabaseClient.auth.signOut();
+        const { data,error } =
+            await supabaseClient.auth.signInWithPassword({
 
-    }
-    catch(error){
+                email: email,
+                password: password
 
-        console.error(error);
-
-    }
-
-    professionals = [];
-
-    document
-        .getElementById("site")
-        .style.display = "none";
-
-    document
-        .getElementById("authScreen")
-        .style.display = "flex";
-
-    document
-        .getElementById("authForm")
-        .reset();
-
-    showLogin();
-
-}
-
-
-/* =========================================================
-   VÉRIFICATION SESSION AU CHARGEMENT
-========================================================= */
-
-async function checkSession(){
-
-    try{
-
-        const {
-            data,
-            error
-        } =
-            await supabaseClient.auth.getSession();
+            });
 
 
         if(error)
@@ -1565,29 +1470,36 @@ async function checkSession(){
 
         if(data.session){
 
-            showSite(data.session);
-
-        }
-        else{
-
-            document
-                .getElementById("authScreen")
-                .style.display = "flex";
-
-            document
-                .getElementById("site")
-                .style.display = "none";
+            showApp(data.session);
 
         }
 
-    }
-    catch(error){
+
+    }catch(error){
 
         console.error(error);
 
-        document
-            .getElementById("authScreen")
-            .style.display = "flex";
+        let message =
+            "Impossible de se connecter.";
+
+        if(
+            error.message &&
+            error.message.toLowerCase().includes("invalid login")
+        ){
+
+            message =
+                "E-mail ou mot de passe incorrect.";
+
+        }
+
+        showAuthMessage(message,"error");
+
+    }finally{
+
+        button.disabled = false;
+
+        button.textContent =
+            "Se connecter";
 
     }
 
@@ -1595,121 +1507,290 @@ async function checkSession(){
 
 
 /* =========================================================
-   SURVEILLANCE DE LA SESSION
-========================================================= */
+   INSCRIPTION
+   ========================================================= */
 
-supabaseClient.auth.onAuthStateChange(
-    function(event,session){
+async function registerUser(event){
 
-        if(event === "SIGNED_IN" && session){
+    event.preventDefault();
 
-            showSite(session);
+    clearAuthMessage();
 
-        }
 
-        if(event === "SIGNED_OUT"){
+    const email =
+        document
+            .getElementById("registerEmail")
+            .value
+            .trim();
 
-            document
-                .getElementById("site")
-                .style.display = "none";
 
-            document
-                .getElementById("authScreen")
-                .style.display = "flex";
+    const password =
+        document
+            .getElementById("registerPassword")
+            .value;
 
-        }
+
+    const confirmation =
+        document
+            .getElementById("registerPasswordConfirm")
+            .value;
+
+
+    const button =
+        document
+            .getElementById("registerButton");
+
+
+    if(password !== confirmation){
+
+        showAuthMessage(
+            "Les deux mots de passe ne correspondent pas.",
+            "error"
+        );
+
+        return;
 
     }
-);
+
+
+    if(password.length < 6){
+
+        showAuthMessage(
+            "Le mot de passe doit contenir au moins 6 caractères.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    button.disabled = true;
+
+    button.textContent =
+        "Création du compte...";
+
+
+    try{
+
+        const { data,error } =
+            await supabaseClient.auth.signUp({
+
+                email: email,
+
+                password: password
+
+            });
+
+
+        if(error)
+            throw error;
+
+
+        /*
+         * Selon la configuration Supabase,
+         * une confirmation par e-mail peut être demandée.
+         */
+
+        if(data.session){
+
+            showApp(data.session);
+
+        }else{
+
+            showAuthMessage(
+                "Compte créé. Vérifiez votre e-mail pour confirmer votre inscription, puis connectez-vous.",
+                "success"
+            );
+
+            document
+                .getElementById("registerForm")
+                .reset();
+
+        }
+
+
+    }catch(error){
+
+        console.error(error);
+
+        showAuthMessage(
+            error.message ||
+            "Impossible de créer le compte.",
+            "error"
+        );
+
+    }finally{
+
+        button.disabled = false;
+
+        button.textContent =
+            "Créer mon compte";
+
+    }
+
+}
 
 
 /* =========================================================
-   REQUÊTE SUPABASE
-========================================================= */
+   DÉCONNEXION
+   ========================================================= */
 
-async function supabaseFetch(table,params=""){
+async function logoutUser(){
 
-    const response =
-        await fetch(
-            `${SUPABASE_URL}/rest/v1/${table}${params}`,
-            {
-                method:"GET",
+    try{
 
-                headers:{
-                    "apikey":SUPABASE_KEY,
-                    "Authorization":
-                        `Bearer ${SUPABASE_KEY}`,
-                    "Content-Type":
-                        "application/json"
-                }
-            }
-        );
+        await supabaseClient.auth.signOut();
+
+        professionals = [];
+
+        categories = [];
+
+        cities = [];
 
 
-    if(!response.ok){
+        document
+            .getElementById("app")
+            .style.display =
+            "none";
 
-        const errorText =
-            await response.text();
 
-        throw new Error(
-            `${table}: ${response.status} ${errorText}`
-        );
+        document
+            .getElementById("authScreen")
+            .style.display =
+            "flex";
+
+
+        document
+            .getElementById("loginForm")
+            .reset();
+
+
+        showLogin();
+
+        showToast("Vous êtes déconnecté.");
+
+    }catch(error){
+
+        console.error(error);
 
     }
 
+}
 
-    return response.json();
+
+/* =========================================================
+   AFFICHER L'APPLICATION
+   ========================================================= */
+
+async function showApp(session){
+
+    document
+        .getElementById("authScreen")
+        .style.display =
+        "none";
+
+
+    document
+        .getElementById("app")
+        .style.display =
+        "block";
+
+
+    document
+        .getElementById("userEmail")
+        .textContent =
+        session.user.email || "";
+
+
+    await loadData();
 
 }
 
 
 /* =========================================================
    CHARGEMENT DES DONNÉES
-========================================================= */
+   ========================================================= */
 
 async function loadData(){
 
     const list =
-        document.getElementById(
-            "professionalsList"
-        );
+        document
+            .getElementById("professionalsList");
+
+
+    list.innerHTML = `
+        <div class="loading">
+            Chargement des professionnels...
+        </div>
+    `;
 
 
     try{
 
         const [
-            professionalData,
-            categoryData,
-            cityData
+            professionalResult,
+            categoryResult,
+            cityResult
         ] =
             await Promise.all([
 
-                supabaseFetch(
-                    "professionals",
-                    "?select=id,user_id,business_name,category_id,city_id,description,address,phone,whatsapp,years_experience,is_verified,is_active,is_pro,is_pro_plus,featured,average_rating,review_count&is_active=eq.true&order=featured.desc,average_rating.desc"
-                ),
+                supabaseClient
+                    .from("professionals")
+                    .select(`
+                        id,
+                        user_id,
+                        business_name,
+                        category_id,
+                        city_id,
+                        description,
+                        address,
+                        phone,
+                        whatsapp,
+                        years_experience,
+                        is_verified,
+                        is_active,
+                        is_pro,
+                        is_pro_plus,
+                        featured,
+                        average_rating,
+                        review_count
+                    `)
+                    .eq("is_active",true)
+                    .order("featured",{ascending:false})
+                    .order("average_rating",{ascending:false}),
 
-                supabaseFetch(
-                    "categories",
-                    "?select=id,name&order=name.asc"
-                ),
+                supabaseClient
+                    .from("categories")
+                    .select("id,name")
+                    .order("name",{ascending:true}),
 
-                supabaseFetch(
-                    "cities",
-                    "?select=id,name&order=name.asc"
-                )
+                supabaseClient
+                    .from("cities")
+                    .select("id,name")
+                    .order("name",{ascending:true})
 
             ]);
 
 
+        if(professionalResult.error)
+            throw professionalResult.error;
+
+        if(categoryResult.error)
+            throw categoryResult.error;
+
+        if(cityResult.error)
+            throw cityResult.error;
+
+
         professionals =
-            professionalData || [];
+            professionalResult.data || [];
 
         categories =
-            categoryData || [];
+            categoryResult.data || [];
 
         cities =
-            cityData || [];
+            cityResult.data || [];
 
 
         buildFilters();
@@ -1720,28 +1801,22 @@ async function loadData(){
 
 
         document
-            .getElementById(
-                "totalProfessionals"
-            )
+            .getElementById("totalProfessionals")
             .textContent =
             professionals.length;
 
 
         document
-            .getElementById(
-                "totalCategories"
-            )
+            .getElementById("totalCategories")
             .textContent =
             categories.length;
 
 
-    }
-    catch(error){
+    }catch(error){
 
         console.error(error);
 
         list.innerHTML = `
-
             <div class="empty">
 
                 <h3>
@@ -1749,13 +1824,15 @@ async function loadData(){
                 </h3>
 
                 <p>
-                    Votre connexion est active, mais
-                    les données professionnelles ne sont
-                    pas accessibles actuellement.
+                    Votre connexion est active, mais Supabase
+                    refuse ou ne retourne pas les données.
+                </p>
+
+                <p style="margin-top:10px;font-size:12px;">
+                    Vérifiez les politiques RLS de la table professionals.
                 </p>
 
             </div>
-
         `;
 
     }
@@ -1765,19 +1842,18 @@ async function loadData(){
 
 /* =========================================================
    FILTRES
-========================================================= */
+   ========================================================= */
 
 function buildFilters(){
 
     const categoryFilter =
-        document.getElementById(
-            "categoryFilter"
-        );
+        document
+            .getElementById("categoryFilter");
+
 
     const cityFilter =
-        document.getElementById(
-            "cityFilter"
-        );
+        document
+            .getElementById("cityFilter");
 
 
     categoryFilter.innerHTML =
@@ -1792,55 +1868,53 @@ function buildFilters(){
         </option>`;
 
 
-    categories.forEach(
-        function(category){
+    categories.forEach(category => {
 
-            const option =
-                document.createElement(
-                    "option"
-                );
-
-            option.value =
-                category.id;
-
-            option.textContent =
-                category.name;
-
-            categoryFilter.appendChild(
-                option
-            );
-
-        }
-    );
+        const option =
+            document.createElement("option");
 
 
-    cities.forEach(
-        function(city){
+        option.value =
+            category.id;
 
-            const option =
-                document.createElement(
-                    "option"
-                );
 
-            option.value =
-                city.id;
+        option.textContent =
+            category.name;
 
-            option.textContent =
-                city.name;
 
-            cityFilter.appendChild(
-                option
-            );
+        categoryFilter.appendChild(
+            option
+        );
 
-        }
-    );
+    });
+
+
+    cities.forEach(city => {
+
+        const option =
+            document.createElement("option");
+
+
+        option.value =
+            city.id;
+
+
+        option.textContent =
+            city.name;
+
+
+        cityFilter.appendChild(
+            option
+        );
+
+    });
 
 }
 
 
 /* =========================================================
    RECHERCHE
-========================================================= */
+   ========================================================= */
 
 function filterProfessionals(){
 
@@ -1854,104 +1928,85 @@ function filterProfessionals(){
 
     const category =
         document
-            .getElementById(
-                "categoryFilter"
-            )
+            .getElementById("categoryFilter")
             .value;
 
 
     const city =
         document
-            .getElementById(
-                "cityFilter"
-            )
+            .getElementById("cityFilter")
             .value;
 
 
     const results =
-        professionals.filter(
-            function(p){
-
-                const categoryName =
-                    getCategoryName(
-                        p.category_id
-                    )
-                    .toLowerCase();
+        professionals.filter(p => {
 
 
-                const cityName =
-                    getCityName(
-                        p.city_id
-                    )
-                    .toLowerCase();
+            const categoryName =
+                getCategoryName(
+                    p.category_id
+                ).toLowerCase();
 
 
-                const searchable = [
-
-                    p.business_name,
-
-                    p.description,
-
-                    p.address,
-
-                    p.phone,
-
-                    categoryName,
-
-                    cityName
-
-                ]
-                .filter(Boolean)
-                .join(" ")
-                .toLowerCase();
+            const cityName =
+                getCityName(
+                    p.city_id
+                ).toLowerCase();
 
 
-                const matchesSearch =
-                    !search ||
-                    searchable.includes(search);
+            const searchable = [
+
+                p.business_name,
+                p.description,
+                p.address,
+                p.phone,
+                categoryName,
+                cityName
+
+            ]
+            .filter(Boolean)
+            .join(" ")
+            .toLowerCase();
 
 
-                const matchesCategory =
-                    !category ||
-                    String(p.category_id) ===
-                    String(category);
+            const matchesSearch =
+                !search ||
+                searchable.includes(search);
 
 
-                const matchesCity =
-                    !city ||
-                    String(p.city_id) ===
-                    String(city);
+            const matchesCategory =
+                !category ||
+                String(p.category_id) === String(category);
 
 
-                return (
-                    matchesSearch &&
-                    matchesCategory &&
-                    matchesCity
-                );
-
-            }
-        );
+            const matchesCity =
+                !city ||
+                String(p.city_id) === String(city);
 
 
-    renderProfessionals(
-        results
-    );
+            return (
+                matchesSearch &&
+                matchesCategory &&
+                matchesCity
+            );
+
+        });
+
+
+    renderProfessionals(results);
 
 }
 
 
 /* =========================================================
-   NOM CATÉGORIE
-========================================================= */
+   CATÉGORIE
+   ========================================================= */
 
 function getCategoryName(id){
 
     const category =
         categories.find(
-            function(c){
-                return String(c.id) ===
-                       String(id);
-            }
+            c => String(c.id) === String(id)
         );
 
 
@@ -1963,17 +2018,14 @@ function getCategoryName(id){
 
 
 /* =========================================================
-   NOM VILLE
-========================================================= */
+   VILLE
+   ========================================================= */
 
 function getCityName(id){
 
     const city =
         cities.find(
-            function(c){
-                return String(c.id) ===
-                       String(id);
-            }
+            c => String(c.id) === String(id)
         );
 
 
@@ -1986,7 +2038,7 @@ function getCityName(id){
 
 /* =========================================================
    INITIALES
-========================================================= */
+   ========================================================= */
 
 function initials(name){
 
@@ -1994,15 +2046,11 @@ function initials(name){
         return "V";
 
 
-    return String(name)
+    return name
         .split(" ")
         .filter(Boolean)
         .slice(0,2)
-        .map(
-            function(word){
-                return word[0];
-            }
-        )
+        .map(word => word[0])
         .join("")
         .toUpperCase();
 
@@ -2010,8 +2058,8 @@ function initials(name){
 
 
 /* =========================================================
-   ÉCHAPPEMENT HTML
-========================================================= */
+   SÉCURITÉ HTML
+   ========================================================= */
 
 function escapeHTML(value){
 
@@ -2023,23 +2071,25 @@ function escapeHTML(value){
 
 
     return String(value)
+
         .replace(/&/g,"&amp;")
+
         .replace(/</g,"&lt;")
+
         .replace(/>/g,"&gt;")
+
         .replace(/"/g,"&quot;")
+
         .replace(/'/g,"&#039;");
 
 }
 
 
 /* =========================================================
-   FORMAT NOTE
-========================================================= */
+   NOTE
+   ========================================================= */
 
-function renderRating(
-    rating,
-    reviews
-){
+function renderRating(rating,reviews){
 
     if(
         rating === null ||
@@ -2073,14 +2123,13 @@ function renderRating(
 
 /* =========================================================
    CARTES PROFESSIONNELS
-========================================================= */
+   ========================================================= */
 
 function renderProfessionals(data){
 
     const list =
-        document.getElementById(
-            "professionalsList"
-        );
+        document
+            .getElementById("professionalsList");
 
 
     if(!data.length){
@@ -2108,169 +2157,174 @@ function renderProfessionals(data){
 
 
     list.innerHTML =
-        data.map(
-            function(p){
-
-                const name =
-                    escapeHTML(
-                        p.business_name
-                    );
+        data.map(p => {
 
 
-                const category =
-                    escapeHTML(
-                        getCategoryName(
-                            p.category_id
-                        )
-                    );
+            const name =
+                escapeHTML(
+                    p.business_name
+                );
 
 
-                const city =
-                    escapeHTML(
-                        getCityName(
-                            p.city_id
-                        )
-                    );
+            const category =
+                escapeHTML(
+                    getCategoryName(
+                        p.category_id
+                    )
+                );
 
 
-                const description =
-                    escapeHTML(
-                        p.description ||
-                        "Professionnel référencé sur VERIFIA."
-                    );
+            const city =
+                escapeHTML(
+                    getCityName(
+                        p.city_id
+                    )
+                );
 
 
-                const address =
-                    escapeHTML(
-                        p.address ||
-                        `${city}, Bénin`
-                    );
+            const description =
+                escapeHTML(
+                    p.description ||
+                    "Professionnel référencé sur VERIFIA."
+                );
 
 
-                const phone =
-                    escapeHTML(
-                        p.phone || ""
-                    );
+            const address =
+                escapeHTML(
+                    p.address ||
+                    `${city}, Bénin`
+                );
 
 
-                const badge =
-                    p.is_verified
-                    ?
-                    `
+            const phone =
+                escapeHTML(
+                    p.phone || ""
+                );
+
+
+            const phoneClean =
+                String(
+                    p.phone || ""
+                )
+                .replace(/[^\d+]/g,"");
+
+
+            const whatsappClean =
+                String(
+                    p.whatsapp ||
+                    p.phone ||
+                    ""
+                )
+                .replace(/[^\d]/g,"");
+
+
+            const badge =
+                p.is_verified
+
+                ?
+
+                `
                     <span class="badge verified">
                         ✓ Vérifié VERIFIA
                     </span>
-                    `
-                    :
-                    `
+                `
+
+                :
+
+                `
                     <span class="badge referenced">
                         ● Référencé
                     </span>
-                    `;
+                `;
 
 
-                const rating =
-                    renderRating(
-                        p.average_rating,
-                        p.review_count
-                    );
+            const rating =
+                renderRating(
+                    p.average_rating,
+                    p.review_count
+                );
 
 
-                const phoneClean =
-                    String(
-                        p.phone || ""
-                    )
-                    .replace(/[^\d+]/g,"");
+            return `
 
+                <article class="card">
 
-                const whatsappClean =
-                    String(
-                        p.whatsapp ||
-                        p.phone ||
-                        ""
-                    )
-                    .replace(/[^\d]/g,"");
+                    <div class="card-top">
 
-
-                return `
-
-                    <article class="card">
-
-                        <div class="card-top">
-
-                            <div class="avatar">
-                                ${initials(name)}
-                            </div>
-
-                            ${badge}
-
+                        <div class="avatar">
+                            ${initials(name)}
                         </div>
 
+                        ${badge}
 
-                        <div>
+                    </div>
 
-                            <h3>
-                                ${name}
-                            </h3>
 
-                            <div class="category">
-                                ${category}
-                            </div>
+                    <div>
 
+                        <h3>
+                            ${name}
+                        </h3>
+
+                        <div class="category">
+                            ${category}
                         </div>
 
-
-                        <div class="info">
-                            📍 ${address}
-                        </div>
+                    </div>
 
 
-                        <div class="info">
-                            📞 ${
-                                phone ||
-                                "Contact non renseigné"
-                            }
-                        </div>
+                    <div class="info">
+                        📍 ${address}
+                    </div>
 
 
-                        <div>
-                            ${rating}
-                        </div>
+                    <div class="info">
+                        📞 ${phone || "Contact non renseigné"}
+                    </div>
 
 
-                        <p class="info">
-                            ${description}
-                        </p>
+                    <div>
+                        ${rating}
+                    </div>
 
 
-                        <div class="actions">
+                    <p class="info">
+                        ${description}
+                    </p>
 
-                            ${
-                                phoneClean
-                                ?
-                                `
+
+                    <div class="actions">
+
+                        ${
+                            phoneClean
+
+                            ?
+
+                            `
                                 <a
                                     class="action call"
                                     href="tel:${phoneClean}"
                                 >
                                     Appeler
                                 </a>
-                                `
-                                :
-                                `
-                                <span
-                                    class="action call"
-                                >
+                            `
+
+                            :
+
+                            `
+                                <span class="action call">
                                     Appeler
                                 </span>
-                                `
-                            }
+                            `
+                        }
 
 
-                            ${
-                                whatsappClean
-                                ?
-                                `
+                        ${
+                            whatsappClean
+
+                            ?
+
+                            `
                                 <a
                                     class="action whatsapp"
                                     href="https://wa.me/${whatsappClean}"
@@ -2279,33 +2333,32 @@ function renderProfessionals(data){
                                 >
                                     WhatsApp
                                 </a>
-                                `
-                                :
-                                `
-                                <span
-                                    class="action whatsapp"
-                                >
+                            `
+
+                            :
+
+                            `
+                                <span class="action whatsapp">
                                     WhatsApp
                                 </span>
-                                `
-                            }
+                            `
+                        }
 
-                        </div>
+                    </div>
 
-                    </article>
+                </article>
 
-                `;
+            `;
 
-            }
-        )
+        })
         .join("");
 
 }
 
 
 /* =========================================================
-   RECHERCHE TEMPS RÉEL
-========================================================= */
+   RECHERCHE EN TEMPS RÉEL
+   ========================================================= */
 
 document
     .getElementById("search")
@@ -2316,8 +2369,103 @@ document
 
 
 /* =========================================================
+   SURVEILLANCE DE LA SESSION
+   ========================================================= */
+
+supabaseClient.auth.onAuthStateChange(
+    (event,session) => {
+
+        if(session){
+
+            document
+                .getElementById("authScreen")
+                .style.display =
+                "none";
+
+
+            document
+                .getElementById("app")
+                .style.display =
+                "block";
+
+
+            document
+                .getElementById("userEmail")
+                .textContent =
+                session.user.email || "";
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   VÉRIFICATION AU DÉMARRAGE
+   ========================================================= */
+
+async function checkSession(){
+
+    try{
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient.auth.getSession();
+
+
+        if(error)
+            throw error;
+
+
+        if(data.session){
+
+            await showApp(
+                data.session
+            );
+
+        }else{
+
+            document
+                .getElementById("authScreen")
+                .style.display =
+                "flex";
+
+
+            document
+                .getElementById("app")
+                .style.display =
+                "none";
+
+        }
+
+    }catch(error){
+
+        console.error(
+            "Erreur session:",
+            error
+        );
+
+        document
+            .getElementById("authScreen")
+            .style.display =
+            "flex";
+
+
+        document
+            .getElementById("app")
+            .style.display =
+            "none";
+
+    }
+
+}
+
+
+/* =========================================================
    LANCEMENT
-========================================================= */
+   ========================================================= */
 
 checkSession();
 
@@ -2325,3 +2473,4 @@ checkSession();
 
 </body>
 </html>
+```
