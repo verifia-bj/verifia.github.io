@@ -193,6 +193,12 @@
       transform: translateY(-1px);
     }
 
+    .primary-btn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+    }
+
     .auth-message {
       margin-top: 15px;
       padding: 12px;
@@ -270,6 +276,10 @@
     .user-email {
       color: var(--muted);
       font-size: 13px;
+      max-width: 260px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     .logout-btn {
@@ -502,6 +512,11 @@
       color: #0f5132;
     }
 
+    .whatsapp-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
     .empty-state {
       background: white;
       border: 1px dashed var(--border);
@@ -520,6 +535,17 @@
       text-align: center;
       padding: 50px;
       color: var(--muted);
+    }
+
+    .data-error {
+      max-width: 700px;
+      margin: 20px auto;
+      padding: 15px;
+      border-radius: 12px;
+      background: #f8d7da;
+      color: #842029;
+      text-align: center;
+      line-height: 1.5;
     }
 
     /* =========================
@@ -654,6 +680,15 @@
       .auth-card {
         padding: 22px;
       }
+
+      .section-title {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .card-actions {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -661,7 +696,7 @@
 <body>
 
   <!-- =====================================================
-       CONNEXION / INSCRIPTION
+       AUTHENTIFICATION
   ====================================================== -->
 
   <section id="authScreen">
@@ -674,16 +709,13 @@
           V
         </div>
 
-        <h1>
-          VERIFIA
-        </h1>
+        <h1>VERIFIA</h1>
 
         <p>
           Trouvez un professionnel de confiance au Bénin
         </p>
 
       </div>
-
 
       <div class="auth-card">
 
@@ -707,7 +739,6 @@
 
         </div>
 
-
         <!-- CONNEXION -->
 
         <form id="loginForm">
@@ -728,7 +759,6 @@
 
           </div>
 
-
           <div class="form-group">
 
             <label for="loginPassword">
@@ -745,16 +775,15 @@
 
           </div>
 
-
           <button
             class="primary-btn"
+            id="loginButton"
             type="submit"
           >
             Se connecter
           </button>
 
         </form>
-
 
         <!-- INSCRIPTION -->
 
@@ -779,7 +808,6 @@
 
           </div>
 
-
           <div class="form-group">
 
             <label for="registerEmail">
@@ -795,7 +823,6 @@
             >
 
           </div>
-
 
           <div class="form-group">
 
@@ -814,7 +841,6 @@
 
           </div>
 
-
           <div class="form-group">
 
             <label for="registerPasswordConfirm">
@@ -832,16 +858,15 @@
 
           </div>
 
-
           <button
             class="primary-btn"
+            id="registerButton"
             type="submit"
           >
             Créer mon compte
           </button>
 
         </form>
-
 
         <div
           id="authMessage"
@@ -856,7 +881,7 @@
 
 
   <!-- =====================================================
-       APPLICATION PRINCIPALE
+       APPLICATION
   ====================================================== -->
 
   <section
@@ -877,7 +902,6 @@
           VERIFIA
 
         </div>
-
 
         <div class="user-menu">
 
@@ -943,7 +967,6 @@
 
         </div>
 
-
         <div class="filter-box">
 
           <label for="categoryFilter">
@@ -959,7 +982,6 @@
           </select>
 
         </div>
-
 
         <div class="filter-box">
 
@@ -980,7 +1002,7 @@
     </section>
 
 
-    <!-- PROFESSIONNELS -->
+    <!-- CONTENU -->
 
     <main>
 
@@ -1001,7 +1023,6 @@
 
         </div>
 
-
         <div
           id="resultCount"
           class="result-count"
@@ -1018,6 +1039,12 @@
       >
         Chargement des professionnels...
       </div>
+
+
+      <div
+        id="dataError"
+        class="data-error hidden"
+      ></div>
 
 
       <div
@@ -1077,12 +1104,12 @@
           class="close-btn"
           id="closeModal"
           type="button"
+          aria-label="Fermer"
         >
           ×
         </button>
 
       </div>
-
 
       <div id="modalContent"></div>
 
@@ -1094,7 +1121,7 @@
   <script>
 
     /* =====================================================
-       SUPABASE
+       CONFIGURATION SUPABASE
     ====================================================== */
 
     const SUPABASE_URL =
@@ -1102,7 +1129,6 @@
 
     const SUPABASE_ANON_KEY =
       "sb_publishable_RzsA7wEtmDGYrSDiKdZ8vQ_4SDAT-oi";
-
 
     const supabaseClient =
       window.supabase.createClient(
@@ -1133,6 +1159,12 @@
     const registerForm =
       document.getElementById("registerForm");
 
+    const loginButton =
+      document.getElementById("loginButton");
+
+    const registerButton =
+      document.getElementById("registerButton");
+
     const authMessage =
       document.getElementById("authMessage");
 
@@ -1156,6 +1188,9 @@
 
     const loading =
       document.getElementById("loading");
+
+    const dataError =
+      document.getElementById("dataError");
 
     const emptyState =
       document.getElementById("emptyState");
@@ -1184,16 +1219,43 @@
     ====================================================== */
 
     let cities = [];
-
     let categories = [];
-
     let professionals = [];
-
     let currentUser = null;
+    let dataLoaded = false;
 
 
     /* =====================================================
-       MESSAGE AUTH
+       AFFICHAGE AUTH
+    ====================================================== */
+
+    function showAuthScreen() {
+
+      authScreen.classList.remove("hidden");
+
+      app.classList.add("hidden");
+
+      currentUser = null;
+
+    }
+
+
+    function showAppScreen(user) {
+
+      currentUser = user;
+
+      authScreen.classList.add("hidden");
+
+      app.classList.remove("hidden");
+
+      userEmail.textContent =
+        user?.email || "";
+
+    }
+
+
+    /* =====================================================
+       MESSAGES
     ====================================================== */
 
     function showAuthMessage(
@@ -1212,8 +1274,7 @@
 
     function clearAuthMessage() {
 
-      authMessage.textContent =
-        "";
+      authMessage.textContent = "";
 
       authMessage.className =
         "auth-message";
@@ -1221,8 +1282,31 @@
     }
 
 
+    function showDataError(message) {
+
+      dataError.textContent =
+        message;
+
+      dataError.classList.remove(
+        "hidden"
+      );
+
+    }
+
+
+    function clearDataError() {
+
+      dataError.textContent = "";
+
+      dataError.classList.add(
+        "hidden"
+      );
+
+    }
+
+
     /* =====================================================
-       ONGLETS
+       ONGLETS AUTH
     ====================================================== */
 
     loginTab.addEventListener(
@@ -1289,6 +1373,11 @@
 
         clearAuthMessage();
 
+        registerButton.disabled = true;
+
+        registerButton.textContent =
+          "Création du compte...";
+
 
         const name =
           document
@@ -1296,42 +1385,55 @@
             .value
             .trim();
 
-
         const email =
           document
             .getElementById("registerEmail")
             .value
             .trim();
 
-
         const password =
           document
             .getElementById("registerPassword")
             .value;
 
-
         const confirmation =
           document
-            .getElementById("registerPasswordConfirm")
+            .getElementById(
+              "registerPasswordConfirm"
+            )
             .value;
 
 
-        if (password !== confirmation) {
+        if (
+          password !== confirmation
+        ) {
 
           showAuthMessage(
             "Les mots de passe ne correspondent pas."
           );
+
+          registerButton.disabled = false;
+
+          registerButton.textContent =
+            "Créer mon compte";
 
           return;
 
         }
 
 
-        if (password.length < 6) {
+        if (
+          password.length < 6
+        ) {
 
           showAuthMessage(
             "Le mot de passe doit contenir au moins 6 caractères."
           );
+
+          registerButton.disabled = false;
+
+          registerButton.textContent =
+            "Créer mon compte";
 
           return;
 
@@ -1367,24 +1469,26 @@
 
 
           if (
-            data.session
+            data?.session &&
+            data?.user
           ) {
 
-            showApplication(
+            showAppScreen(
               data.user
             );
 
+            await loadData();
+
           } else {
+
+            registerForm.reset();
 
             showAuthMessage(
               "Compte créé avec succès. Vérifiez votre adresse e-mail pour confirmer votre compte.",
               "success"
             );
 
-            registerForm.reset();
-
           }
-
 
         } catch (error) {
 
@@ -1393,11 +1497,19 @@
             error
           );
 
-
           showAuthMessage(
-            error.message ||
-            "Impossible de créer le compte."
+            getFriendlyAuthError(
+              error
+            )
           );
+
+        } finally {
+
+          registerButton.disabled =
+            false;
+
+          registerButton.textContent =
+            "Créer mon compte";
 
         }
 
@@ -1417,13 +1529,17 @@
 
         clearAuthMessage();
 
+        loginButton.disabled = true;
+
+        loginButton.textContent =
+          "Connexion...";
+
 
         const email =
           document
             .getElementById("loginEmail")
             .value
             .trim();
-
 
         const password =
           document
@@ -1452,10 +1568,23 @@
           }
 
 
-          showApplication(
-            data.user
-          );
+          if (
+            data?.user
+          ) {
 
+            showAppScreen(
+              data.user
+            );
+
+            await loadData();
+
+          } else {
+
+            throw new Error(
+              "Utilisateur introuvable."
+            );
+
+          }
 
         } catch (error) {
 
@@ -1464,19 +1593,98 @@
             error
           );
 
-
           showAuthMessage(
-            "Connexion impossible : " +
-            (
-              error.message ||
-              "Identifiants incorrects."
+            getFriendlyAuthError(
+              error
             )
           );
+
+        } finally {
+
+          loginButton.disabled =
+            false;
+
+          loginButton.textContent =
+            "Se connecter";
 
         }
 
       }
     );
+
+
+    /* =====================================================
+       ERREURS AUTH PLUS CLAIRES
+    ====================================================== */
+
+    function getFriendlyAuthError(
+      error
+    ) {
+
+      const message =
+        String(
+          error?.message || ""
+        ).toLowerCase();
+
+
+      if (
+        message.includes(
+          "invalid login credentials"
+        )
+      ) {
+
+        return (
+          "E-mail ou mot de passe incorrect."
+        );
+
+      }
+
+
+      if (
+        message.includes(
+          "email not confirmed"
+        )
+      ) {
+
+        return (
+          "Votre adresse e-mail n'est pas encore confirmée."
+        );
+
+      }
+
+
+      if (
+        message.includes(
+          "user already registered"
+        )
+      ) {
+
+        return (
+          "Cette adresse e-mail possède déjà un compte."
+        );
+
+      }
+
+
+      if (
+        message.includes(
+          "password should be at least"
+        )
+      ) {
+
+        return (
+          "Le mot de passe est trop court."
+        );
+
+      }
+
+
+      return (
+        error?.message ||
+        "Une erreur est survenue. Veuillez réessayer."
+      );
+
+    }
 
 
     /* =====================================================
@@ -1487,9 +1695,19 @@
       "click",
       async () => {
 
+        logoutBtn.disabled = true;
+
         try {
 
-          await supabaseClient.auth.signOut();
+          const {
+            error
+          } =
+            await supabaseClient.auth
+              .signOut();
+
+          if (error) {
+            throw error;
+          }
 
         } catch (error) {
 
@@ -1498,95 +1716,40 @@
             error
           );
 
+        } finally {
+
+          currentUser = null;
+
+          dataLoaded = false;
+
+          professionals = [];
+
+          showAuthScreen();
+
+          loginForm.reset();
+
+          registerForm.reset();
+
+          clearAuthMessage();
+
+          logoutBtn.disabled =
+            false;
+
         }
-
-        currentUser = null;
-
-        app.classList.add(
-          "hidden"
-        );
-
-        authScreen.classList.remove(
-          "hidden"
-        );
-
-        loginForm.reset();
-
-        registerForm.reset();
-
-        clearAuthMessage();
 
       }
     );
 
 
     /* =====================================================
-       SESSION
+       SURVEILLANCE DE SESSION
     ====================================================== */
-
-    async function checkSession() {
-
-      try {
-
-        const {
-          data,
-          error
-        } =
-          await supabaseClient.auth.getSession();
-
-
-        if (error) {
-          throw error;
-        }
-
-
-        if (
-          data.session &&
-          data.session.user
-        ) {
-
-          showApplication(
-            data.session.user
-          );
-
-        } else {
-
-          authScreen.classList.remove(
-            "hidden"
-          );
-
-          app.classList.add(
-            "hidden"
-          );
-
-        }
-
-      } catch (error) {
-
-        console.error(
-          "Erreur session :",
-          error
-        );
-
-        authScreen.classList.remove(
-          "hidden"
-        );
-
-        app.classList.add(
-          "hidden"
-        );
-
-      }
-
-    }
-
 
     supabaseClient.auth.onAuthStateChange(
       (event, session) => {
 
         if (
-          session &&
-          session.user
+          session?.user
         ) {
 
           currentUser =
@@ -1605,15 +1768,7 @@
 
         } else {
 
-          currentUser = null;
-
-          authScreen.classList.remove(
-            "hidden"
-          );
-
-          app.classList.add(
-            "hidden"
-          );
+          showAuthScreen();
 
         }
 
@@ -1622,29 +1777,54 @@
 
 
     /* =====================================================
-       AFFICHER APPLICATION
+       VERIFICATION SESSION AU DEMARRAGE
     ====================================================== */
 
-    async function showApplication(
-      user
-    ) {
+    async function checkSession() {
 
-      currentUser =
-        user;
+      try {
 
-      authScreen.classList.add(
-        "hidden"
-      );
+        showAuthScreen();
 
-      app.classList.remove(
-        "hidden"
-      );
-
-      userEmail.textContent =
-        user?.email || "";
+        const {
+          data,
+          error
+        } =
+          await supabaseClient.auth
+            .getSession();
 
 
-      await loadData();
+        if (error) {
+          throw error;
+        }
+
+
+        if (
+          data?.session?.user
+        ) {
+
+          showAppScreen(
+            data.session.user
+          );
+
+          await loadData();
+
+        } else {
+
+          showAuthScreen();
+
+        }
+
+      } catch (error) {
+
+        console.error(
+          "Erreur session :",
+          error
+        );
+
+        showAuthScreen();
+
+      }
 
     }
 
@@ -1662,9 +1842,12 @@
         await supabaseClient
           .from("cities")
           .select("id,name")
-          .order("name", {
-            ascending: true
-          });
+          .order(
+            "name",
+            {
+              ascending: true
+            }
+          );
 
 
       if (error) {
@@ -1685,7 +1868,7 @@
 
 
       cities.forEach(
-        (city) => {
+        city => {
 
           const option =
             document.createElement(
@@ -1721,9 +1904,12 @@
         await supabaseClient
           .from("categories")
           .select("id,name")
-          .order("name", {
-            ascending: true
-          });
+          .order(
+            "name",
+            {
+              ascending: true
+            }
+          );
 
 
       if (error) {
@@ -1744,7 +1930,7 @@
 
 
       categories.forEach(
-        (category) => {
+        category => {
 
           const option =
             document.createElement(
@@ -1784,6 +1970,8 @@
       emptyState.classList.add(
         "hidden"
       );
+
+      clearDataError();
 
 
       const {
@@ -1829,6 +2017,12 @@
             }
           )
           .order(
+            "is_verified",
+            {
+              ascending: false
+            }
+          )
+          .order(
             "business_name",
             {
               ascending: true
@@ -1843,6 +2037,8 @@
 
       professionals =
         data || [];
+
+      dataLoaded = true;
 
 
       applyFilters();
@@ -1859,10 +2055,8 @@
       const cityId =
         cityFilter.value;
 
-
       const categoryId =
         categoryFilter.value;
-
 
       const search =
         searchInput.value
@@ -1879,8 +2073,10 @@
         results =
           results.filter(
             professional =>
-              professional.city_id ===
-              cityId
+              String(
+                professional.city_id
+              ) ===
+              String(cityId)
           );
 
       }
@@ -1891,8 +2087,10 @@
         results =
           results.filter(
             professional =>
-              professional.category_id ===
-              categoryId
+              String(
+                professional.category_id
+              ) ===
+              String(categoryId)
           );
 
       }
@@ -1961,14 +2159,16 @@
       const city =
         cities.find(
           item =>
-            item.id === cityId
+            String(item.id) ===
+            String(cityId)
         );
 
 
       const category =
         categories.find(
           item =>
-            item.id === categoryId
+            String(item.id) ===
+            String(categoryId)
         );
 
 
@@ -1982,13 +2182,17 @@
           " à " +
           city.name;
 
-      } else if (city) {
+      } else if (
+        city
+      ) {
 
         selectedLocation.textContent =
           "Professionnels à " +
           city.name;
 
-      } else if (category) {
+      } else if (
+        category
+      ) {
 
         selectedLocation.textContent =
           category.name +
@@ -2069,12 +2273,18 @@
 
 
     /* =====================================================
-       CARTE
+       CARTE PROFESSIONNEL
     ====================================================== */
 
     function createProfessionalCard(
       professional
     ) {
+
+      const id =
+        escapeHtml(
+          professional.id
+        );
+
 
       const name =
         escapeHtml(
@@ -2105,8 +2315,10 @@
 
 
       const initials =
-        getInitials(
-          professional.business_name
+        escapeHtml(
+          getInitials(
+            professional.business_name
+          )
         );
 
 
@@ -2148,23 +2360,19 @@
 
       const rating =
         Number(
-          professional.average_rating ||
-          0
+          professional.average_rating || 0
         );
 
 
       const reviews =
         Number(
-          professional.review_count ||
-          0
+          professional.review_count || 0
         );
 
 
       return `
 
-        <article
-          class="professional-card"
-        >
+        <article class="professional-card">
 
           <div class="card-top">
 
@@ -2218,7 +2426,7 @@
             <button
               class="action-btn contact-btn"
               type="button"
-              onclick="openProfessional('${professional.id}')"
+              onclick="openProfessional('${id}')"
             >
               Voir la fiche
             </button>
@@ -2266,7 +2474,8 @@
         const professional =
           professionals.find(
             item =>
-              item.id === id
+              String(item.id) ===
+              String(id)
           );
 
 
@@ -2295,8 +2504,7 @@
 
         const rating =
           Number(
-            professional.average_rating ||
-            0
+            professional.average_rating || 0
           );
 
 
@@ -2383,8 +2591,9 @@
 
             <div class="detail-value">
               ${
-                professional.years_experience ||
-                0
+                Number(
+                  professional.years_experience || 0
+                )
               }
               an(s)
             </div>
@@ -2401,8 +2610,7 @@
             <div class="detail-value">
               ⭐
               ${rating.toFixed(1)}
-              /
-              5
+              / 5
               ${
                 professional.review_count
                   ? ` — ${professional.review_count} avis`
@@ -2489,7 +2697,7 @@
 
 
     /* =====================================================
-       FERMER MODAL
+       FERMETURE MODAL
     ====================================================== */
 
     closeModal.addEventListener(
@@ -2506,11 +2714,29 @@
 
     professionalModal.addEventListener(
       "click",
-      (event) => {
+      event => {
 
         if (
           event.target ===
           professionalModal
+        ) {
+
+          professionalModal.classList.add(
+            "hidden"
+          );
+
+        }
+
+      }
+    );
+
+
+    document.addEventListener(
+      "keydown",
+      event => {
+
+        if (
+          event.key === "Escape"
         ) {
 
           professionalModal.classList.add(
@@ -2546,16 +2772,25 @@
 
 
     /* =====================================================
-       CHARGEMENT
+       CHARGEMENT DES DONNEES
     ====================================================== */
 
     async function loadData() {
 
+      if (
+        dataLoaded
+      ) {
+        applyFilters();
+        return;
+      }
+
+
       try {
+
+        clearDataError();
 
         loading.textContent =
           "Chargement des professionnels...";
-
 
         loading.classList.remove(
           "hidden"
@@ -2579,13 +2814,22 @@
         );
 
 
-        loading.classList.remove(
+        loading.classList.add(
+          "hidden"
+        );
+
+        professionalsGrid.classList.add(
+          "hidden"
+        );
+
+        emptyState.classList.add(
           "hidden"
         );
 
 
-        loading.textContent =
-          "Impossible de charger les données. Vérifiez votre connexion et la configuration Supabase.";
+        showDataError(
+          "Impossible de charger les professionnels. Vérifiez la connexion à Supabase et les autorisations de lecture."
+        );
 
       }
 
@@ -2632,7 +2876,8 @@
 
 
       if (
-        value.startsWith("01")
+        value.startsWith("01") &&
+        value.length === 10
       ) {
 
         return (
