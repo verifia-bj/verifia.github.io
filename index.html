@@ -1,5 +1,5 @@
-```html
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -7,12 +7,11 @@
 
   <title>VERIFIA — Professionnels de confiance au Bénin</title>
 
-  <meta
-    name="description"
-    content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
-  >
+<meta
+name="description"
+content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
 
-  <meta name="theme-color" content="#0b5ed7">
+>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -35,19 +34,8 @@
       --success: #198754;
       --danger: #dc3545;
       --warning: #f59e0b;
-      --info: #0ea5e9;
-
-      --shadow:
-        0 10px 30px rgba(15, 23, 42, 0.08);
-
-      --shadow-lg:
-        0 25px 70px rgba(15, 23, 42, 0.16);
-
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
       --radius: 16px;
-    }
-
-    html {
-      scroll-behavior: smooth;
     }
 
     body {
@@ -55,10 +43,6 @@
       background: var(--light);
       color: var(--text);
       min-height: 100vh;
-    }
-
-    body.modal-open {
-      overflow: hidden;
     }
 
     button,
@@ -79,9 +63,9 @@
       display: none !important;
     }
 
-    /* =====================================================
+    /* =========================
        AUTHENTIFICATION
-    ====================================================== */
+    ========================= */
 
     #authScreen {
       min-height: 100vh;
@@ -89,17 +73,11 @@
       align-items: center;
       justify-content: center;
       padding: 20px;
-
       background:
-        radial-gradient(
-          circle at top right,
-          rgba(255,255,255,0.12),
-          transparent 30%
-        ),
         linear-gradient(
           135deg,
-          rgba(11, 94, 215, 0.98),
-          rgba(15, 23, 42, 0.99)
+          rgba(11, 94, 215, 0.97),
+          rgba(15, 23, 42, 0.98)
         );
     }
 
@@ -115,30 +93,24 @@
     }
 
     .logo-mark {
-      width: 76px;
-      height: 76px;
+      width: 72px;
+      height: 72px;
       margin: 0 auto 12px;
-
-      border-radius: 22px;
-
+      border-radius: 20px;
       background: white;
       color: var(--primary);
-
       display: flex;
       align-items: center;
       justify-content: center;
-
-      font-size: 34px;
+      font-size: 32px;
       font-weight: 900;
-
-      box-shadow:
-        0 15px 40px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
     }
 
     .auth-logo h1 {
       font-size: 34px;
       margin-bottom: 6px;
-      letter-spacing: 2px;
+      letter-spacing: 1px;
     }
 
     .auth-logo p {
@@ -150,15 +122,13 @@
       background: white;
       border-radius: 22px;
       padding: 30px;
-      box-shadow:
-        0 25px 70px rgba(0, 0, 0, 0.22);
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.22);
     }
 
     .auth-tabs {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 6px;
-
       background: #f1f5f9;
       padding: 5px;
       border-radius: 12px;
@@ -168,11 +138,8 @@
     .auth-tab {
       border: none;
       background: transparent;
-
       padding: 12px;
-
       border-radius: 9px;
-
       color: var(--muted);
       font-weight: 700;
     }
@@ -180,9 +147,7 @@
     .auth-tab.active {
       background: white;
       color: var(--primary);
-
-      box-shadow:
-        0 3px 10px rgba(0, 0, 0, 0.06);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
     }
 
     .form-group {
@@ -191,50 +156,36 @@
 
     .form-group label {
       display: block;
-
       font-weight: 700;
       font-size: 14px;
-
       margin-bottom: 7px;
     }
 
     .form-group input,
     .form-group select {
       width: 100%;
-
       border: 1px solid var(--border);
       border-radius: 10px;
-
       padding: 13px 14px;
-
       outline: none;
       background: white;
-
       transition: 0.2s;
     }
 
     .form-group input:focus,
     .form-group select:focus {
       border-color: var(--primary);
-
-      box-shadow:
-        0 0 0 3px rgba(11, 94, 215, 0.1);
+      box-shadow: 0 0 0 3px rgba(11, 94, 215, 0.1);
     }
 
     .primary-btn {
       width: 100%;
-
       border: none;
-
       background: var(--primary);
       color: white;
-
       padding: 14px;
-
       border-radius: 10px;
-
       font-weight: 800;
-
       transition: 0.2s;
     }
 
@@ -251,35 +202,28 @@
 
     .auth-message {
       margin-top: 15px;
-
       padding: 12px;
-
       border-radius: 10px;
-
       font-size: 14px;
-
       display: none;
-
       line-height: 1.5;
     }
 
     .auth-message.success {
       display: block;
-
       background: #d1e7dd;
       color: #0f5132;
     }
 
     .auth-message.error {
       display: block;
-
       background: #f8d7da;
       color: #842029;
     }
 
-    /* =====================================================
+    /* =========================
        APPLICATION
-    ====================================================== */
+    ========================= */
 
     #app {
       min-height: 100vh;
@@ -287,275 +231,161 @@
 
     header {
       background: white;
-
-      border-bottom:
-        1px solid var(--border);
-
+      border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
-
       z-index: 50;
     }
 
     .navbar {
       max-width: 1250px;
-
       margin: auto;
-
       padding: 14px 20px;
-
       display: flex;
-
       align-items: center;
-
       justify-content: space-between;
-
       gap: 15px;
     }
 
     .brand {
       display: flex;
-
       align-items: center;
-
       gap: 10px;
-
       font-weight: 900;
-
       font-size: 23px;
-
       color: var(--secondary);
-
-      letter-spacing: 0.5px;
     }
 
     .brand-mark {
       width: 40px;
       height: 40px;
-
       border-radius: 11px;
-
       background: var(--primary);
       color: white;
-
       display: flex;
-
       align-items: center;
       justify-content: center;
-
       font-weight: 900;
     }
 
     .user-menu {
       display: flex;
-
       align-items: center;
-
       gap: 12px;
     }
 
     .user-email {
       color: var(--muted);
-
       font-size: 13px;
-
       max-width: 260px;
-
       overflow: hidden;
-
       text-overflow: ellipsis;
-
       white-space: nowrap;
     }
 
     .logout-btn {
       border: 1px solid var(--border);
-
       background: white;
-
       color: var(--danger);
-
       border-radius: 9px;
-
       padding: 9px 13px;
-
       font-weight: 700;
-
-      transition: 0.2s;
     }
 
-    .logout-btn:hover {
-      background: #fff5f5;
-      border-color: #fecaca;
-    }
-
-    /* =====================================================
+    /* =========================
        HERO
-    ====================================================== */
+    ========================= */
 
     .hero {
       background:
-        radial-gradient(
-          circle at 10% 20%,
-          rgba(255,255,255,0.10),
-          transparent 30%
-        ),
         linear-gradient(
           120deg,
           #0b5ed7,
           #123b73
         );
-
       color: white;
-
-      padding: 65px 20px;
+      padding: 65px 20px 85px;
     }
 
     .hero-inner {
       max-width: 1100px;
-
       margin: auto;
-
       text-align: center;
     }
 
     .hero h2 {
-      font-size:
-        clamp(30px, 5vw, 48px);
-
-      margin-bottom: 14px;
-
-      line-height: 1.1;
+      font-size: clamp(30px, 5vw, 48px);
+      margin-bottom: 12px;
     }
 
     .hero p {
       max-width: 700px;
-
       margin: auto;
-
       opacity: 0.9;
-
-      line-height: 1.7;
-
-      font-size: 16px;
+      line-height: 1.6;
     }
 
-    .hero-badge {
-      display: inline-flex;
-
-      align-items: center;
-
-      gap: 6px;
-
-      margin-bottom: 15px;
-
-      padding: 7px 12px;
-
-      border:
-        1px solid rgba(255,255,255,0.25);
-
-      background:
-        rgba(255,255,255,0.10);
-
-      border-radius: 30px;
-
-      font-size: 12px;
-
-      font-weight: 800;
-    }
-
-    /* =====================================================
+    /* =========================
        FILTRES
-    ====================================================== */
+    ========================= */
 
     .filters-section {
       max-width: 1100px;
-
-      margin: -30px auto 0;
-
+      margin: -45px auto 0;
       padding: 0 20px;
-
       position: relative;
-
       z-index: 5;
     }
 
     .filters-card {
       background: white;
-
       border-radius: 18px;
-
       padding: 22px;
-
       box-shadow: var(--shadow);
-
       display: grid;
-
-      grid-template-columns:
-        1fr 1fr 1.5fr;
-
+      grid-template-columns: 1fr 1fr 1.5fr;
       gap: 14px;
     }
 
     .filter-box label {
       display: block;
-
       font-size: 12px;
-
       font-weight: 800;
-
       color: var(--muted);
-
       margin-bottom: 6px;
-
       text-transform: uppercase;
     }
 
     .filter-box select,
     .filter-box input {
       width: 100%;
-
       padding: 13px;
-
-      border:
-        1px solid var(--border);
-
+      border: 1px solid var(--border);
       border-radius: 10px;
-
       outline: none;
-
       background: white;
     }
 
     .filter-box select:focus,
     .filter-box input:focus {
       border-color: var(--primary);
-
-      box-shadow:
-        0 0 0 3px rgba(11, 94, 215, 0.08);
     }
 
-    /* =====================================================
+    /* =========================
        CONTENU
-    ====================================================== */
+    ========================= */
 
     main {
       max-width: 1250px;
-
       margin: auto;
-
       padding: 40px 20px 70px;
     }
 
     .section-title {
       display: flex;
-
       justify-content: space-between;
-
       align-items: center;
-
       gap: 15px;
-
       margin-bottom: 20px;
     }
 
@@ -565,140 +395,92 @@
 
     .result-count {
       color: var(--muted);
-
       font-size: 14px;
-
       margin-top: 5px;
     }
 
     .professionals-grid {
       display: grid;
-
-      grid-template-columns:
-        repeat(3, 1fr);
-
+      grid-template-columns: repeat(3, 1fr);
       gap: 20px;
     }
 
-    /* =====================================================
-       CARTE PROFESSIONNEL
-    ====================================================== */
-
     .professional-card {
       background: white;
-
-      border:
-        1px solid var(--border);
-
+      border: 1px solid var(--border);
       border-radius: var(--radius);
-
       overflow: hidden;
-
-      box-shadow:
-        0 5px 20px rgba(15, 23, 42, 0.04);
-
-      transition:
-        transform 0.2s,
-        box-shadow 0.2s;
+      box-shadow: 0 5px 20px rgba(15, 23, 42, 0.04);
+      transition: 0.2s;
+      position: relative;
     }
 
     .professional-card:hover {
       transform: translateY(-4px);
-
       box-shadow: var(--shadow);
     }
 
-    .professional-photo {
+    .card-image {
       width: 100%;
-      height: 185px;
-
+      height: 190px;
       background:
         linear-gradient(
           135deg,
-          #e8f0fe,
-          #dbeafe
+          #dbeafe,
+          #eff6ff
         );
-
       display: flex;
-
       align-items: center;
       justify-content: center;
-
       overflow: hidden;
     }
 
-    .professional-photo img {
+    .card-image img {
       width: 100%;
       height: 100%;
-
       object-fit: cover;
-
-      display: block;
     }
 
-    .photo-placeholder {
-      width: 70px;
-      height: 70px;
-
-      border-radius: 20px;
-
-      background: white;
-
-      color: var(--primary);
-
-      display: flex;
-
-      align-items: center;
-      justify-content: center;
-
-      font-size: 25px;
-
+    .card-image-placeholder {
+      font-size: 45px;
       font-weight: 900;
-
-      box-shadow:
-        0 8px 20px rgba(15, 23, 42, 0.10);
+      color: var(--primary);
     }
 
-    .professional-body {
+    .card-body {
       padding: 20px;
     }
 
     .card-top {
       display: flex;
-
       justify-content: space-between;
-
       align-items: flex-start;
-
       gap: 10px;
-
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
-    .badges {
+    .professional-avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: #e8f0fe;
+      color: var(--primary);
       display: flex;
-
-      flex-wrap: wrap;
-
-      justify-content: flex-end;
-
-      gap: 4px;
+      align-items: center;
+      justify-content: center;
+      font-size: 21px;
+      font-weight: 900;
     }
 
     .badge {
       display: inline-flex;
-
       align-items: center;
-
       gap: 4px;
-
       border-radius: 30px;
-
       padding: 5px 9px;
-
       font-size: 11px;
-
       font-weight: 800;
+      margin-left: 4px;
     }
 
     .badge-verified {
@@ -711,431 +493,289 @@
       color: #664d03;
     }
 
-    .badge-pro-plus {
+    .badge-featured {
       background: #e0e7ff;
       color: #3730a3;
     }
 
     .professional-card h4 {
       font-size: 18px;
-
       margin-bottom: 7px;
-
-      line-height: 1.3;
     }
 
     .category {
       color: var(--primary);
-
       font-weight: 700;
-
       font-size: 13px;
-
       margin-bottom: 8px;
     }
 
     .location {
       color: var(--muted);
-
       font-size: 13px;
-
       margin-bottom: 13px;
     }
 
     .description {
       color: #475569;
-
       font-size: 14px;
-
       line-height: 1.5;
-
       min-height: 42px;
-
       margin-bottom: 15px;
     }
 
     .rating {
       font-size: 13px;
-
       margin-bottom: 15px;
-    }
-
-    .rating-stars {
-      color: #f59e0b;
-
-      letter-spacing: 1px;
     }
 
     .card-actions {
       display: grid;
-
-      grid-template-columns: 1fr;
-
+      grid-template-columns: 1fr 1fr;
       gap: 8px;
     }
 
     .action-btn {
       border: none;
-
       border-radius: 9px;
-
-      padding: 11px;
-
+      padding: 10px;
       font-weight: 700;
-
       text-decoration: none;
-
       text-align: center;
-
       display: block;
-
-      transition: 0.2s;
-    }
-
-    .action-btn:hover {
-      transform: translateY(-1px);
     }
 
     .contact-btn {
       background: #e8f0fe;
-
       color: var(--primary);
-    }
-
-    .contact-btn:hover {
-      background: #dbeafe;
     }
 
     .whatsapp-btn {
       background: #d1e7dd;
-
       color: #0f5132;
     }
 
-    /* =====================================================
-       EMPTY / LOADING / ERROR
-    ====================================================== */
+    .favorite-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 38px;
+      height: 38px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.95);
+      color: #64748b;
+      font-size: 19px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.12);
+      z-index: 2;
+    }
+
+    .favorite-btn.active {
+      color: #dc3545;
+    }
 
     .empty-state {
       background: white;
-
-      border:
-        1px dashed var(--border);
-
+      border: 1px dashed var(--border);
       border-radius: 16px;
-
       padding: 50px 20px;
-
       text-align: center;
-
       color: var(--muted);
-    }
-
-    .empty-icon {
-      font-size: 38px;
-
-      margin-bottom: 12px;
     }
 
     .empty-state h4 {
       color: var(--text);
-
       margin-bottom: 8px;
     }
 
     .loading {
       text-align: center;
-
       padding: 50px;
-
       color: var(--muted);
-    }
-
-    .loading-spinner {
-      width: 38px;
-      height: 38px;
-
-      border:
-        4px solid #dbeafe;
-
-      border-top-color:
-        var(--primary);
-
-      border-radius: 50%;
-
-      margin: 0 auto 15px;
-
-      animation:
-        spin 0.8s linear infinite;
-    }
-
-    @keyframes spin {
-      to {
-        transform: rotate(360deg);
-      }
     }
 
     .data-error {
       max-width: 700px;
-
       margin: 20px auto;
-
       padding: 15px;
-
       border-radius: 12px;
-
       background: #f8d7da;
-
       color: #842029;
-
       text-align: center;
-
       line-height: 1.5;
     }
 
-    /* =====================================================
+    /* =========================
        MODAL
-    ====================================================== */
+    ========================= */
 
     .modal-overlay {
       position: fixed;
-
       inset: 0;
-
-      background:
-        rgba(15, 23, 42, 0.65);
-
+      background: rgba(15, 23, 42, 0.65);
       display: flex;
-
       align-items: center;
-
       justify-content: center;
-
       padding: 20px;
-
       z-index: 100;
     }
 
     .modal {
       width: 100%;
-
-      max-width: 650px;
-
+      max-width: 700px;
       background: white;
-
       border-radius: 20px;
-
       padding: 25px;
-
       max-height: 90vh;
-
       overflow-y: auto;
-
-      box-shadow: var(--shadow-lg);
     }
 
     .modal-header {
       display: flex;
-
       justify-content: space-between;
-
       gap: 15px;
-
       align-items: center;
-
       margin-bottom: 20px;
     }
 
-    .modal-header h3 {
-      line-height: 1.3;
-    }
-
     .close-btn {
-      flex-shrink: 0;
-
       width: 35px;
       height: 35px;
-
       border: none;
-
       border-radius: 50%;
-
       background: #f1f5f9;
-
       font-size: 20px;
-    }
-
-    .close-btn:hover {
-      background: #e2e8f0;
     }
 
     .modal-cover {
       width: 100%;
-
-      height: 220px;
-
-      border-radius: 14px;
-
+      height: 240px;
+      border-radius: 15px;
       overflow: hidden;
-
       margin-bottom: 20px;
-
-      background:
-        linear-gradient(
-          135deg,
-          #e8f0fe,
-          #dbeafe
-        );
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: center;
+      background: #e8f0fe;
     }
 
     .modal-cover img {
       width: 100%;
       height: 100%;
-
       object-fit: cover;
     }
 
     .detail-row {
       padding: 13px 0;
-
-      border-bottom:
-        1px solid var(--border);
+      border-bottom: 1px solid var(--border);
     }
 
     .detail-label {
       font-size: 12px;
-
       color: var(--muted);
-
       font-weight: 800;
-
       text-transform: uppercase;
-
       margin-bottom: 4px;
     }
 
     .detail-value {
       font-size: 15px;
-
       line-height: 1.5;
     }
 
-    .modal-actions {
-      display: grid;
-
-      grid-template-columns:
-        repeat(2, 1fr);
-
-      gap: 10px;
-
-      margin-top: 20px;
+    .modal-section {
+      margin-top: 25px;
     }
 
-    /* =====================================================
-       SERVICES
-    ====================================================== */
-
-    .services-section {
-      margin-top: 20px;
+    .modal-section h4 {
+      margin-bottom: 12px;
+      font-size: 18px;
     }
 
-    .services-title {
-      font-size: 16px;
-
-      margin-bottom: 10px;
-    }
-
-    .service-item {
-      padding: 12px;
-
-      border:
-        1px solid var(--border);
-
-      border-radius: 10px;
-
-      margin-bottom: 8px;
-
+    .service-item,
+    .review-item {
       background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 10px;
     }
 
     .service-name {
       font-weight: 800;
-
-      margin-bottom: 4px;
+      margin-bottom: 5px;
     }
 
-    .service-description {
-      color: var(--muted);
-
-      font-size: 13px;
-
-      line-height: 1.4;
+    .service-description,
+    .review-comment {
+      color: #475569;
+      font-size: 14px;
+      line-height: 1.5;
     }
 
     .service-price {
-      margin-top: 6px;
-
       color: var(--primary);
+      font-weight: 800;
+      margin-top: 7px;
+    }
 
-      font-size: 13px;
+    .review-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
 
+    .review-rating {
       font-weight: 800;
     }
 
-    /* =====================================================
-       FOOTER
-    ====================================================== */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 9px;
+    }
 
     footer {
       background: var(--secondary);
-
       color: white;
-
       padding: 30px 20px;
-
       text-align: center;
     }
 
     footer p {
       opacity: 0.75;
-
       font-size: 13px;
     }
 
-    /* =====================================================
+    /* =========================
        RESPONSIVE
-    ====================================================== */
+    ========================= */
 
     @media (max-width: 900px) {
 
       .professionals-grid {
-        grid-template-columns:
-          repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr);
       }
 
       .filters-card {
-        grid-template-columns:
-          1fr 1fr;
+        grid-template-columns: 1fr 1fr;
       }
 
       .filter-box:last-child {
-        grid-column:
-          1 / -1;
+        grid-column: 1 / -1;
       }
-
     }
 
     @media (max-width: 650px) {
 
       .navbar {
-        padding:
-          12px 15px;
+        padding: 12px 15px;
       }
 
       .user-email {
@@ -1147,33 +787,27 @@
       }
 
       .hero {
-        padding:
-          42px 15px;
+        padding: 42px 15px 70px;
       }
 
       .filters-section {
-        padding:
-          0 15px;
+        padding: 0 15px;
       }
 
       .filters-card {
-        grid-template-columns:
-          1fr;
+        grid-template-columns: 1fr;
       }
 
       .filter-box:last-child {
-        grid-column:
-          auto;
+        grid-column: auto;
       }
 
       main {
-        padding:
-          30px 15px 50px;
+        padding: 30px 15px 50px;
       }
 
       .professionals-grid {
-        grid-template-columns:
-          1fr;
+        grid-template-columns: 1fr;
       }
 
       .auth-card {
@@ -1181,24 +815,20 @@
       }
 
       .section-title {
-        align-items:
-          flex-start;
-
-        flex-direction:
-          column;
+        align-items: flex-start;
+        flex-direction: column;
       }
 
-      .modal-actions {
-        grid-template-columns:
-          1fr;
+      .card-actions {
+        grid-template-columns: 1fr;
       }
 
-      .professional-photo {
-        height: 170px;
+      .gallery {
+        grid-template-columns: repeat(2, 1fr);
       }
-
     }
   </style>
+
 </head>
 
 <body>
@@ -1209,198 +839,181 @@
 
   <section id="authScreen">
 
-    <div class="auth-container">
+```
+<div class="auth-container">
 
-      <div class="auth-logo">
+  <div class="auth-logo">
 
-        <div class="logo-mark">
-          V
-        </div>
+    <div class="logo-mark">
+      V
+    </div>
 
-        <h1>VERIFIA</h1>
+    <h1>VERIFIA</h1>
 
-        <p>
-          Trouvez un professionnel de confiance au Bénin
-        </p>
+    <p>
+      Trouvez un professionnel de confiance au Bénin
+    </p>
 
-      </div>
+  </div>
 
+  <div class="auth-card">
 
-      <div class="auth-card">
+    <div class="auth-tabs">
 
-        <div class="auth-tabs">
+      <button
+        class="auth-tab active"
+        id="loginTab"
+        type="button"
+      >
+        Connexion
+      </button>
 
-          <button
-            class="auth-tab active"
-            id="loginTab"
-            type="button"
-          >
-            Connexion
-          </button>
-
-          <button
-            class="auth-tab"
-            id="registerTab"
-            type="button"
-          >
-            Inscription
-          </button>
-
-        </div>
-
-
-        <!-- =========================
-             CONNEXION
-        ========================== -->
-
-        <form id="loginForm">
-
-          <div class="form-group">
-
-            <label for="loginEmail">
-              Adresse e-mail
-            </label>
-
-            <input
-              type="email"
-              id="loginEmail"
-              placeholder="exemple@email.com"
-              autocomplete="email"
-              required
-            >
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label for="loginPassword">
-              Mot de passe
-            </label>
-
-            <input
-              type="password"
-              id="loginPassword"
-              placeholder="Votre mot de passe"
-              autocomplete="current-password"
-              required
-            >
-
-          </div>
-
-
-          <button
-            class="primary-btn"
-            id="loginButton"
-            type="submit"
-          >
-            Se connecter
-          </button>
-
-        </form>
-
-
-        <!-- =========================
-             INSCRIPTION
-        ========================== -->
-
-        <form
-          id="registerForm"
-          class="hidden"
-        >
-
-          <div class="form-group">
-
-            <label for="registerName">
-              Nom complet
-            </label>
-
-            <input
-              type="text"
-              id="registerName"
-              placeholder="Votre nom complet"
-              autocomplete="name"
-              required
-            >
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label for="registerEmail">
-              Adresse e-mail
-            </label>
-
-            <input
-              type="email"
-              id="registerEmail"
-              placeholder="exemple@email.com"
-              autocomplete="email"
-              required
-            >
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label for="registerPassword">
-              Mot de passe
-            </label>
-
-            <input
-              type="password"
-              id="registerPassword"
-              minlength="6"
-              placeholder="Minimum 6 caractères"
-              autocomplete="new-password"
-              required
-            >
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label for="registerPasswordConfirm">
-              Confirmer le mot de passe
-            </label>
-
-            <input
-              type="password"
-              id="registerPasswordConfirm"
-              minlength="6"
-              placeholder="Confirmez votre mot de passe"
-              autocomplete="new-password"
-              required
-            >
-
-          </div>
-
-
-          <button
-            class="primary-btn"
-            id="registerButton"
-            type="submit"
-          >
-            Créer mon compte
-          </button>
-
-        </form>
-
-
-        <div
-          id="authMessage"
-          class="auth-message"
-        ></div>
-
-      </div>
+      <button
+        class="auth-tab"
+        id="registerTab"
+        type="button"
+      >
+        Inscription
+      </button>
 
     </div>
 
-  </section>
+    <form id="loginForm">
 
+      <div class="form-group">
+
+        <label for="loginEmail">
+          Adresse e-mail
+        </label>
+
+        <input
+          type="email"
+          id="loginEmail"
+          placeholder="exemple@email.com"
+          autocomplete="email"
+          required
+        >
+
+      </div>
+
+      <div class="form-group">
+
+        <label for="loginPassword">
+          Mot de passe
+        </label>
+
+        <input
+          type="password"
+          id="loginPassword"
+          placeholder="Votre mot de passe"
+          autocomplete="current-password"
+          required
+        >
+
+      </div>
+
+      <button
+        class="primary-btn"
+        id="loginButton"
+        type="submit"
+      >
+        Se connecter
+      </button>
+
+    </form>
+
+    <form
+      id="registerForm"
+      class="hidden"
+    >
+
+      <div class="form-group">
+
+        <label for="registerName">
+          Nom complet
+        </label>
+
+        <input
+          type="text"
+          id="registerName"
+          placeholder="Votre nom complet"
+          autocomplete="name"
+          required
+        >
+
+      </div>
+
+      <div class="form-group">
+
+        <label for="registerEmail">
+          Adresse e-mail
+        </label>
+
+        <input
+          type="email"
+          id="registerEmail"
+          placeholder="exemple@email.com"
+          autocomplete="email"
+          required
+        >
+
+      </div>
+
+      <div class="form-group">
+
+        <label for="registerPassword">
+          Mot de passe
+        </label>
+
+        <input
+          type="password"
+          id="registerPassword"
+          minlength="6"
+          placeholder="Minimum 6 caractères"
+          autocomplete="new-password"
+          required
+        >
+
+      </div>
+
+      <div class="form-group">
+
+        <label for="registerPasswordConfirm">
+          Confirmer le mot de passe
+        </label>
+
+        <input
+          type="password"
+          id="registerPasswordConfirm"
+          minlength="6"
+          placeholder="Confirmez votre mot de passe"
+          autocomplete="new-password"
+          required
+        >
+
+      </div>
+
+      <button
+        class="primary-btn"
+        id="registerButton"
+        type="submit"
+      >
+        Créer mon compte
+      </button>
+
+    </form>
+
+    <div
+      id="authMessage"
+      class="auth-message"
+    ></div>
+
+  </div>
+
+</div>
+```
+
+  </section>
 
   <!-- =====================================================
        APPLICATION
@@ -1411,225 +1024,197 @@
     class="hidden"
   >
 
-    <header>
+```
+<header>
 
-      <nav class="navbar">
+  <nav class="navbar">
 
-        <div class="brand">
+    <div class="brand">
 
-          <div class="brand-mark">
-            V
-          </div>
-
-          VERIFIA
-
-        </div>
-
-
-        <div class="user-menu">
-
-          <span
-            id="userEmail"
-            class="user-email"
-          ></span>
-
-          <button
-            class="logout-btn"
-            id="logoutBtn"
-            type="button"
-          >
-            Déconnexion
-          </button>
-
-        </div>
-
-      </nav>
-
-    </header>
-
-
-    <!-- =====================================================
-         HERO
-    ====================================================== -->
-
-    <section class="hero">
-
-      <div class="hero-inner">
-
-        <div class="hero-badge">
-          ✓ Annuaire professionnel du Bénin
-        </div>
-
-        <h2>
-          Trouvez le professionnel qu'il vous faut
-        </h2>
-
-        <p>
-          Recherchez des professionnels et entreprises
-          de confiance selon leur ville et leur domaine
-          d'activité.
-        </p>
-
+      <div class="brand-mark">
+        V
       </div>
 
-    </section>
+      VERIFIA
+
+    </div>
+
+    <div class="user-menu">
+
+      <span
+        id="userEmail"
+        class="user-email"
+      ></span>
+
+      <button
+        class="logout-btn"
+        id="logoutBtn"
+        type="button"
+      >
+        Déconnexion
+      </button>
+
+    </div>
+
+  </nav>
+
+</header>
 
 
-    <!-- =====================================================
-         FILTRES
-    ====================================================== -->
+<section class="hero">
 
-    <section class="filters-section">
+  <div class="hero-inner">
 
-      <div class="filters-card">
+    <h2>
+      Trouvez le professionnel qu'il vous faut
+    </h2>
 
-        <div class="filter-box">
+    <p>
+      Recherchez des professionnels fiables
+      dans toutes les villes et catégories du Bénin.
+    </p>
 
-          <label for="cityFilter">
-            Ville
-          </label>
+  </div>
 
-          <select id="cityFilter">
-
-            <option value="">
-              Toutes les villes
-            </option>
-
-          </select>
-
-        </div>
+</section>
 
 
-        <div class="filter-box">
+<section class="filters-section">
 
-          <label for="categoryFilter">
-            Catégorie
-          </label>
+  <div class="filters-card">
 
-          <select id="categoryFilter">
+    <div class="filter-box">
 
-            <option value="">
-              Toutes les catégories
-            </option>
+      <label for="cityFilter">
+        Ville
+      </label>
 
-          </select>
+      <select id="cityFilter">
 
-        </div>
+        <option value="">
+          Toutes les villes
+        </option>
 
+      </select>
 
-        <div class="filter-box">
+    </div>
 
-          <label for="searchInput">
-            Recherche
-          </label>
+    <div class="filter-box">
 
-          <input
-            type="search"
-            id="searchInput"
-            placeholder="Nom, activité, description..."
-          >
+      <label for="categoryFilter">
+        Catégorie
+      </label>
 
-        </div>
+      <select id="categoryFilter">
 
-      </div>
+        <option value="">
+          Toutes les catégories
+        </option>
 
-    </section>
+      </select>
 
+    </div>
 
-    <!-- =====================================================
-         CONTENU
-    ====================================================== -->
+    <div class="filter-box">
 
-    <main>
+      <label for="searchInput">
+        Recherche
+      </label>
 
-      <div class="section-title">
-
-        <div>
-
-          <h3>
-            Professionnels
-          </h3>
-
-          <div
-            id="selectedLocation"
-            class="result-count"
-          >
-            Tous les professionnels
-          </div>
-
-        </div>
-
-
-        <div
-          id="resultCount"
-          class="result-count"
-        >
-          Chargement...
-        </div>
-
-      </div>
-
-
-      <div
-        id="loading"
-        class="loading"
+      <input
+        type="search"
+        id="searchInput"
+        placeholder="Nom, activité, ville..."
       >
 
-        <div class="loading-spinner"></div>
+    </div>
 
-        Chargement des professionnels...
+  </div>
 
-      </div>
-
-
-      <div
-        id="dataError"
-        class="data-error hidden"
-      ></div>
+</section>
 
 
-      <div
-        id="professionalsGrid"
-        class="professionals-grid hidden"
-      ></div>
+<main>
 
+  <div class="section-title">
+
+    <div>
+
+      <h3>
+        Professionnels
+      </h3>
 
       <div
-        id="emptyState"
-        class="empty-state hidden"
+        id="selectedLocation"
+        class="result-count"
       >
-
-        <div class="empty-icon">
-          🔎
-        </div>
-
-        <h4>
-          Aucun professionnel trouvé
-        </h4>
-
-        <p>
-          Aucun professionnel ne correspond
-          actuellement à vos critères de recherche.
-        </p>
-
+        Tous les professionnels
       </div>
 
-    </main>
+    </div>
+
+    <div
+      id="resultCount"
+      class="result-count"
+    >
+      Chargement...
+    </div>
+
+  </div>
 
 
-    <footer>
+  <div
+    id="loading"
+    class="loading"
+  >
+    Chargement des professionnels...
+  </div>
 
-      <p>
-        © 2026 VERIFIA — Annuaire professionnel du Bénin
-      </p>
 
-    </footer>
+  <div
+    id="dataError"
+    class="data-error hidden"
+  ></div>
+
+
+  <div
+    id="professionalsGrid"
+    class="professionals-grid hidden"
+  ></div>
+
+
+  <div
+    id="emptyState"
+    class="empty-state hidden"
+  >
+
+    <h4>
+      Aucun professionnel trouvé
+    </h4>
+
+    <p>
+      Aucun professionnel ne correspond
+      actuellement à vos critères.
+    </p>
+
+  </div>
+
+</main>
+
+
+<footer>
+
+  <p>
+    © 2026 VERIFIA — Annuaire professionnel du Bénin
+  </p>
+
+</footer>
+```
 
   </section>
 
-
   <!-- =====================================================
-       MODAL PROFESSIONNEL
+       MODAL
   ====================================================== -->
 
   <div
@@ -1637,32 +1222,32 @@
     class="modal-overlay hidden"
   >
 
-    <div class="modal">
+```
+<div class="modal">
 
-      <div class="modal-header">
+  <div class="modal-header">
 
-        <h3 id="modalTitle">
-          Professionnel
-        </h3>
+    <h3 id="modalTitle">
+      Professionnel
+    </h3>
 
-        <button
-          class="close-btn"
-          id="closeModal"
-          type="button"
-          aria-label="Fermer"
-        >
-          ×
-        </button>
-
-      </div>
-
-
-      <div id="modalContent"></div>
-
-    </div>
+    <button
+      class="close-btn"
+      id="closeModal"
+      type="button"
+      aria-label="Fermer"
+    >
+      ×
+    </button>
 
   </div>
 
+  <div id="modalContent"></div>
+
+</div>
+```
+
+  </div>
 
   <script>
 
@@ -1675,7 +1260,6 @@
 
     const SUPABASE_ANON_KEY =
       "sb_publishable_RzsA7wEtmDGYrSDiKdZ8vQ_4SDAT-oi";
-
 
     const supabaseClient =
       window.supabase.createClient(
@@ -1749,24 +1333,16 @@
       document.getElementById("selectedLocation");
 
     const professionalModal =
-      document.getElementById(
-        "professionalModal"
-      );
+      document.getElementById("professionalModal");
 
     const modalTitle =
-      document.getElementById(
-        "modalTitle"
-      );
+      document.getElementById("modalTitle");
 
     const modalContent =
-      document.getElementById(
-        "modalContent"
-      );
+      document.getElementById("modalContent");
 
     const closeModal =
-      document.getElementById(
-        "closeModal"
-      );
+      document.getElementById("closeModal");
 
 
     /* =====================================================
@@ -1774,37 +1350,24 @@
     ====================================================== */
 
     let cities = [];
-
     let categories = [];
-
     let professionals = [];
-
-    let professionalPhotos = [];
-
     let currentUser = null;
-
     let dataLoaded = false;
+    let favoriteIds = new Set();
 
 
     /* =====================================================
-       AUTH — AFFICHAGE
+       AUTH
     ====================================================== */
 
     function showAuthScreen() {
 
-      authScreen.classList.remove(
-        "hidden"
-      );
+      authScreen.classList.remove("hidden");
 
-      app.classList.add(
-        "hidden"
-      );
+      app.classList.add("hidden");
 
       currentUser = null;
-
-      document.body.classList.remove(
-        "modal-open"
-      );
 
     }
 
@@ -1813,23 +1376,15 @@
 
       currentUser = user;
 
-      authScreen.classList.add(
-        "hidden"
-      );
+      authScreen.classList.add("hidden");
 
-      app.classList.remove(
-        "hidden"
-      );
+      app.classList.remove("hidden");
 
       userEmail.textContent =
         user?.email || "";
 
     }
 
-
-    /* =====================================================
-       MESSAGES
-    ====================================================== */
 
     function showAuthMessage(
       message,
@@ -1847,8 +1402,7 @@
 
     function clearAuthMessage() {
 
-      authMessage.textContent =
-        "";
+      authMessage.textContent = "";
 
       authMessage.className =
         "auth-message";
@@ -1870,8 +1424,7 @@
 
     function clearDataError() {
 
-      dataError.textContent =
-        "";
+      dataError.textContent = "";
 
       dataError.classList.add(
         "hidden"
@@ -1881,28 +1434,18 @@
 
 
     /* =====================================================
-       ONGLETS AUTH
+       ONGLETS
     ====================================================== */
 
     loginTab.addEventListener(
       "click",
       () => {
 
-        loginTab.classList.add(
-          "active"
-        );
+        loginTab.classList.add("active");
+        registerTab.classList.remove("active");
 
-        registerTab.classList.remove(
-          "active"
-        );
-
-        loginForm.classList.remove(
-          "hidden"
-        );
-
-        registerForm.classList.add(
-          "hidden"
-        );
+        loginForm.classList.remove("hidden");
+        registerForm.classList.add("hidden");
 
         clearAuthMessage();
 
@@ -1914,111 +1457,16 @@
       "click",
       () => {
 
-        registerTab.classList.add(
-          "active"
-        );
+        registerTab.classList.add("active");
+        loginTab.classList.remove("active");
 
-        loginTab.classList.remove(
-          "active"
-        );
-
-        registerForm.classList.remove(
-          "hidden"
-        );
-
-        loginForm.classList.add(
-          "hidden"
-        );
+        registerForm.classList.remove("hidden");
+        loginForm.classList.add("hidden");
 
         clearAuthMessage();
 
       }
     );
-
-
-    /* =====================================================
-       CREATION DU PROFIL
-    ====================================================== */
-
-    async function createUserProfile(
-      user,
-      fullName
-    ) {
-
-      if (!user?.id) {
-        return;
-      }
-
-
-      const parts =
-        String(
-          fullName || ""
-        )
-          .trim()
-          .split(/\s+/)
-          .filter(Boolean);
-
-
-      const firstName =
-        parts.shift() || "";
-
-
-      const lastName =
-        parts.join(" ");
-
-
-      try {
-
-        const {
-          error
-        } =
-          await supabaseClient
-            .from("profiles")
-            .upsert(
-              {
-                id: user.id,
-
-                first_name:
-                  firstName,
-
-                last_name:
-                  lastName,
-
-                phone:
-                  null,
-
-                role:
-                  "client",
-
-                avatar_url:
-                  null
-
-              },
-              {
-                onConflict: "id"
-              }
-            );
-
-
-        if (error) {
-
-          console.warn(
-            "Profil non créé :",
-            error.message
-          );
-
-        }
-
-      } catch (error) {
-
-        console.warn(
-          "Erreur profil :",
-          error
-        );
-
-      }
-
-    }
 
 
     /* =====================================================
@@ -2033,8 +1481,7 @@
 
         clearAuthMessage();
 
-        registerButton.disabled =
-          true;
+        registerButton.disabled = true;
 
         registerButton.textContent =
           "Création du compte...";
@@ -2042,29 +1489,20 @@
 
         const name =
           document
-            .getElementById(
-              "registerName"
-            )
+            .getElementById("registerName")
             .value
             .trim();
-
 
         const email =
           document
-            .getElementById(
-              "registerEmail"
-            )
+            .getElementById("registerEmail")
             .value
             .trim();
 
-
         const password =
           document
-            .getElementById(
-              "registerPassword"
-            )
+            .getElementById("registerPassword")
             .value;
-
 
         const confirmation =
           document
@@ -2075,16 +1513,14 @@
 
 
         if (
-          password !==
-          confirmation
+          password !== confirmation
         ) {
 
           showAuthMessage(
             "Les mots de passe ne correspondent pas."
           );
 
-          registerButton.disabled =
-            false;
+          registerButton.disabled = false;
 
           registerButton.textContent =
             "Créer mon compte";
@@ -2102,8 +1538,7 @@
             "Le mot de passe doit contenir au moins 6 caractères."
           );
 
-          registerButton.disabled =
-            false;
+          registerButton.disabled = false;
 
           registerButton.textContent =
             "Créer mon compte";
@@ -2119,25 +1554,18 @@
             data,
             error
           } =
-            await supabaseClient.auth
-              .signUp({
+            await supabaseClient.auth.signUp({
 
-                email:
-                  email,
+              email,
+              password,
 
-                password:
-                  password,
-
-                options: {
-
-                  data: {
-                    full_name:
-                      name
-                  }
-
+              options: {
+                data: {
+                  full_name: name
                 }
+              }
 
-              });
+            });
 
 
           if (error) {
@@ -2149,7 +1577,11 @@
             data?.user
           ) {
 
-            await createUserProfile(
+            /*
+              Le profil sera créé dès que
+              Supabase fournit un utilisateur.
+            */
+            await ensureProfile(
               data.user,
               name
             );
@@ -2187,9 +1619,7 @@
           );
 
           showAuthMessage(
-            getFriendlyAuthError(
-              error
-            )
+            getFriendlyAuthError(error)
           );
 
         } finally {
@@ -2218,8 +1648,7 @@
 
         clearAuthMessage();
 
-        loginButton.disabled =
-          true;
+        loginButton.disabled = true;
 
         loginButton.textContent =
           "Connexion...";
@@ -2227,18 +1656,13 @@
 
         const email =
           document
-            .getElementById(
-              "loginEmail"
-            )
+            .getElementById("loginEmail")
             .value
             .trim();
 
-
         const password =
           document
-            .getElementById(
-              "loginPassword"
-            )
+            .getElementById("loginPassword")
             .value;
 
 
@@ -2251,11 +1675,8 @@
             await supabaseClient.auth
               .signInWithPassword({
 
-                email:
-                  email,
-
-                password:
-                  password
+                email,
+                password
 
               });
 
@@ -2268,6 +1689,10 @@
           if (
             data?.user
           ) {
+
+            await ensureProfile(
+              data.user
+            );
 
             showAppScreen(
               data.user
@@ -2291,9 +1716,7 @@
           );
 
           showAuthMessage(
-            getFriendlyAuthError(
-              error
-            )
+            getFriendlyAuthError(error)
           );
 
         } finally {
@@ -2308,6 +1731,83 @@
 
       }
     );
+
+
+    /* =====================================================
+       PROFIL
+    ====================================================== */
+
+    async function ensureProfile(
+      user,
+      providedName = ""
+    ) {
+
+      if (!user?.id) {
+        return;
+      }
+
+
+      const fullName =
+        providedName ||
+        user.user_metadata?.full_name ||
+        "";
+
+
+      const parts =
+        String(fullName)
+          .trim()
+          .split(/\s+/)
+          .filter(Boolean);
+
+
+      const firstName =
+        parts.length > 0
+          ? parts[0]
+          : "";
+
+
+      const lastName =
+        parts.length > 1
+          ? parts.slice(1).join(" ")
+          : "";
+
+
+      const {
+        error
+      } =
+        await supabaseClient
+          .from("profiles")
+          .upsert(
+            {
+              id: user.id,
+              first_name: firstName,
+              last_name: lastName,
+              role: "client",
+              updated_at: new Date().toISOString()
+            },
+            {
+              onConflict: "id"
+            }
+          );
+
+
+      if (error) {
+
+        /*
+          Le chargement de l'application
+          ne doit pas être bloqué uniquement
+          par le profil si une policy RLS
+          empêche l'écriture.
+        */
+
+        console.warn(
+          "Profil non synchronisé :",
+          error.message
+        );
+
+      }
+
+    }
 
 
     /* =====================================================
@@ -2330,9 +1830,7 @@
         )
       ) {
 
-        return (
-          "E-mail ou mot de passe incorrect."
-        );
+        return "E-mail ou mot de passe incorrect.";
 
       }
 
@@ -2343,9 +1841,7 @@
         )
       ) {
 
-        return (
-          "Votre adresse e-mail n'est pas encore confirmée."
-        );
+        return "Votre adresse e-mail n'est pas encore confirmée.";
 
       }
 
@@ -2356,9 +1852,7 @@
         )
       ) {
 
-        return (
-          "Cette adresse e-mail possède déjà un compte."
-        );
+        return "Cette adresse e-mail possède déjà un compte.";
 
       }
 
@@ -2369,22 +1863,7 @@
         )
       ) {
 
-        return (
-          "Le mot de passe est trop court."
-        );
-
-      }
-
-
-      if (
-        message.includes(
-          "rate limit"
-        )
-      ) {
-
-        return (
-          "Trop de tentatives. Veuillez patienter quelques instants."
-        );
+        return "Le mot de passe est trop court.";
 
       }
 
@@ -2405,8 +1884,7 @@
       "click",
       async () => {
 
-        logoutBtn.disabled =
-          true;
+        logoutBtn.disabled = true;
 
         try {
 
@@ -2415,7 +1893,6 @@
           } =
             await supabaseClient.auth
               .signOut();
-
 
           if (error) {
             throw error;
@@ -2431,23 +1908,18 @@
         } finally {
 
           currentUser = null;
-
           dataLoaded = false;
-
           professionals = [];
-
-          professionalPhotos = [];
+          favoriteIds = new Set();
 
           showAuthScreen();
 
           loginForm.reset();
-
           registerForm.reset();
 
           clearAuthMessage();
 
-          logoutBtn.disabled =
-            false;
+          logoutBtn.disabled = false;
 
         }
 
@@ -2456,11 +1928,11 @@
 
 
     /* =====================================================
-       SURVEILLANCE SESSION
+       SESSION
     ====================================================== */
 
     supabaseClient.auth.onAuthStateChange(
-      (event, session) => {
+      async (event, session) => {
 
         if (
           session?.user
@@ -2490,16 +1962,11 @@
     );
 
 
-    /* =====================================================
-       VERIFICATION SESSION
-    ====================================================== */
-
     async function checkSession() {
 
       try {
 
         showAuthScreen();
-
 
         const {
           data,
@@ -2517,6 +1984,10 @@
         if (
           data?.session?.user
         ) {
+
+          await ensureProfile(
+            data.session.user
+          );
 
           showAppScreen(
             data.session.user
@@ -2584,6 +2055,13 @@
         `;
 
 
+      /*
+        IMPORTANT :
+        Toutes les villes sont affichées,
+        même lorsqu'aucun professionnel
+        n'y est encore enregistré.
+      */
+
       cities.forEach(
         city => {
 
@@ -2592,14 +2070,11 @@
               "option"
             );
 
-
           option.value =
             city.id;
 
-
           option.textContent =
             city.name;
-
 
           cityFilter.appendChild(
             option
@@ -2624,7 +2099,7 @@
         await supabaseClient
           .from("categories")
           .select(
-            "id,name"
+            "id,name,icon,description"
           )
           .order(
             "name",
@@ -2651,6 +2126,12 @@
         `;
 
 
+      /*
+        IMPORTANT :
+        Les 15 catégories restent visibles
+        même si elles n'ont aucun professionnel.
+      */
+
       categories.forEach(
         category => {
 
@@ -2659,14 +2140,15 @@
               "option"
             );
 
-
           option.value =
             category.id;
 
-
           option.textContent =
-            category.name;
-
+            category.icon
+              ? category.icon +
+                " " +
+                category.name
+              : category.name;
 
           categoryFilter.appendChild(
             option
@@ -2724,11 +2206,34 @@
             city_id,
             categories (
               id,
-              name
+              name,
+              icon
             ),
             cities (
               id,
               name
+            ),
+            professional_photos (
+              id,
+              image_url,
+              caption,
+              is_cover,
+              created_at
+            ),
+            professional_services (
+              id,
+              service_name,
+              description,
+              price_from,
+              price_to,
+              created_at
+            ),
+            reviews (
+              id,
+              reviewer_id,
+              rating,
+              comment,
+              created_at
             )
           `)
           .eq(
@@ -2763,12 +2268,10 @@
       professionals =
         data || [];
 
-
       dataLoaded = true;
 
 
-      await loadProfessionalPhotos();
-
+      await loadFavorites();
 
       applyFilters();
 
@@ -2776,64 +2279,71 @@
 
 
     /* =====================================================
-       PHOTOS PROFESSIONNELLES
+       FAVORIS
     ====================================================== */
 
-    async function loadProfessionalPhotos() {
+    async function loadFavorites() {
 
-      professionalPhotos = [];
+      favoriteIds =
+        new Set();
 
 
-      if (
-        professionals.length === 0
-      ) {
+      if (!currentUser?.id) {
+        return;
+      }
+
+
+      const {
+        data,
+        error
+      } =
+        await supabaseClient
+          .from("favorites")
+          .select(
+            "professional_id"
+          )
+          .eq(
+            "user_id",
+            currentUser.id
+          );
+
+
+      if (error) {
+
+        console.warn(
+          "Impossible de charger les favoris :",
+          error.message
+        );
 
         return;
 
       }
 
 
-      const ids =
-        professionals.map(
-          professional =>
-            professional.id
-        );
+      (data || []).forEach(
+        item => {
 
-
-      try {
-
-        const {
-          data,
-          error
-        } =
-          await supabaseClient
-            .from(
-              "professional_photos"
+          favoriteIds.add(
+            String(
+              item.professional_id
             )
-            .select(`
-              id,
-              professional_id,
-              image_url,
-              caption,
-              is_cover
-            `)
-            .in(
-              "professional_id",
-              ids
-            )
-            .order(
-              "is_cover",
-              {
-                ascending: false
-              }
-            );
+          );
+
+        }
+      );
+
+    }
 
 
-        if (error) {
+    window.toggleFavorite =
+      async function(
+        professionalId
+      ) {
 
-          console.warn(
-            "Photos non disponibles :",
-            error.message
+        if (!currentUser?.id) {
+
+          alert(
+            "Vous devez être connecté pour utiliser les favoris."
           );
 
           return;
@@ -2841,55 +2351,103 @@
         }
 
 
-        professionalPhotos =
-          data || [];
-
-      } catch (error) {
-
-        console.warn(
-          "Erreur photos :",
-          error
-        );
-
-      }
-
-    }
+        const key =
+          String(
+            professionalId
+          );
 
 
-    /* =====================================================
-       PHOTO PRINCIPALE
-    ====================================================== */
-
-    function getProfessionalPhoto(
-      professionalId
-    ) {
-
-      const photo =
-        professionalPhotos.find(
-          item =>
-            String(
-              item.professional_id
-            ) ===
-            String(
-              professionalId
-            ) &&
-            item.is_cover === true
-        )
-        ||
-        professionalPhotos.find(
-          item =>
-            String(
-              item.professional_id
-            ) ===
-            String(
-              professionalId
-            )
-        );
+        const button =
+          document.querySelector(
+            `[data-favorite-id="${key}"]`
+          );
 
 
-      return photo?.image_url || "";
+        try {
 
-    }
+          if (
+            favoriteIds.has(key)
+          ) {
+
+            const {
+              error
+            } =
+              await supabaseClient
+                .from("favorites")
+                .delete()
+                .eq(
+                  "user_id",
+                  currentUser.id
+                )
+                .eq(
+                  "professional_id",
+                  professionalId
+                );
+
+
+            if (error) {
+              throw error;
+            }
+
+
+            favoriteIds.delete(key);
+
+          } else {
+
+            const {
+              error
+            } =
+              await supabaseClient
+                .from("favorites")
+                .insert({
+
+                  user_id:
+                    currentUser.id,
+
+                  professional_id:
+                    professionalId
+
+                });
+
+
+            if (error) {
+              throw error;
+            }
+
+
+            favoriteIds.add(key);
+
+          }
+
+
+          if (button) {
+
+            button.classList.toggle(
+              "active",
+              favoriteIds.has(key)
+            );
+
+            button.textContent =
+              favoriteIds.has(key)
+                ? "♥"
+                : "♡";
+
+          }
+
+        } catch (error) {
+
+          console.error(
+            "Erreur favori :",
+            error
+          );
+
+          alert(
+            "Impossible de modifier ce favori. Vérifiez les autorisations Supabase."
+          );
+
+        }
+
+      };
 
 
     /* =====================================================
@@ -2901,10 +2459,8 @@
       const cityId =
         cityFilter.value;
 
-
       const categoryId =
         categoryFilter.value;
-
 
       const search =
         searchInput.value
@@ -2957,6 +2513,10 @@
                 professional.description,
 
                 professional.address,
+
+                professional.phone,
+
+                professional.whatsapp,
 
                 professional.categories?.name,
 
@@ -3053,7 +2613,7 @@
 
 
     /* =====================================================
-       AFFICHAGE PROFESSIONNELS
+       AFFICHAGE
     ====================================================== */
 
     function renderProfessionals(
@@ -3117,7 +2677,32 @@
 
 
     /* =====================================================
-       CARTE PROFESSIONNEL
+       PHOTO COUVERTURE
+    ====================================================== */
+
+    function getCoverPhoto(
+      professional
+    ) {
+
+      const photos =
+        professional.professional_photos ||
+        [];
+
+
+      return (
+        photos.find(
+          photo =>
+            photo.is_cover === true
+        ) ||
+        photos[0] ||
+        null
+      );
+
+    }
+
+
+    /* =====================================================
+       CARTE
     ====================================================== */
 
     function createProfessionalCard(
@@ -3166,41 +2751,10 @@
         );
 
 
-      const photo =
-        getProfessionalPhoto(
-          professional.id
+      const cover =
+        getCoverPhoto(
+          professional
         );
-
-
-      const verified =
-        professional.is_verified
-          ? `
-            <span class="badge badge-verified">
-              ✓ Vérifié
-            </span>
-          `
-          : "";
-
-
-      const proPlus =
-        professional.is_pro_plus
-          ? `
-            <span class="badge badge-pro-plus">
-              ★ PRO+
-            </span>
-          `
-          : "";
-
-
-      const pro =
-        professional.is_pro &&
-        !professional.is_pro_plus
-          ? `
-            <span class="badge badge-pro">
-              ★ PRO
-            </span>
-          `
-          : "";
 
 
       const rating =
@@ -3215,27 +2769,60 @@
         );
 
 
-      const photoHtml =
-        photo
+      const isFavorite =
+        favoriteIds.has(
+          String(
+            professional.id
+          )
+        );
+
+
+      const verified =
+        professional.is_verified
           ? `
-            <div class="professional-photo">
+            <span class="badge badge-verified">
+              ✓ Vérifié
+            </span>
+          `
+          : "";
 
-              <img
-                src="${escapeHtml(photo)}"
-                alt="${name}"
-                loading="lazy"
-                onerror="this.parentElement.innerHTML='<div class=&quot;photo-placeholder&quot;>${initials}</div>'"
-              >
 
-            </div>
+      const pro =
+        (
+          professional.is_pro ||
+          professional.is_pro_plus
+        )
+          ? `
+            <span class="badge badge-pro">
+              ★ PRO
+            </span>
+          `
+          : "";
+
+
+      const featured =
+        professional.featured
+          ? `
+            <span class="badge badge-featured">
+              ★ Mis en avant
+            </span>
+          `
+          : "";
+
+
+      const image =
+        cover?.image_url
+          ? `
+            <img
+              src="${escapeHtml(cover.image_url)}"
+              alt="${name}"
+              loading="lazy"
+              onerror="this.parentElement.innerHTML='<div class=&quot;card-image-placeholder&quot;>${initials}</div>'"
+            >
           `
           : `
-            <div class="professional-photo">
-
-              <div class="photo-placeholder">
-                ${initials}
-              </div>
-
+            <div class="card-image-placeholder">
+              ${initials}
             </div>
           `;
 
@@ -3244,23 +2831,32 @@
 
         <article class="professional-card">
 
-          ${photoHtml}
+          <button
+            class="favorite-btn ${isFavorite ? "active" : ""}"
+            data-favorite-id="${id}"
+            type="button"
+            onclick="toggleFavorite('${id}')"
+            aria-label="Ajouter aux favoris"
+          >
+            ${isFavorite ? "♥" : "♡"}
+          </button>
 
+          <div class="card-image">
+            ${image}
+          </div>
 
-          <div class="professional-body">
+          <div class="card-body">
 
             <div class="card-top">
 
-              <div></div>
+              <div class="professional-avatar">
+                ${initials}
+              </div>
 
-              <div class="badges">
-
+              <div>
                 ${verified}
-
-                ${proPlus}
-
                 ${pro}
-
+                ${featured}
               </div>
 
             </div>
@@ -3288,11 +2884,7 @@
 
             <div class="rating">
 
-              <span class="rating-stars">
-                ⭐
-              </span>
-
-              ${rating.toFixed(1)}
+              ⭐ ${rating.toFixed(1)}
 
               ${
                 reviews > 0
@@ -3311,6 +2903,15 @@
                 onclick="openProfessional('${id}')"
               >
                 Voir la fiche
+              </button>
+
+
+              <button
+                class="action-btn whatsapp-btn"
+                type="button"
+                onclick="openProfessional('${id}')"
+              >
+                Contacter
               </button>
 
             </div>
@@ -3368,102 +2969,248 @@
           );
 
 
-        const photo =
-          getProfessionalPhoto(
-            professional.id
-          );
+        const photos =
+          professional.professional_photos ||
+          [];
 
 
         const services =
-          await loadProfessionalServices(
-            professional.id
+          professional.professional_services ||
+          [];
+
+
+        const reviews =
+          professional.reviews ||
+          [];
+
+
+        const cover =
+          getCoverPhoto(
+            professional
           );
 
 
-        const initials =
-          escapeHtml(
-            getInitials(
-              professional.business_name
-            )
-          );
-
-
-        const verifiedBadge =
-          professional.is_verified
+        const coverHtml =
+          cover?.image_url
             ? `
-              <span class="badge badge-verified">
-                ✓ Vérifié
-              </span>
+              <div class="modal-cover">
+                <img
+                  src="${escapeHtml(cover.image_url)}"
+                  alt="${escapeHtml(
+                    professional.business_name ||
+                    "Professionnel"
+                  )}"
+                >
+              </div>
             `
             : "";
 
 
-        const proPlusBadge =
-          professional.is_pro_plus
+        const servicesHtml =
+          services.length
             ? `
-              <span class="badge badge-pro-plus">
-                ★ PRO+
-              </span>
+              <div class="modal-section">
+
+                <h4>
+                  Services proposés
+                </h4>
+
+                ${services.map(
+                  service => {
+
+                    const from =
+                      service.price_from !== null &&
+                      service.price_from !== undefined
+                        ? Number(
+                            service.price_from
+                          ).toLocaleString(
+                            "fr-FR"
+                          ) +
+                          " FCFA"
+                        : "";
+
+
+                    const to =
+                      service.price_to !== null &&
+                      service.price_to !== undefined
+                        ? Number(
+                            service.price_to
+                          ).toLocaleString(
+                            "fr-FR"
+                          ) +
+                          " FCFA"
+                        : "";
+
+
+                    let price = "";
+
+                    if (
+                      from &&
+                      to
+                    ) {
+
+                      price =
+                        from +
+                        " — " +
+                        to;
+
+                    } else if (
+                      from
+                    ) {
+
+                      price =
+                        "À partir de " +
+                        from;
+
+                    } else if (
+                      to
+                    ) {
+
+                      price =
+                        "Jusqu'à " +
+                        to;
+
+                    }
+
+
+                    return `
+
+                      <div class="service-item">
+
+                        <div class="service-name">
+                          ${escapeHtml(
+                            service.service_name ||
+                            "Service"
+                          )}
+                        </div>
+
+                        <div class="service-description">
+                          ${escapeHtml(
+                            service.description ||
+                            ""
+                          )}
+                        </div>
+
+                        ${
+                          price
+                            ? `
+                              <div class="service-price">
+                                ${price}
+                              </div>
+                            `
+                            : ""
+                        }
+
+                      </div>
+
+                    `;
+
+                  }
+                ).join("")}
+
+              </div>
             `
             : "";
 
 
-        const proBadge =
-          professional.is_pro &&
-          !professional.is_pro_plus
+        const reviewsHtml =
+          reviews.length
             ? `
-              <span class="badge badge-pro">
-                ★ PRO
-              </span>
+              <div class="modal-section">
+
+                <h4>
+                  Avis des clients
+                </h4>
+
+                ${reviews.map(
+                  review => `
+
+                    <div class="review-item">
+
+                      <div class="review-header">
+
+                        <strong>
+                          Client VERIFIA
+                        </strong>
+
+                        <span class="review-rating">
+                          ⭐ ${
+                            Number(
+                              review.rating || 0
+                            )
+                          }/5
+                        </span>
+
+                      </div>
+
+                      <div class="review-comment">
+                        ${escapeHtml(
+                          review.comment ||
+                          "Aucun commentaire."
+                        )}
+                      </div>
+
+                    </div>
+
+                  `
+                ).join("")}
+
+              </div>
+            `
+            : `
+              <div class="modal-section">
+
+                <h4>
+                  Avis des clients
+                </h4>
+
+                <p class="result-count">
+                  Aucun avis publié pour le moment.
+                </p>
+
+              </div>
+            `;
+
+
+        const galleryHtml =
+          photos.length > 1
+            ? `
+              <div class="modal-section">
+
+                <h4>
+                  Photos
+                </h4>
+
+                <div class="gallery">
+
+                  ${photos.map(
+                    photo => `
+
+                      <img
+                        src="${escapeHtml(
+                          photo.image_url
+                        )}"
+                        alt="${escapeHtml(
+                          photo.caption ||
+                          professional.business_name ||
+                          "Photo"
+                        )}"
+                        loading="lazy"
+                      >
+
+                    `
+                  ).join("")}
+
+                </div>
+
+              </div>
             `
             : "";
 
 
         modalContent.innerHTML = `
 
-          ${
-            photo
-              ? `
-                <div class="modal-cover">
-
-                  <img
-                    src="${escapeHtml(photo)}"
-                    alt="${escapeHtml(
-                      professional.business_name ||
-                      "Professionnel"
-                    )}"
-                  >
-
-                </div>
-              `
-              : `
-                <div class="modal-cover">
-
-                  <div class="photo-placeholder">
-                    ${initials}
-                  </div>
-
-                </div>
-              `
-          }
-
-
-          <div
-            style="
-              display:flex;
-              flex-wrap:wrap;
-              gap:5px;
-              margin-bottom:15px;
-            "
-          >
-
-            ${verifiedBadge}
-
-            ${proPlusBadge}
-
-            ${proBadge}
-
-          </div>
+          ${coverHtml}
 
 
           <div class="detail-row">
@@ -3491,16 +3238,13 @@
             </div>
 
             <div class="detail-value">
-
               📍
-
               ${
                 escapeHtml(
                   professional.cities?.name ||
                   "Non précisée"
                 )
               }
-
             </div>
 
           </div>
@@ -3513,14 +3257,12 @@
             </div>
 
             <div class="detail-value">
-
               ${
                 escapeHtml(
                   professional.description ||
                   "Aucune description disponible."
                 )
               }
-
             </div>
 
           </div>
@@ -3533,14 +3275,12 @@
             </div>
 
             <div class="detail-value">
-
               ${
                 escapeHtml(
                   professional.address ||
                   "Adresse non renseignée."
                 )
               }
-
             </div>
 
           </div>
@@ -3553,15 +3293,12 @@
             </div>
 
             <div class="detail-value">
-
               ${
                 Number(
                   professional.years_experience || 0
                 )
               }
-
               an(s)
-
             </div>
 
           </div>
@@ -3574,15 +3311,37 @@
             </div>
 
             <div class="detail-value">
-
               ⭐
               ${rating.toFixed(1)}
               / 5
-
               ${
                 professional.review_count
                   ? ` — ${professional.review_count} avis`
                   : ""
+              }
+            </div>
+
+          </div>
+
+
+          <div class="detail-row">
+
+            <div class="detail-label">
+              Téléphone
+            </div>
+
+            <div class="detail-value">
+
+              ${
+                phone
+                  ? `
+                    <a
+                      href="tel:+${phone}"
+                    >
+                      +${phone}
+                    </a>
+                  `
+                  : "Non renseigné"
               }
 
             </div>
@@ -3590,109 +3349,21 @@
           </div>
 
 
-          ${
-            services.length > 0
-              ? `
-                <div class="services-section">
+          ${servicesHtml}
 
-                  <h4 class="services-title">
-                    Services proposés
-                  </h4>
+          ${reviewsHtml}
 
-                  ${services
-                    .map(
-                      service => {
-
-                        const priceFrom =
-                          service.price_from;
-
-                        const priceTo =
-                          service.price_to;
+          ${galleryHtml}
 
 
-                        let price =
-                          "";
-
-
-                        if (
-                          priceFrom !== null &&
-                          priceFrom !== undefined &&
-                          priceTo !== null &&
-                          priceTo !== undefined
-                        ) {
-
-                          price =
-                            `${formatPrice(priceFrom)} — ${formatPrice(priceTo)} FCFA`;
-
-                        } else if (
-                          priceFrom !== null &&
-                          priceFrom !== undefined
-                        ) {
-
-                          price =
-                            `À partir de ${formatPrice(priceFrom)} FCFA`;
-
-                        }
-
-
-                        return `
-
-                          <div class="service-item">
-
-                            <div class="service-name">
-
-                              ${
-                                escapeHtml(
-                                  service.service_name ||
-                                  "Service"
-                                )
-                              }
-
-                            </div>
-
-
-                            ${
-                              service.description
-                                ? `
-                                  <div class="service-description">
-
-                                    ${
-                                      escapeHtml(
-                                        service.description
-                                      )
-                                    }
-
-                                  </div>
-                                `
-                                : ""
-                            }
-
-
-                            ${
-                              price
-                                ? `
-                                  <div class="service-price">
-                                    ${price}
-                                  </div>
-                                `
-                                : ""
-                            }
-
-                          </div>
-
-                        `;
-
-                      }
-                    )
-                    .join("")}
-
-                </div>
-              `
-              : ""
-          }
-
-
-          <div class="modal-actions">
+          <div
+            style="
+              display:grid;
+              grid-template-columns:1fr 1fr;
+              gap:10px;
+              margin-top:25px;
+            "
+          >
 
             ${
               phone
@@ -3707,11 +3378,9 @@
                 : `
                   <button
                     class="action-btn contact-btn"
-                    type="button"
                     disabled
-                    style="opacity:.5;cursor:not-allowed;"
                   >
-                    📞 Téléphone non renseigné
+                    📞 Appeler
                   </button>
                 `
             }
@@ -3732,11 +3401,9 @@
                 : `
                   <button
                     class="action-btn whatsapp-btn"
-                    type="button"
                     disabled
-                    style="opacity:.5;cursor:not-allowed;"
                   >
-                    WhatsApp indisponible
+                    WhatsApp
                   </button>
                 `
             }
@@ -3750,100 +3417,22 @@
           "hidden"
         );
 
-
-        document.body.classList.add(
-          "modal-open"
-        );
-
       };
-
-
-    /* =====================================================
-       SERVICES PROFESSIONNELS
-    ====================================================== */
-
-    async function loadProfessionalServices(
-      professionalId
-    ) {
-
-      try {
-
-        const {
-          data,
-          error
-        } =
-          await supabaseClient
-            .from(
-              "professional_services"
-            )
-            .select(`
-              id,
-              professional_id,
-              service_name,
-              description,
-              price_from,
-              price_to
-            `)
-            .eq(
-              "professional_id",
-              professionalId
-            )
-            .order(
-              "created_at",
-              {
-                ascending: true
-              }
-            );
-
-
-        if (error) {
-
-          console.warn(
-            "Services non disponibles :",
-            error.message
-          );
-
-          return [];
-
-        }
-
-
-        return data || [];
-
-      } catch (error) {
-
-        console.warn(
-          "Erreur services :",
-          error
-        );
-
-        return [];
-
-      }
-
-    }
 
 
     /* =====================================================
        FERMETURE MODAL
     ====================================================== */
 
-    function closeProfessionalModal() {
-
-      professionalModal.classList.add(
-        "hidden"
-      );
-
-      document.body.classList.remove(
-        "modal-open"
-      );
-
-    }
-
-
     closeModal.addEventListener(
       "click",
-      closeProfessionalModal
+      () => {
+
+        professionalModal.classList.add(
+          "hidden"
+        );
+
+      }
     );
 
 
@@ -3856,7 +3445,9 @@
           professionalModal
         ) {
 
-          closeProfessionalModal();
+          professionalModal.classList.add(
+            "hidden"
+          );
 
         }
 
@@ -3869,11 +3460,12 @@
       event => {
 
         if (
-          event.key ===
-          "Escape"
+          event.key === "Escape"
         ) {
 
-          closeProfessionalModal();
+          professionalModal.classList.add(
+            "hidden"
+          );
 
         }
 
@@ -3904,7 +3496,7 @@
 
 
     /* =====================================================
-       CHARGEMENT GLOBAL
+       CHARGEMENT
     ====================================================== */
 
     async function loadData() {
@@ -3924,11 +3516,8 @@
 
         clearDataError();
 
-        loading.innerHTML =
-          `
-            <div class="loading-spinner"></div>
-            Chargement des professionnels...
-          `;
+        loading.textContent =
+          "Chargement des professionnels...";
 
         loading.classList.remove(
           "hidden"
@@ -3966,7 +3555,7 @@
 
 
         showDataError(
-          "Impossible de charger les professionnels. Vérifiez les autorisations de lecture Supabase et votre connexion."
+          "Impossible de charger les données VERIFIA. Vérifiez les autorisations de lecture Supabase et les relations entre les tables."
         );
 
       }
@@ -4086,36 +3675,6 @@
 
 
     /* =====================================================
-       PRIX
-    ====================================================== */
-
-    function formatPrice(
-      value
-    ) {
-
-      const number =
-        Number(value);
-
-
-      if (
-        Number.isNaN(number)
-      ) {
-
-        return "";
-
-      }
-
-
-      return new Intl.NumberFormat(
-        "fr-FR"
-      ).format(
-        number
-      );
-
-    }
-
-
-    /* =====================================================
        SECURITE HTML
     ====================================================== */
 
@@ -4134,27 +3693,22 @@
 
 
       return String(value)
-
         .replace(
           /&/g,
           "&amp;"
         )
-
         .replace(
           /</g,
           "&lt;"
         )
-
         .replace(
           />/g,
           "&gt;"
         )
-
         .replace(
           /"/g,
           "&quot;"
         )
-
         .replace(
           /'/g,
           "&#039;"
@@ -4173,4 +3727,3 @@
 
 </body>
 </html>
-```
