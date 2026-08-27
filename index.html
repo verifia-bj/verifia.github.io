@@ -1,5 +1,5 @@
+```html
 <!DOCTYPE html>
-
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -7,11 +7,12 @@
 
   <title>VERIFIA — Professionnels de confiance au Bénin</title>
 
-<meta
-name="description"
-content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
+  <meta
+    name="description"
+    content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
+  >
 
->
+  <meta name="theme-color" content="#07111f">
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -25,7 +26,7 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
     :root {
       --primary: #0b5ed7;
       --primary-dark: #084298;
-      --secondary: #0f172a;
+      --secondary: #07111f;
       --light: #f5f7fb;
       --white: #ffffff;
       --border: #e2e8f0;
@@ -77,7 +78,7 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
         linear-gradient(
           135deg,
           rgba(11, 94, 215, 0.97),
-          rgba(15, 23, 42, 0.98)
+          rgba(7, 17, 31, 0.99)
         );
     }
 
@@ -301,10 +302,11 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
         linear-gradient(
           120deg,
           #0b5ed7,
-          #123b73
+          #123b73,
+          #07111f
         );
       color: white;
-      padding: 65px 20px 85px;
+      padding: 60px 20px 80px;
     }
 
     .hero-inner {
@@ -316,6 +318,7 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
     .hero h2 {
       font-size: clamp(30px, 5vw, 48px);
       margin-bottom: 12px;
+      line-height: 1.15;
     }
 
     .hero p {
@@ -323,6 +326,7 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
       margin: auto;
       opacity: 0.9;
       line-height: 1.6;
+      font-size: 16px;
     }
 
     /* =========================
@@ -331,7 +335,7 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
 
     .filters-section {
       max-width: 1100px;
-      margin: -45px auto 0;
+      margin: -35px auto 0;
       padding: 0 20px;
       position: relative;
       z-index: 5;
@@ -409,46 +413,14 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
       background: white;
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      overflow: hidden;
+      padding: 20px;
       box-shadow: 0 5px 20px rgba(15, 23, 42, 0.04);
       transition: 0.2s;
-      position: relative;
     }
 
     .professional-card:hover {
       transform: translateY(-4px);
       box-shadow: var(--shadow);
-    }
-
-    .card-image {
-      width: 100%;
-      height: 190px;
-      background:
-        linear-gradient(
-          135deg,
-          #dbeafe,
-          #eff6ff
-        );
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-
-    .card-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .card-image-placeholder {
-      font-size: 45px;
-      font-weight: 900;
-      color: var(--primary);
-    }
-
-    .card-body {
-      padding: 20px;
     }
 
     .card-top {
@@ -472,6 +444,13 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
       font-weight: 900;
     }
 
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 4px;
+    }
+
     .badge {
       display: inline-flex;
       align-items: center;
@@ -480,7 +459,6 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
       padding: 5px 9px;
       font-size: 11px;
       font-weight: 800;
-      margin-left: 4px;
     }
 
     .badge-verified {
@@ -491,11 +469,6 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
     .badge-pro {
       background: #fff3cd;
       color: #664d03;
-    }
-
-    .badge-featured {
-      background: #e0e7ff;
-      color: #3730a3;
     }
 
     .professional-card h4 {
@@ -555,23 +528,9 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
       color: #0f5132;
     }
 
-    .favorite-btn {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      width: 38px;
-      height: 38px;
-      border: none;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.95);
-      color: #64748b;
-      font-size: 19px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.12);
-      z-index: 2;
-    }
-
-    .favorite-btn.active {
-      color: #dc3545;
+    .whatsapp-btn.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
     }
 
     .empty-state {
@@ -595,7 +554,7 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
     }
 
     .data-error {
-      max-width: 700px;
+      max-width: 800px;
       margin: 20px auto;
       padding: 15px;
       border-radius: 12px;
@@ -603,6 +562,34 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
       color: #842029;
       text-align: center;
       line-height: 1.5;
+    }
+
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .stat-box {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      text-align: center;
+    }
+
+    .stat-number {
+      display: block;
+      font-size: 26px;
+      font-weight: 900;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 13px;
+      color: var(--muted);
     }
 
     /* =========================
@@ -622,7 +609,7 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
 
     .modal {
       width: 100%;
-      max-width: 700px;
+      max-width: 600px;
       background: white;
       border-radius: 20px;
       padding: 25px;
@@ -647,21 +634,6 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
       font-size: 20px;
     }
 
-    .modal-cover {
-      width: 100%;
-      height: 240px;
-      border-radius: 15px;
-      overflow: hidden;
-      margin-bottom: 20px;
-      background: #e8f0fe;
-    }
-
-    .modal-cover img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
     .detail-row {
       padding: 13px 0;
       border-bottom: 1px solid var(--border);
@@ -680,65 +652,11 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
       line-height: 1.5;
     }
 
-    .modal-section {
-      margin-top: 25px;
-    }
-
-    .modal-section h4 {
-      margin-bottom: 12px;
-      font-size: 18px;
-    }
-
-    .service-item,
-    .review-item {
-      background: #f8fafc;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 14px;
-      margin-bottom: 10px;
-    }
-
-    .service-name {
-      font-weight: 800;
-      margin-bottom: 5px;
-    }
-
-    .service-description,
-    .review-comment {
-      color: #475569;
-      font-size: 14px;
-      line-height: 1.5;
-    }
-
-    .service-price {
-      color: var(--primary);
-      font-weight: 800;
-      margin-top: 7px;
-    }
-
-    .review-header {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 6px;
-    }
-
-    .review-rating {
-      font-weight: 800;
-    }
-
-    .gallery {
+    .modal-actions {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin-top: 10px;
-    }
-
-    .gallery img {
-      width: 100%;
-      height: 90px;
-      object-fit: cover;
-      border-radius: 9px;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 20px;
     }
 
     footer {
@@ -770,6 +688,10 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
       .filter-box:last-child {
         grid-column: 1 / -1;
       }
+
+      .stats-bar {
+        grid-template-columns: repeat(3, 1fr);
+      }
     }
 
     @media (max-width: 650px) {
@@ -787,7 +709,7 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
       }
 
       .hero {
-        padding: 42px 15px 70px;
+        padding: 42px 15px 65px;
       }
 
       .filters-section {
@@ -823,12 +745,15 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
         grid-template-columns: 1fr;
       }
 
-      .gallery {
-        grid-template-columns: repeat(2, 1fr);
+      .modal-actions {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-bar {
+        grid-template-columns: 1fr;
       }
     }
   </style>
-
 </head>
 
 <body>
@@ -839,181 +764,184 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
 
   <section id="authScreen">
 
-```
-<div class="auth-container">
+    <div class="auth-container">
 
-  <div class="auth-logo">
+      <div class="auth-logo">
 
-    <div class="logo-mark">
-      V
+        <div class="logo-mark">
+          V
+        </div>
+
+        <h1>VERIFIA</h1>
+
+        <p>
+          Trouvez un professionnel de confiance au Bénin
+        </p>
+
+      </div>
+
+      <div class="auth-card">
+
+        <div class="auth-tabs">
+
+          <button
+            class="auth-tab active"
+            id="loginTab"
+            type="button"
+          >
+            Connexion
+          </button>
+
+          <button
+            class="auth-tab"
+            id="registerTab"
+            type="button"
+          >
+            Inscription
+          </button>
+
+        </div>
+
+        <!-- CONNEXION -->
+
+        <form id="loginForm">
+
+          <div class="form-group">
+
+            <label for="loginEmail">
+              Adresse e-mail
+            </label>
+
+            <input
+              type="email"
+              id="loginEmail"
+              placeholder="exemple@email.com"
+              autocomplete="email"
+              required
+            >
+
+          </div>
+
+          <div class="form-group">
+
+            <label for="loginPassword">
+              Mot de passe
+            </label>
+
+            <input
+              type="password"
+              id="loginPassword"
+              placeholder="Votre mot de passe"
+              autocomplete="current-password"
+              required
+            >
+
+          </div>
+
+          <button
+            class="primary-btn"
+            id="loginButton"
+            type="submit"
+          >
+            Se connecter
+          </button>
+
+        </form>
+
+        <!-- INSCRIPTION -->
+
+        <form
+          id="registerForm"
+          class="hidden"
+        >
+
+          <div class="form-group">
+
+            <label for="registerName">
+              Nom complet
+            </label>
+
+            <input
+              type="text"
+              id="registerName"
+              placeholder="Votre nom complet"
+              autocomplete="name"
+              required
+            >
+
+          </div>
+
+          <div class="form-group">
+
+            <label for="registerEmail">
+              Adresse e-mail
+            </label>
+
+            <input
+              type="email"
+              id="registerEmail"
+              placeholder="exemple@email.com"
+              autocomplete="email"
+              required
+            >
+
+          </div>
+
+          <div class="form-group">
+
+            <label for="registerPassword">
+              Mot de passe
+            </label>
+
+            <input
+              type="password"
+              id="registerPassword"
+              minlength="6"
+              placeholder="Minimum 6 caractères"
+              autocomplete="new-password"
+              required
+            >
+
+          </div>
+
+          <div class="form-group">
+
+            <label for="registerPasswordConfirm">
+              Confirmer le mot de passe
+            </label>
+
+            <input
+              type="password"
+              id="registerPasswordConfirm"
+              minlength="6"
+              placeholder="Confirmez votre mot de passe"
+              autocomplete="new-password"
+              required
+            >
+
+          </div>
+
+          <button
+            class="primary-btn"
+            id="registerButton"
+            type="submit"
+          >
+            Créer mon compte
+          </button>
+
+        </form>
+
+        <div
+          id="authMessage"
+          class="auth-message"
+        ></div>
+
+      </div>
+
     </div>
-
-    <h1>VERIFIA</h1>
-
-    <p>
-      Trouvez un professionnel de confiance au Bénin
-    </p>
-
-  </div>
-
-  <div class="auth-card">
-
-    <div class="auth-tabs">
-
-      <button
-        class="auth-tab active"
-        id="loginTab"
-        type="button"
-      >
-        Connexion
-      </button>
-
-      <button
-        class="auth-tab"
-        id="registerTab"
-        type="button"
-      >
-        Inscription
-      </button>
-
-    </div>
-
-    <form id="loginForm">
-
-      <div class="form-group">
-
-        <label for="loginEmail">
-          Adresse e-mail
-        </label>
-
-        <input
-          type="email"
-          id="loginEmail"
-          placeholder="exemple@email.com"
-          autocomplete="email"
-          required
-        >
-
-      </div>
-
-      <div class="form-group">
-
-        <label for="loginPassword">
-          Mot de passe
-        </label>
-
-        <input
-          type="password"
-          id="loginPassword"
-          placeholder="Votre mot de passe"
-          autocomplete="current-password"
-          required
-        >
-
-      </div>
-
-      <button
-        class="primary-btn"
-        id="loginButton"
-        type="submit"
-      >
-        Se connecter
-      </button>
-
-    </form>
-
-    <form
-      id="registerForm"
-      class="hidden"
-    >
-
-      <div class="form-group">
-
-        <label for="registerName">
-          Nom complet
-        </label>
-
-        <input
-          type="text"
-          id="registerName"
-          placeholder="Votre nom complet"
-          autocomplete="name"
-          required
-        >
-
-      </div>
-
-      <div class="form-group">
-
-        <label for="registerEmail">
-          Adresse e-mail
-        </label>
-
-        <input
-          type="email"
-          id="registerEmail"
-          placeholder="exemple@email.com"
-          autocomplete="email"
-          required
-        >
-
-      </div>
-
-      <div class="form-group">
-
-        <label for="registerPassword">
-          Mot de passe
-        </label>
-
-        <input
-          type="password"
-          id="registerPassword"
-          minlength="6"
-          placeholder="Minimum 6 caractères"
-          autocomplete="new-password"
-          required
-        >
-
-      </div>
-
-      <div class="form-group">
-
-        <label for="registerPasswordConfirm">
-          Confirmer le mot de passe
-        </label>
-
-        <input
-          type="password"
-          id="registerPasswordConfirm"
-          minlength="6"
-          placeholder="Confirmez votre mot de passe"
-          autocomplete="new-password"
-          required
-        >
-
-      </div>
-
-      <button
-        class="primary-btn"
-        id="registerButton"
-        type="submit"
-      >
-        Créer mon compte
-      </button>
-
-    </form>
-
-    <div
-      id="authMessage"
-      class="auth-message"
-    ></div>
-
-  </div>
-
-</div>
-```
 
   </section>
+
 
   <!-- =====================================================
        APPLICATION
@@ -1024,194 +952,252 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
     class="hidden"
   >
 
-```
-<header>
+    <header>
 
-  <nav class="navbar">
+      <nav class="navbar">
 
-    <div class="brand">
+        <div class="brand">
 
-      <div class="brand-mark">
-        V
+          <div class="brand-mark">
+            V
+          </div>
+
+          VERIFIA
+
+        </div>
+
+        <div class="user-menu">
+
+          <span
+            id="userEmail"
+            class="user-email"
+          ></span>
+
+          <button
+            class="logout-btn"
+            id="logoutBtn"
+            type="button"
+          >
+            Déconnexion
+          </button>
+
+        </div>
+
+      </nav>
+
+    </header>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+      <div class="hero-inner">
+
+        <h2>
+          Trouvez le professionnel qu'il vous faut
+        </h2>
+
+        <p>
+          Recherchez des professionnels fiables
+          partout au Bénin selon leur ville
+          et leur domaine d'activité.
+        </p>
+
       </div>
 
-      VERIFIA
-
-    </div>
-
-    <div class="user-menu">
-
-      <span
-        id="userEmail"
-        class="user-email"
-      ></span>
-
-      <button
-        class="logout-btn"
-        id="logoutBtn"
-        type="button"
-      >
-        Déconnexion
-      </button>
-
-    </div>
-
-  </nav>
-
-</header>
+    </section>
 
 
-<section class="hero">
+    <!-- FILTRES -->
 
-  <div class="hero-inner">
+    <section class="filters-section">
 
-    <h2>
-      Trouvez le professionnel qu'il vous faut
-    </h2>
+      <div class="filters-card">
 
-    <p>
-      Recherchez des professionnels fiables
-      dans toutes les villes et catégories du Bénin.
-    </p>
+        <div class="filter-box">
 
-  </div>
+          <label for="cityFilter">
+            Ville
+          </label>
 
-</section>
+          <select id="cityFilter">
 
+            <option value="">
+              Toutes les villes
+            </option>
 
-<section class="filters-section">
+          </select>
 
-  <div class="filters-card">
+        </div>
 
-    <div class="filter-box">
+        <div class="filter-box">
 
-      <label for="cityFilter">
-        Ville
-      </label>
+          <label for="categoryFilter">
+            Catégorie
+          </label>
 
-      <select id="cityFilter">
+          <select id="categoryFilter">
 
-        <option value="">
-          Toutes les villes
-        </option>
+            <option value="">
+              Toutes les catégories
+            </option>
 
-      </select>
+          </select>
 
-    </div>
+        </div>
 
-    <div class="filter-box">
+        <div class="filter-box">
 
-      <label for="categoryFilter">
-        Catégorie
-      </label>
+          <label for="searchInput">
+            Recherche
+          </label>
 
-      <select id="categoryFilter">
+          <input
+            type="search"
+            id="searchInput"
+            placeholder="Nom, activité, description..."
+          >
 
-        <option value="">
-          Toutes les catégories
-        </option>
+        </div>
 
-      </select>
+      </div>
 
-    </div>
-
-    <div class="filter-box">
-
-      <label for="searchInput">
-        Recherche
-      </label>
-
-      <input
-        type="search"
-        id="searchInput"
-        placeholder="Nom, activité, ville..."
-      >
-
-    </div>
-
-  </div>
-
-</section>
+    </section>
 
 
-<main>
+    <!-- CONTENU -->
 
-  <div class="section-title">
+    <main>
 
-    <div>
+      <!-- STATISTIQUES -->
 
-      <h3>
-        Professionnels
-      </h3>
+      <div class="stats-bar">
+
+        <div class="stat-box">
+
+          <span
+            class="stat-number"
+            id="totalProfessionals"
+          >
+            0
+          </span>
+
+          <span class="stat-label">
+            Professionnels
+          </span>
+
+        </div>
+
+        <div class="stat-box">
+
+          <span
+            class="stat-number"
+            id="totalCities"
+          >
+            0
+          </span>
+
+          <span class="stat-label">
+            Villes
+          </span>
+
+        </div>
+
+        <div class="stat-box">
+
+          <span
+            class="stat-number"
+            id="totalCategories"
+          >
+            0
+          </span>
+
+          <span class="stat-label">
+            Catégories
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="section-title">
+
+        <div>
+
+          <h3>
+            Professionnels
+          </h3>
+
+          <div
+            id="selectedLocation"
+            class="result-count"
+          >
+            Tous les professionnels
+          </div>
+
+        </div>
+
+        <div
+          id="resultCount"
+          class="result-count"
+        >
+          Chargement...
+        </div>
+
+      </div>
+
 
       <div
-        id="selectedLocation"
-        class="result-count"
+        id="loading"
+        class="loading"
       >
-        Tous les professionnels
+        Chargement des données VERIFIA...
       </div>
 
-    </div>
 
-    <div
-      id="resultCount"
-      class="result-count"
-    >
-      Chargement...
-    </div>
-
-  </div>
+      <div
+        id="dataError"
+        class="data-error hidden"
+      ></div>
 
 
-  <div
-    id="loading"
-    class="loading"
-  >
-    Chargement des professionnels...
-  </div>
+      <div
+        id="professionalsGrid"
+        class="professionals-grid hidden"
+      ></div>
 
 
-  <div
-    id="dataError"
-    class="data-error hidden"
-  ></div>
+      <div
+        id="emptyState"
+        class="empty-state hidden"
+      >
+
+        <h4>
+          Aucun professionnel trouvé
+        </h4>
+
+        <p>
+          Aucun professionnel ne correspond
+          actuellement à vos critères de recherche.
+        </p>
+
+      </div>
+
+    </main>
 
 
-  <div
-    id="professionalsGrid"
-    class="professionals-grid hidden"
-  ></div>
+    <footer>
 
+      <p>
+        © 2026 VERIFIA — Annuaire professionnel du Bénin
+      </p>
 
-  <div
-    id="emptyState"
-    class="empty-state hidden"
-  >
-
-    <h4>
-      Aucun professionnel trouvé
-    </h4>
-
-    <p>
-      Aucun professionnel ne correspond
-      actuellement à vos critères.
-    </p>
-
-  </div>
-
-</main>
-
-
-<footer>
-
-  <p>
-    © 2026 VERIFIA — Annuaire professionnel du Bénin
-  </p>
-
-</footer>
-```
+    </footer>
 
   </section>
+
 
   <!-- =====================================================
        MODAL
@@ -1222,32 +1208,31 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
     class="modal-overlay hidden"
   >
 
-```
-<div class="modal">
+    <div class="modal">
 
-  <div class="modal-header">
+      <div class="modal-header">
 
-    <h3 id="modalTitle">
-      Professionnel
-    </h3>
+        <h3 id="modalTitle">
+          Professionnel
+        </h3>
 
-    <button
-      class="close-btn"
-      id="closeModal"
-      type="button"
-      aria-label="Fermer"
-    >
-      ×
-    </button>
+        <button
+          class="close-btn"
+          id="closeModal"
+          type="button"
+          aria-label="Fermer"
+        >
+          ×
+        </button>
 
-  </div>
+      </div>
 
-  <div id="modalContent"></div>
+      <div id="modalContent"></div>
 
-</div>
-```
+    </div>
 
   </div>
+
 
   <script>
 
@@ -1344,6 +1329,21 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
     const closeModal =
       document.getElementById("closeModal");
 
+    const totalProfessionals =
+      document.getElementById(
+        "totalProfessionals"
+      );
+
+    const totalCities =
+      document.getElementById(
+        "totalCities"
+      );
+
+    const totalCategories =
+      document.getElementById(
+        "totalCategories"
+      );
+
 
     /* =====================================================
        VARIABLES
@@ -1354,18 +1354,21 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
     let professionals = [];
     let currentUser = null;
     let dataLoaded = false;
-    let favoriteIds = new Set();
 
 
     /* =====================================================
-       AUTH
+       AFFICHAGE AUTH
     ====================================================== */
 
     function showAuthScreen() {
 
-      authScreen.classList.remove("hidden");
+      authScreen.classList.remove(
+        "hidden"
+      );
 
-      app.classList.add("hidden");
+      app.classList.add(
+        "hidden"
+      );
 
       currentUser = null;
 
@@ -1376,15 +1379,23 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
 
       currentUser = user;
 
-      authScreen.classList.add("hidden");
+      authScreen.classList.add(
+        "hidden"
+      );
 
-      app.classList.remove("hidden");
+      app.classList.remove(
+        "hidden"
+      );
 
       userEmail.textContent =
         user?.email || "";
 
     }
 
+
+    /* =====================================================
+       MESSAGES
+    ====================================================== */
 
     function showAuthMessage(
       message,
@@ -1434,18 +1445,28 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
 
 
     /* =====================================================
-       ONGLETS
+       ONGLETS AUTH
     ====================================================== */
 
     loginTab.addEventListener(
       "click",
       () => {
 
-        loginTab.classList.add("active");
-        registerTab.classList.remove("active");
+        loginTab.classList.add(
+          "active"
+        );
 
-        loginForm.classList.remove("hidden");
-        registerForm.classList.add("hidden");
+        registerTab.classList.remove(
+          "active"
+        );
+
+        loginForm.classList.remove(
+          "hidden"
+        );
+
+        registerForm.classList.add(
+          "hidden"
+        );
 
         clearAuthMessage();
 
@@ -1457,11 +1478,21 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
       "click",
       () => {
 
-        registerTab.classList.add("active");
-        loginTab.classList.remove("active");
+        registerTab.classList.add(
+          "active"
+        );
 
-        registerForm.classList.remove("hidden");
-        loginForm.classList.add("hidden");
+        loginTab.classList.remove(
+          "active"
+        );
+
+        registerForm.classList.remove(
+          "hidden"
+        );
+
+        loginForm.classList.add(
+          "hidden"
+        );
 
         clearAuthMessage();
 
@@ -1556,13 +1587,16 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
           } =
             await supabaseClient.auth.signUp({
 
-              email,
-              password,
+              email: email,
+
+              password: password,
 
               options: {
+
                 data: {
                   full_name: name
                 }
+
               }
 
             });
@@ -1570,22 +1604,6 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
 
           if (error) {
             throw error;
-          }
-
-
-          if (
-            data?.user
-          ) {
-
-            /*
-              Le profil sera créé dès que
-              Supabase fournit un utilisateur.
-            */
-            await ensureProfile(
-              data.user,
-              name
-            );
-
           }
 
 
@@ -1619,7 +1637,9 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
           );
 
           showAuthMessage(
-            getFriendlyAuthError(error)
+            getFriendlyAuthError(
+              error
+            )
           );
 
         } finally {
@@ -1675,8 +1695,9 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
             await supabaseClient.auth
               .signInWithPassword({
 
-                email,
-                password
+                email: email,
+
+                password: password
 
               });
 
@@ -1689,10 +1710,6 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
           if (
             data?.user
           ) {
-
-            await ensureProfile(
-              data.user
-            );
 
             showAppScreen(
               data.user
@@ -1716,7 +1733,9 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
           );
 
           showAuthMessage(
-            getFriendlyAuthError(error)
+            getFriendlyAuthError(
+              error
+            )
           );
 
         } finally {
@@ -1731,83 +1750,6 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
 
       }
     );
-
-
-    /* =====================================================
-       PROFIL
-    ====================================================== */
-
-    async function ensureProfile(
-      user,
-      providedName = ""
-    ) {
-
-      if (!user?.id) {
-        return;
-      }
-
-
-      const fullName =
-        providedName ||
-        user.user_metadata?.full_name ||
-        "";
-
-
-      const parts =
-        String(fullName)
-          .trim()
-          .split(/\s+/)
-          .filter(Boolean);
-
-
-      const firstName =
-        parts.length > 0
-          ? parts[0]
-          : "";
-
-
-      const lastName =
-        parts.length > 1
-          ? parts.slice(1).join(" ")
-          : "";
-
-
-      const {
-        error
-      } =
-        await supabaseClient
-          .from("profiles")
-          .upsert(
-            {
-              id: user.id,
-              first_name: firstName,
-              last_name: lastName,
-              role: "client",
-              updated_at: new Date().toISOString()
-            },
-            {
-              onConflict: "id"
-            }
-          );
-
-
-      if (error) {
-
-        /*
-          Le chargement de l'application
-          ne doit pas être bloqué uniquement
-          par le profil si une policy RLS
-          empêche l'écriture.
-        */
-
-        console.warn(
-          "Profil non synchronisé :",
-          error.message
-        );
-
-      }
-
-    }
 
 
     /* =====================================================
@@ -1830,7 +1772,9 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
         )
       ) {
 
-        return "E-mail ou mot de passe incorrect.";
+        return (
+          "E-mail ou mot de passe incorrect."
+        );
 
       }
 
@@ -1841,7 +1785,9 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
         )
       ) {
 
-        return "Votre adresse e-mail n'est pas encore confirmée.";
+        return (
+          "Votre adresse e-mail n'est pas encore confirmée."
+        );
 
       }
 
@@ -1852,7 +1798,9 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
         )
       ) {
 
-        return "Cette adresse e-mail possède déjà un compte.";
+        return (
+          "Cette adresse e-mail possède déjà un compte."
+        );
 
       }
 
@@ -1863,7 +1811,9 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
         )
       ) {
 
-        return "Le mot de passe est trop court.";
+        return (
+          "Le mot de passe est trop court."
+        );
 
       }
 
@@ -1908,18 +1858,21 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
         } finally {
 
           currentUser = null;
+
           dataLoaded = false;
+
           professionals = [];
-          favoriteIds = new Set();
 
           showAuthScreen();
 
           loginForm.reset();
+
           registerForm.reset();
 
           clearAuthMessage();
 
-          logoutBtn.disabled = false;
+          logoutBtn.disabled =
+            false;
 
         }
 
@@ -1932,7 +1885,7 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
     ====================================================== */
 
     supabaseClient.auth.onAuthStateChange(
-      async (event, session) => {
+      (event, session) => {
 
         if (
           session?.user
@@ -1985,10 +1938,6 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
           data?.session?.user
         ) {
 
-          await ensureProfile(
-            data.session.user
-          );
-
           showAppScreen(
             data.session.user
           );
@@ -2016,7 +1965,8 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
 
 
     /* =====================================================
-       VILLES
+       CHARGEMENT DES VILLES
+       AUCUNE RELATION SUPABASE NECESSAIRE
     ====================================================== */
 
     async function loadCities() {
@@ -2027,9 +1977,7 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
       } =
         await supabaseClient
           .from("cities")
-          .select(
-            "id,name"
-          )
+          .select("id,name")
           .order(
             "name",
             {
@@ -2055,13 +2003,6 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
         `;
 
 
-      /*
-        IMPORTANT :
-        Toutes les villes sont affichées,
-        même lorsqu'aucun professionnel
-        n'y est encore enregistré.
-      */
-
       cities.forEach(
         city => {
 
@@ -2083,11 +2024,16 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
         }
       );
 
+
+      totalCities.textContent =
+        cities.length;
+
     }
 
 
     /* =====================================================
-       CATEGORIES
+       CHARGEMENT DES CATEGORIES
+       AUCUNE RELATION SUPABASE NECESSAIRE
     ====================================================== */
 
     async function loadCategories() {
@@ -2126,12 +2072,6 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
         `;
 
 
-      /*
-        IMPORTANT :
-        Les 15 catégories restent visibles
-        même si elles n'ont aucun professionnel.
-      */
-
       categories.forEach(
         category => {
 
@@ -2144,11 +2084,7 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
             category.id;
 
           option.textContent =
-            category.icon
-              ? category.icon +
-                " " +
-                category.name
-              : category.name;
+            category.name;
 
           categoryFilter.appendChild(
             option
@@ -2157,11 +2093,17 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
         }
       );
 
+
+      totalCategories.textContent =
+        categories.length;
+
     }
 
 
     /* =====================================================
-       PROFESSIONNELS
+       CHARGEMENT DES PROFESSIONNELS
+       IMPORTANT :
+       ON NE FAIT PLUS DE JOIN CATEGORIES/CITIES
     ====================================================== */
 
     async function loadProfessionals() {
@@ -2189,7 +2131,10 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
           .from("professionals")
           .select(`
             id,
+            user_id,
             business_name,
+            category_id,
+            city_id,
             description,
             address,
             phone,
@@ -2202,39 +2147,8 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
             featured,
             average_rating,
             review_count,
-            category_id,
-            city_id,
-            categories (
-              id,
-              name,
-              icon
-            ),
-            cities (
-              id,
-              name
-            ),
-            professional_photos (
-              id,
-              image_url,
-              caption,
-              is_cover,
-              created_at
-            ),
-            professional_services (
-              id,
-              service_name,
-              description,
-              price_from,
-              price_to,
-              created_at
-            ),
-            reviews (
-              id,
-              reviewer_id,
-              rating,
-              comment,
-              created_at
-            )
+            created_at,
+            updated_at
           `)
           .eq(
             "is_active",
@@ -2270,8 +2184,9 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
 
       dataLoaded = true;
 
+      totalProfessionals.textContent =
+        professionals.length;
 
-      await loadFavorites();
 
       applyFilters();
 
@@ -2279,175 +2194,37 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
 
 
     /* =====================================================
-       FAVORIS
+       RECUPERER UNE VILLE
     ====================================================== */
 
-    async function loadFavorites() {
+    function getCityById(
+      cityId
+    ) {
 
-      favoriteIds =
-        new Set();
-
-
-      if (!currentUser?.id) {
-        return;
-      }
-
-
-      const {
-        data,
-        error
-      } =
-        await supabaseClient
-          .from("favorites")
-          .select(
-            "professional_id"
-          )
-          .eq(
-            "user_id",
-            currentUser.id
-          );
-
-
-      if (error) {
-
-        console.warn(
-          "Impossible de charger les favoris :",
-          error.message
-        );
-
-        return;
-
-      }
-
-
-      (data || []).forEach(
-        item => {
-
-          favoriteIds.add(
-            String(
-              item.professional_id
-            )
-          );
-
-        }
-      );
+      return cities.find(
+        city =>
+          String(city.id) ===
+          String(cityId)
+      ) || null;
 
     }
 
 
-    window.toggleFavorite =
-      async function(
-        professionalId
-      ) {
+    /* =====================================================
+       RECUPERER UNE CATEGORIE
+    ====================================================== */
 
-        if (!currentUser?.id) {
+    function getCategoryById(
+      categoryId
+    ) {
 
-          alert(
-            "Vous devez être connecté pour utiliser les favoris."
-          );
+      return categories.find(
+        category =>
+          String(category.id) ===
+          String(categoryId)
+      ) || null;
 
-          return;
-
-        }
-
-
-        const key =
-          String(
-            professionalId
-          );
-
-
-        const button =
-          document.querySelector(
-            `[data-favorite-id="${key}"]`
-          );
-
-
-        try {
-
-          if (
-            favoriteIds.has(key)
-          ) {
-
-            const {
-              error
-            } =
-              await supabaseClient
-                .from("favorites")
-                .delete()
-                .eq(
-                  "user_id",
-                  currentUser.id
-                )
-                .eq(
-                  "professional_id",
-                  professionalId
-                );
-
-
-            if (error) {
-              throw error;
-            }
-
-
-            favoriteIds.delete(key);
-
-          } else {
-
-            const {
-              error
-            } =
-              await supabaseClient
-                .from("favorites")
-                .insert({
-
-                  user_id:
-                    currentUser.id,
-
-                  professional_id:
-                    professionalId
-
-                });
-
-
-            if (error) {
-              throw error;
-            }
-
-
-            favoriteIds.add(key);
-
-          }
-
-
-          if (button) {
-
-            button.classList.toggle(
-              "active",
-              favoriteIds.has(key)
-            );
-
-            button.textContent =
-              favoriteIds.has(key)
-                ? "♥"
-                : "♡";
-
-          }
-
-        } catch (error) {
-
-          console.error(
-            "Erreur favori :",
-            error
-          );
-
-          alert(
-            "Impossible de modifier ce favori. Vérifiez les autorisations Supabase."
-          );
-
-        }
-
-      };
+    }
 
 
     /* =====================================================
@@ -2455,6 +2232,11 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
     ====================================================== */
 
     function applyFilters() {
+
+      if (!dataLoaded) {
+        return;
+      }
+
 
       const cityId =
         cityFilter.value;
@@ -2506,6 +2288,17 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
           results.filter(
             professional => {
 
+              const city =
+                getCityById(
+                  professional.city_id
+                );
+
+              const category =
+                getCategoryById(
+                  professional.category_id
+                );
+
+
               const text = [
 
                 professional.business_name,
@@ -2518,9 +2311,9 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
 
                 professional.whatsapp,
 
-                professional.categories?.name,
+                city?.name,
 
-                professional.cities?.name
+                category?.name
 
               ]
                 .filter(Boolean)
@@ -2561,18 +2354,14 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
     ) {
 
       const city =
-        cities.find(
-          item =>
-            String(item.id) ===
-            String(cityId)
+        getCityById(
+          cityId
         );
 
 
       const category =
-        categories.find(
-          item =>
-            String(item.id) ===
-            String(categoryId)
+        getCategoryById(
+          categoryId
         );
 
 
@@ -2677,32 +2466,7 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
 
 
     /* =====================================================
-       PHOTO COUVERTURE
-    ====================================================== */
-
-    function getCoverPhoto(
-      professional
-    ) {
-
-      const photos =
-        professional.professional_photos ||
-        [];
-
-
-      return (
-        photos.find(
-          photo =>
-            photo.is_cover === true
-        ) ||
-        photos[0] ||
-        null
-      );
-
-    }
-
-
-    /* =====================================================
-       CARTE
+       CARTE PROFESSIONNEL
     ====================================================== */
 
     function createProfessionalCard(
@@ -2722,17 +2486,29 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
         );
 
 
-      const category =
-        escapeHtml(
-          professional.categories?.name ||
-          "Autre"
+      const city =
+        getCityById(
+          professional.city_id
         );
 
 
-      const city =
+      const category =
+        getCategoryById(
+          professional.category_id
+        );
+
+
+      const cityName =
         escapeHtml(
-          professional.cities?.name ||
+          city?.name ||
           "Bénin"
+        );
+
+
+      const categoryName =
+        escapeHtml(
+          category?.name ||
+          "Autre"
         );
 
 
@@ -2751,29 +2527,10 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
         );
 
 
-      const cover =
-        getCoverPhoto(
-          professional
-        );
-
-
-      const rating =
-        Number(
-          professional.average_rating || 0
-        );
-
-
-      const reviews =
-        Number(
-          professional.review_count || 0
-        );
-
-
-      const isFavorite =
-        favoriteIds.has(
-          String(
-            professional.id
-          )
+      const whatsapp =
+        normalizePhone(
+          professional.whatsapp ||
+          professional.phone
         );
 
 
@@ -2800,121 +2557,100 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
           : "";
 
 
-      const featured =
-        professional.featured
-          ? `
-            <span class="badge badge-featured">
-              ★ Mis en avant
-            </span>
-          `
-          : "";
+      const rating =
+        Number(
+          professional.average_rating || 0
+        );
 
 
-      const image =
-        cover?.image_url
-          ? `
-            <img
-              src="${escapeHtml(cover.image_url)}"
-              alt="${name}"
-              loading="lazy"
-              onerror="this.parentElement.innerHTML='<div class=&quot;card-image-placeholder&quot;>${initials}</div>'"
-            >
-          `
-          : `
-            <div class="card-image-placeholder">
-              ${initials}
-            </div>
-          `;
+      const reviews =
+        Number(
+          professional.review_count || 0
+        );
 
 
       return `
 
         <article class="professional-card">
 
-          <button
-            class="favorite-btn ${isFavorite ? "active" : ""}"
-            data-favorite-id="${id}"
-            type="button"
-            onclick="toggleFavorite('${id}')"
-            aria-label="Ajouter aux favoris"
-          >
-            ${isFavorite ? "♥" : "♡"}
-          </button>
+          <div class="card-top">
 
-          <div class="card-image">
-            ${image}
+            <div class="professional-avatar">
+              ${initials}
+            </div>
+
+            <div class="badges">
+              ${verified}
+              ${pro}
+            </div>
+
           </div>
 
-          <div class="card-body">
 
-            <div class="card-top">
-
-              <div class="professional-avatar">
-                ${initials}
-              </div>
-
-              <div>
-                ${verified}
-                ${pro}
-                ${featured}
-              </div>
-
-            </div>
+          <h4>
+            ${name}
+          </h4>
 
 
-            <h4>
-              ${name}
-            </h4>
+          <div class="category">
+            ${categoryName}
+          </div>
 
 
-            <div class="category">
-              ${category}
-            </div>
+          <div class="location">
+            📍 ${cityName}
+          </div>
 
 
-            <div class="location">
-              📍 ${city}
-            </div>
+          <div class="description">
+            ${description}
+          </div>
 
 
-            <div class="description">
-              ${description}
-            </div>
+          <div class="rating">
+
+            ⭐ ${rating.toFixed(1)}
+
+            ${
+              reviews > 0
+                ? `(${reviews} avis)`
+                : "(Aucun avis)"
+            }
+
+          </div>
 
 
-            <div class="rating">
+          <div class="card-actions">
 
-              ⭐ ${rating.toFixed(1)}
-
-              ${
-                reviews > 0
-                  ? `(${reviews} avis)`
-                  : "(Aucun avis)"
-              }
-
-            </div>
+            <button
+              class="action-btn contact-btn"
+              type="button"
+              onclick="openProfessional('${id}')"
+            >
+              Voir la fiche
+            </button>
 
 
-            <div class="card-actions">
-
-              <button
-                class="action-btn contact-btn"
-                type="button"
-                onclick="openProfessional('${id}')"
-              >
-                Voir la fiche
-              </button>
-
-
-              <button
-                class="action-btn whatsapp-btn"
-                type="button"
-                onclick="openProfessional('${id}')"
-              >
-                Contacter
-              </button>
-
-            </div>
+            ${
+              whatsapp
+                ? `
+                  <a
+                    class="action-btn whatsapp-btn"
+                    href="https://wa.me/${whatsapp}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    WhatsApp
+                  </a>
+                `
+                : `
+                  <span
+                    class="action-btn whatsapp-btn disabled"
+                  >
+                    WhatsApp
+                  </span>
+                `
+            }
 
           </div>
 
@@ -2930,7 +2666,7 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
     ====================================================== */
 
     window.openProfessional =
-      async function(id) {
+      function(id) {
 
         const professional =
           professionals.find(
@@ -2943,6 +2679,18 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
         if (!professional) {
           return;
         }
+
+
+        const city =
+          getCityById(
+            professional.city_id
+          );
+
+
+        const category =
+          getCategoryById(
+            professional.category_id
+          );
 
 
         modalTitle.textContent =
@@ -2969,249 +2717,7 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
           );
 
 
-        const photos =
-          professional.professional_photos ||
-          [];
-
-
-        const services =
-          professional.professional_services ||
-          [];
-
-
-        const reviews =
-          professional.reviews ||
-          [];
-
-
-        const cover =
-          getCoverPhoto(
-            professional
-          );
-
-
-        const coverHtml =
-          cover?.image_url
-            ? `
-              <div class="modal-cover">
-                <img
-                  src="${escapeHtml(cover.image_url)}"
-                  alt="${escapeHtml(
-                    professional.business_name ||
-                    "Professionnel"
-                  )}"
-                >
-              </div>
-            `
-            : "";
-
-
-        const servicesHtml =
-          services.length
-            ? `
-              <div class="modal-section">
-
-                <h4>
-                  Services proposés
-                </h4>
-
-                ${services.map(
-                  service => {
-
-                    const from =
-                      service.price_from !== null &&
-                      service.price_from !== undefined
-                        ? Number(
-                            service.price_from
-                          ).toLocaleString(
-                            "fr-FR"
-                          ) +
-                          " FCFA"
-                        : "";
-
-
-                    const to =
-                      service.price_to !== null &&
-                      service.price_to !== undefined
-                        ? Number(
-                            service.price_to
-                          ).toLocaleString(
-                            "fr-FR"
-                          ) +
-                          " FCFA"
-                        : "";
-
-
-                    let price = "";
-
-                    if (
-                      from &&
-                      to
-                    ) {
-
-                      price =
-                        from +
-                        " — " +
-                        to;
-
-                    } else if (
-                      from
-                    ) {
-
-                      price =
-                        "À partir de " +
-                        from;
-
-                    } else if (
-                      to
-                    ) {
-
-                      price =
-                        "Jusqu'à " +
-                        to;
-
-                    }
-
-
-                    return `
-
-                      <div class="service-item">
-
-                        <div class="service-name">
-                          ${escapeHtml(
-                            service.service_name ||
-                            "Service"
-                          )}
-                        </div>
-
-                        <div class="service-description">
-                          ${escapeHtml(
-                            service.description ||
-                            ""
-                          )}
-                        </div>
-
-                        ${
-                          price
-                            ? `
-                              <div class="service-price">
-                                ${price}
-                              </div>
-                            `
-                            : ""
-                        }
-
-                      </div>
-
-                    `;
-
-                  }
-                ).join("")}
-
-              </div>
-            `
-            : "";
-
-
-        const reviewsHtml =
-          reviews.length
-            ? `
-              <div class="modal-section">
-
-                <h4>
-                  Avis des clients
-                </h4>
-
-                ${reviews.map(
-                  review => `
-
-                    <div class="review-item">
-
-                      <div class="review-header">
-
-                        <strong>
-                          Client VERIFIA
-                        </strong>
-
-                        <span class="review-rating">
-                          ⭐ ${
-                            Number(
-                              review.rating || 0
-                            )
-                          }/5
-                        </span>
-
-                      </div>
-
-                      <div class="review-comment">
-                        ${escapeHtml(
-                          review.comment ||
-                          "Aucun commentaire."
-                        )}
-                      </div>
-
-                    </div>
-
-                  `
-                ).join("")}
-
-              </div>
-            `
-            : `
-              <div class="modal-section">
-
-                <h4>
-                  Avis des clients
-                </h4>
-
-                <p class="result-count">
-                  Aucun avis publié pour le moment.
-                </p>
-
-              </div>
-            `;
-
-
-        const galleryHtml =
-          photos.length > 1
-            ? `
-              <div class="modal-section">
-
-                <h4>
-                  Photos
-                </h4>
-
-                <div class="gallery">
-
-                  ${photos.map(
-                    photo => `
-
-                      <img
-                        src="${escapeHtml(
-                          photo.image_url
-                        )}"
-                        alt="${escapeHtml(
-                          photo.caption ||
-                          professional.business_name ||
-                          "Photo"
-                        )}"
-                        loading="lazy"
-                      >
-
-                    `
-                  ).join("")}
-
-                </div>
-
-              </div>
-            `
-            : "";
-
-
         modalContent.innerHTML = `
-
-          ${coverHtml}
-
 
           <div class="detail-row">
 
@@ -3222,7 +2728,7 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
             <div class="detail-value">
               ${
                 escapeHtml(
-                  professional.categories?.name ||
+                  category?.name ||
                   "Non précisée"
                 )
               }
@@ -3241,7 +2747,7 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
               📍
               ${
                 escapeHtml(
-                  professional.cities?.name ||
+                  city?.name ||
                   "Non précisée"
                 )
               }
@@ -3349,21 +2855,7 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
           </div>
 
 
-          ${servicesHtml}
-
-          ${reviewsHtml}
-
-          ${galleryHtml}
-
-
-          <div
-            style="
-              display:grid;
-              grid-template-columns:1fr 1fr;
-              gap:10px;
-              margin-top:25px;
-            "
-          >
+          <div class="modal-actions">
 
             ${
               phone
@@ -3376,12 +2868,11 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
                   </a>
                 `
                 : `
-                  <button
-                    class="action-btn contact-btn"
-                    disabled
+                  <span
+                    class="action-btn contact-btn disabled"
                   >
                     📞 Appeler
-                  </button>
+                  </span>
                 `
             }
 
@@ -3399,12 +2890,11 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
                   </a>
                 `
                 : `
-                  <button
-                    class="action-btn whatsapp-btn"
-                    disabled
+                  <span
+                    class="action-btn whatsapp-btn disabled"
                   >
                     WhatsApp
-                  </button>
+                  </span>
                 `
             }
 
@@ -3496,7 +2986,7 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
 
 
     /* =====================================================
-       CHARGEMENT
+       CHARGEMENT GENERAL
     ====================================================== */
 
     async function loadData() {
@@ -3517,18 +3007,22 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
         clearDataError();
 
         loading.textContent =
-          "Chargement des professionnels...";
+          "Chargement des données VERIFIA...";
 
         loading.classList.remove(
           "hidden"
         );
 
 
-        await Promise.all([
-          loadCities(),
-          loadCategories()
-        ]);
+        /*
+          IMPORTANT :
+          On charge les trois tables séparément.
+          Aucune jointure relationnelle Supabase.
+        */
 
+        await loadCities();
+
+        await loadCategories();
 
         await loadProfessionals();
 
@@ -3536,7 +3030,7 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
       } catch (error) {
 
         console.error(
-          "Erreur chargement données :",
+          "Erreur chargement données VERIFIA :",
           error
         );
 
@@ -3555,7 +3049,7 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
 
 
         showDataError(
-          "Impossible de charger les données VERIFIA. Vérifiez les autorisations de lecture Supabase et les relations entre les tables."
+          "Impossible de charger les données VERIFIA. Vérifiez les autorisations de lecture (RLS) sur les tables cities, categories et professionals."
         );
 
       }
@@ -3727,3 +3221,4 @@ content="VERIFIA — Trouvez des professionnels de confiance partout au Bénin."
 
 </body>
 </html>
+```
